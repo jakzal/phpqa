@@ -1,0 +1,12 @@
+language: bash
+sudo: required
+
+services:
+  - docker
+
+script:
+  - make
+  - docker run -it --rm jakzal/phpqa
+
+after_script:
+  - docker images
