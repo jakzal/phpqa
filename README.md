@@ -19,12 +19,12 @@ Docker image with quality analysis tools for PHP.
 * pdepend - [Static Analysis Tool](https://pdepend.org/)
 * phpcs - [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpcbf - [Automatically corrects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
-* phpcb - PHP Code Browser - https://github.com/mayflower/PHP_CodeBrowser
-* deprecation-d[etector](Finds usages of deprecated code - https://github.com/sensiolabs-de/deprecation-detector)
+* phpcb - [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser)
+* deprecation-detector - [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector)
 * php-coupling-detector - [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/)
 * analyze - [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer)
-* design-p[attern](Dettects design patterns - https://github.com/Halleck45/DesignPatternDetector)
-* parallel-l[int](Checks PHP file syntax - https://github.com/JakubOnderka/PHP-Parallel-Lint)
+* design-pattern - [Dettects design patterns](https://github.com/Halleck45/DesignPatternDetector)
+* parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 
 ## Building the image
 
