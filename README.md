@@ -2,6 +2,8 @@
 
 Docker image with quality analysis tools for PHP.
 
+[![Build Status](https://travis-ci.org/jakzal/docker-phpqa.svg?branch=master)](https://travis-ci.org/jakzal/docker-phpqa)
+
 ## Available tools
 
 * composer - [Dependency Manager for PHP](https://getcomposer.org/)
