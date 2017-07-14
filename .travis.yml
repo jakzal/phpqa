@@ -1,13 +1,14 @@
 language: bash
 sudo: required
 
-services:
-  - docker
-
 matrix:
   include:
     - flavour: latest
+      services:
+        - docker
     - flavour: alpine
+      services:
+        - docker
   fast_finish: true
 
 script:
