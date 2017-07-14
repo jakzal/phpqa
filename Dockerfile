@@ -11,6 +11,7 @@ ENV PATH="$PATH:/root/.composer/vendor/bin:/root/QualityAnalyzer/bin:/root/Desig
 RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
  && docker-php-ext-install zip \
  && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
+ && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
  && curl -Ls https://getcomposer.org/composer.phar > /usr/local/bin/composer && chmod +x /usr/local/bin/composer \
  && curl -Ls https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box && chmod +x /usr/local/bin/box \
