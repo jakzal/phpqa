@@ -3,10 +3,10 @@ sudo: required
 
 matrix:
   include:
-    - flavour: latest
+    - env: flavour=latest
       services:
         - docker
-    - flavour: alpine
+    - env: flavour=alpine
       services:
         - docker
   fast_finish: true
