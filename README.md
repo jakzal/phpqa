@@ -26,13 +26,13 @@ Docker image with quality analysis tools for PHP.
 * design-pattern - [Dettects design patterns](https://github.com/Halleck45/DesignPatternDetector)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 
-## Building the image
+## Running tools
+
+Pull the image:
 
 ```bash
-make build
+docker pull jakzal/phpqa
 ```
-
-## Running tools
 
 The default command will list available tools:
 
@@ -45,4 +45,12 @@ the project directory on the container:
 
 ```bash
 docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpstan analyse src
+```
+
+## Building the image
+
+```bash
+git clone https://github.com/jakzal/phpqa.git
+cd phpqa
+make build
 ```
