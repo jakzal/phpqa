@@ -60,3 +60,27 @@ To build the alpine version:
 ```
 make build-alpine
 ```
+
+## Customising the image
+
+It's often needed to customise the image with project specific extensions.
+To achieve that simply create a new image based on `jakzal/phpqa`:
+
+```
+FROM jakzal/phpqa:alpine
+
+RUN apk add --no-cache libxml2-dev \
+ && docker-php-ext-install soap
+```
+
+Next, build it:
+
+```
+docker build -t foo/phpqa .
+```
+
+Finally, use your customised image instead of the default one:
+
+```
+docker run -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
+```
