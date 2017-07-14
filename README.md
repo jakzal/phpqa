@@ -54,3 +54,9 @@ git clone https://github.com/jakzal/phpqa.git
 cd phpqa
 make build
 ```
+
+To build the alpine version:
+
+```
+make build-alpine
+```

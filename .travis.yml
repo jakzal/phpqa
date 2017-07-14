@@ -5,8 +5,10 @@ services:
   - docker
 
 script:
-  - make
+  - make build
+  - make build-alpine
   - docker run -it --rm jakzal/phpqa
+  - docker run -it --rm jakzal/phpqa:alpine
 
 after_script:
   - docker images
