@@ -4,11 +4,15 @@ sudo: required
 services:
   - docker
 
+matrix:
+  include:
+    - flavour: latest
+    - flavour: alpine
+  fast_finish: true
+
 script:
-  - make build
-  - make build-alpine
-  - docker run -it --rm jakzal/phpqa
-  - docker run -it --rm jakzal/phpqa:alpine
+  - if [ "$flavour" = "latest" ]; then make build; else make build-alpine; fi
+  - docker run -it --rm jakzal/phpqa:$flavour
 
 after_script:
   - docker images
