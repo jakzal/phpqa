@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && curl -Ls https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar > /usr/local/bin/phpcbf && chmod +x /usr/local/bin/phpcbf  \
  && curl -Ls https://github.com/bytepark/php-phar-qatools/raw/master/phpcb.phar > /usr/local/bin/phpcb && chmod +x /usr/local/bin/phpcb \
  && curl -Ls https://github.com/sensiolabs-de/deprecation-detector/releases/download/0.1.0-alpha4/deprecation-detector.phar > /usr/local/bin/deprecation-detector && chmod +x /usr/local/bin/deprecation-detector \
+ && curl -Ls http://get.sensiolabs.de/deptrac.phar > /usr/local/bin/deptrac && chmod +x /usr/local/bin/deptrac \
  && composer global require --no-suggest --prefer-dist -n akeneo/php-coupling-detector edsonmedina/php_testability:dev-master \
  && cd $HOME && git clone https://github.com/Qafoo/QualityAnalyzer.git && cd $HOME/QualityAnalyzer && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/Halleck45/DesignPatternDetector.git && cd $HOME/DesignPatternDetector && composer install --no-dev --no-suggest --prefer-dist -n \
@@ -36,4 +37,3 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
 
 ADD list-tools.sh /usr/local/bin/list-tools.sh
 CMD /usr/local/bin/list-tools.sh
-
