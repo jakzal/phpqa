@@ -1,6 +1,6 @@
-# Quality Analysis Tools for PHP
+# Static Analysis Tools for PHP
 
-Docker image providing quality analysis tools for PHP.
+Docker image providing static analysis tools for PHP.
 
 [![Build Status](https://travis-ci.org/jakzal/phpqa.svg?branch=master)](https://travis-ci.org/jakzal/phpqa)
 
