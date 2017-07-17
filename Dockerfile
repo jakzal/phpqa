@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && curl -Ls https://github.com/bytepark/php-phar-qatools/raw/master/phpcb.phar > /usr/local/bin/phpcb && chmod +x /usr/local/bin/phpcb \
  && curl -Ls https://github.com/sensiolabs-de/deprecation-detector/releases/download/0.1.0-alpha4/deprecation-detector.phar > /usr/local/bin/deprecation-detector && chmod +x /usr/local/bin/deprecation-detector \
  && curl -Ls http://get.sensiolabs.de/deptrac.phar > /usr/local/bin/deptrac && chmod +x /usr/local/bin/deptrac \
+ && curl -sL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey > /usr/local/bin/phpda.pubkey && curl -sL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda > /usr/local/bin/phpda && chmod +x /usr/local/bin/phpda \
  && curl -Ls http://psvc.coreteks.org/php-semver-checker.phar > /usr/local/bin/php-semver-checker && chmod +x /usr/local/bin/php-semver-checker \
  && composer global require --no-suggest --prefer-dist -n akeneo/php-coupling-detector edsonmedina/php_testability:dev-master \
  && cd $HOME && git clone https://github.com/Qafoo/QualityAnalyzer.git && cd $HOME/QualityAnalyzer && composer install --no-dev --no-suggest --prefer-dist -n \

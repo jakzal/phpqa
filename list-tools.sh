@@ -18,6 +18,7 @@ Available tools:
 * phpcb - PHP Code Browser - https://github.com/mayflower/PHP_CodeBrowser
 * deprecation-detector - Finds usages of deprecated code - https://github.com/sensiolabs-de/deprecation-detector
 * deptrac - Enforces dependency rules - https://github.com/sensiolabs-de/deptrac
+* phpda - Generates dependency graphs - https://mamuz.github.io/PhpDependencyAnalysis/
 * php-coupling-detector - Detects code coupling issues - https://akeneo.github.io/php-coupling-detector/
 * analyze - Visualizes metrics and source code - https://github.com/Qafoo/QualityAnalyzer
 * design-pattern - Dettects design patterns - https://github.com/Halleck45/DesignPatternDetector
