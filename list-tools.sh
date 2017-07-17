@@ -22,4 +22,5 @@ Available tools:
 * analyze - Visualizes metrics and source code - https://github.com/Qafoo/QualityAnalyzer
 * design-pattern - Dettects design patterns - https://github.com/Halleck45/DesignPatternDetector
 * parallel-lint - Checks PHP file syntax - https://github.com/JakubOnderka/PHP-Parallel-Lint
+* php-semver-checker - Suggests a next version according to semantic versioning - https://github.com/tomzx/php-semver-checker
 TOOLS
