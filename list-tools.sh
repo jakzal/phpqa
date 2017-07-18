@@ -10,6 +10,7 @@ Available tools:
 * phpmetrics - Static Analysis Tool - http://www.phpmetrics.org/
 * phpstan - Static Analysis Tool - https://github.com/phpstan/phpstan
 * dephpend - Detect flaws in your architecture - https://dephpend.com/
+* psalm - Finds errors in PHP applications - https://getpsalm.org/
 * phpDocumentor - Documentation generator - https://www.phpdoc.org/
 * phpcpd - Copy/Paste Detector - https://github.com/sebastianbergmann/phpcpd
 * phploc - A tool for quickly measuring the size of a PHP project - https://github.com/sebastianbergmann/phploc
