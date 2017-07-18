@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && cd $HOME && git clone https://github.com/Qafoo/QualityAnalyzer.git && cd $HOME/QualityAnalyzer && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/Halleck45/DesignPatternDetector.git && cd $HOME/DesignPatternDetector && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/JakubOnderka/PHP-Parallel-Lint.git && cd $HOME/PHP-Parallel-Lint && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv parallel-lint.phar /usr/local/bin/parallel-lint && chmod +x /usr/local/bin/parallel-lint && cd && rm -rf $HOME/PHP-Parallel-Lint \
+ && cd $HOME && git clone https://github.com/mmoreram/php-formatter.git && cd $HOME/php-formatter && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv build/php-formatter.phar /usr/local/bin/php-formatter && chmod +x /usr/local/bin/php-formatter && cd && rm -rf $HOME/php-formatter \
  && apt-get purge -y --auto-remove $BUILD_DEPS
 
 ADD list-tools.sh /usr/local/bin/list-tools.sh
