@@ -15,6 +15,7 @@ Available tools:
 * phpcpd - Copy/Paste Detector - https://github.com/sebastianbergmann/phpcpd
 * phploc - A tool for quickly measuring the size of a PHP project - https://github.com/sebastianbergmann/phploc
 * phpmd - A tool for finding problems in PHP code - https://phpmd.org/
+* phpmnd - Helps to detect magic numbers - https://github.com/povils/phpmnd
 * pdepend - Static Analysis Tool - https://pdepend.org/
 * phpcs - Detects coding standard violations - https://github.com/squizlabs/PHP_CodeSniffer
 * phpcbf - Automatically corrects coding standard violations - https://github.com/squizlabs/PHP_CodeSniffer

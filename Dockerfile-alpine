@@ -34,6 +34,7 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && curl -Ls http://psvc.coreteks.org/php-semver-checker.phar > /usr/local/bin/php-semver-checker && chmod +x /usr/local/bin/php-semver-checker \
  && composer global require --no-suggest --prefer-dist -n akeneo/php-coupling-detector edsonmedina/php_testability:dev-master \
  && composer global require --no-suggest --prefer-dist -n vimeo/psalm \
+ && composer global require --no-suggest --prefer-dist -n povils/phpmnd \
  && cd $HOME && git clone https://github.com/Qafoo/QualityAnalyzer.git && cd $HOME/QualityAnalyzer && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/Halleck45/DesignPatternDetector.git && cd $HOME/DesignPatternDetector && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/JakubOnderka/PHP-Parallel-Lint.git && cd $HOME/PHP-Parallel-Lint && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv parallel-lint.phar /usr/local/bin/parallel-lint && chmod +x /usr/local/bin/parallel-lint && cd && rm -rf $HOME/PHP-Parallel-Lint \
