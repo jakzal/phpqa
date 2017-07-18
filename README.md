@@ -13,6 +13,7 @@ Docker image providing static analysis tools for PHP.
 * php-formatter - [Custom coding standards fixer](https://github.com/mmoreram/php-formatter)
 * phpmetrics - [Static Analysis Tool](http://www.phpmetrics.org/)
 * phpstan - [Static Analysis Tool](https://github.com/phpstan/phpstan)
+* phan - [Static Analysis Tool](https://github.com/etsy/phan)
 * dephpend - [Detect flaws in your architecture](https://dephpend.com/)
 * psalm - [Finds errors in PHP applications](https://getpsalm.org/)
 * phpDocumentor - [Documentation generator](https://www.phpdoc.org/)

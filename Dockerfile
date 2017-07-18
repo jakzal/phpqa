@@ -3,12 +3,13 @@ FROM php:7.1-cli
 MAINTAINER Jakub Zalas <jakub@zalas.pl>
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkg-config re2c"
+ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkg-config re2c unzip"
 ENV LIB_DEPS="zlib1g-dev"
 ENV TOOL_DEPS="git graphviz"
 ENV PATH="$PATH:/root/.composer/vendor/bin:/root/QualityAnalyzer/bin:/root/DesignPatternDetector/bin"
 
 RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
+ && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
  && docker-php-ext-install zip \
  && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
  && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
@@ -19,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && curl -Ls https://github.com/dunglas/phpdoc-to-typehint/releases/download/v0.1.0/phpdoc-to-typehint.phar > /usr/local/bin/phpdoc-to-typehint && chmod +x /usr/local/bin/phpdoc-to-typehint \
  && curl -Ls https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar > /usr/local/bin/phpmetrics && chmod +x /usr/local/bin/phpmetrics \
  && curl -Ls https://github.com/phpstan/phpstan/releases/download/0.7/phpstan-0.7.phar > /usr/local/bin/phpstan && chmod +x /usr/local/bin/phpstan \
+ && curl -Ls https://github.com/etsy/phan/releases/download/0.9.3/phan.phar.zip > phan.phar.zip && unzip phan.phar.zip && rm phan.phar.zip && mv phan.phar /usr/local/bin/phan && chmod +x /usr/local/bin/phan \
  && curl -Ls https://phar.dephpend.com/dephpend.phar > /usr/local/bin/dephpend && chmod +x /usr/local/bin/dephpend \
  && curl -Ls http://phpdoc.org/phpDocumentor.phar > /usr/local/bin/phpDocumentor && chmod +x /usr/local/bin/phpDocumentor \
  && curl -Ls https://phar.phpunit.de/phpcpd.phar > /usr/local/bin/phpcpd && chmod +x /usr/local/bin/phpcpd \
