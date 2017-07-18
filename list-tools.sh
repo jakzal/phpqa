@@ -5,6 +5,7 @@ Available tools:
 * composer - Dependency Manager for PHP - https://getcomposer.org/
 * box - An application for building and managing Phars - https://box-project.github.io/box2/
 * php-cs-fixer - PHP Coding Standards Fixer - http://cs.sensiolabs.org/
+* phpdoc-to-typehint - Automatically adds type hints and return types based on PHPDocs - https://github.com/dunglas/phpdoc-to-typehint
 * phpmetrics - Static Analysis Tool - http://www.phpmetrics.org/
 * phpstan - Static Analysis Tool - https://github.com/phpstan/phpstan
 * dephpend - Detect flaws in your architecture - https://dephpend.com/
