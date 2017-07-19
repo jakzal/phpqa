@@ -9,6 +9,8 @@ Docker image providing static analysis tools for PHP.
 * composer - [Dependency Manager for PHP](https://getcomposer.org/)
 * box - [An application for building and managing Phars](https://box-project.github.io/box2/)
 * php-cs-fixer - [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
+* php-code-fixer - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/)
+* php-code-analyzer - [Finds usage of non-built-in extensions](https://github.com/wapmorgan/PhpCodeAnalyzer)
 * phpdoc-to-typehint - [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint)
 * php-formatter - [Custom coding standards fixer](https://github.com/mmoreram/php-formatter)
 * phpmetrics - [Static Analysis Tool](http://www.phpmetrics.org/)
