@@ -39,6 +39,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && composer global require --no-suggest --prefer-dist -n povils/phpmnd \
  && composer global require --no-suggest --prefer-dist -n wapmorgan/php-code-fixer \
  && composer global require --no-suggest --prefer-dist -n wapmorgan/php-code-analyzer \
+ && composer global require --no-suggest --prefer-dist -n rskuipers/php-assumptions:dev-master \
  && cd $HOME && git clone https://github.com/Qafoo/QualityAnalyzer.git && cd $HOME/QualityAnalyzer && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/Halleck45/DesignPatternDetector.git && cd $HOME/DesignPatternDetector && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/JakubOnderka/PHP-Parallel-Lint.git && cd $HOME/PHP-Parallel-Lint && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv parallel-lint.phar /usr/local/bin/parallel-lint && chmod +x /usr/local/bin/parallel-lint && cd && rm -rf $HOME/PHP-Parallel-Lint \

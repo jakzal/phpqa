@@ -27,6 +27,7 @@ Docker image providing static analysis tools for PHP.
 * phpcs - [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpcbf - [Automatically corrects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpcb - [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser)
+* phpa - [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions)
 * deprecation-detector - [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector)
 * deptrac - [Enforces dependency rules](https://github.com/sensiolabs-de/deptrac)
 * phpda - [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/)
