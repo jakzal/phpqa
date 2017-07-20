@@ -9,8 +9,8 @@ Please note we have a [code of conduct](CODE_OF_CONDUCT.md). Please follow it in
 ## Pull Request Process
 
 * Prefer `phar` downloads over `composer global` installations to avoid dependency conflicts.
-* Update the README.md and list-tools.sh with any new tools you've added.
+* Update the `README.md` and `list-tools.sh` with any new tools you've added.
 * Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-* Make changes to both Debian and Alpine images (Dockerfile and Dockerfile-alpine).
+* Make changes to both Debian and Alpine images (`Dockerfile` and `Dockerfile-alpine`).
 * Provide a good commit message describing what you've done.
 
