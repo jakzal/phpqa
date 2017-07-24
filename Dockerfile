@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && curl -Ls http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar > /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer \
  && curl -Ls https://github.com/dunglas/phpdoc-to-typehint/releases/download/v0.1.0/phpdoc-to-typehint.phar > /usr/local/bin/phpdoc-to-typehint && chmod +x /usr/local/bin/phpdoc-to-typehint \
  && curl -Ls https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar > /usr/local/bin/phpmetrics && chmod +x /usr/local/bin/phpmetrics \
- && curl -Ls https://github.com/phpstan/phpstan/releases/download/0.7/phpstan-0.7.phar > /usr/local/bin/phpstan && chmod +x /usr/local/bin/phpstan \
+ && curl -Ls https://github.com/phpstan/phpstan/releases/download/0.8/phpstan.phar > /usr/local/bin/phpstan && chmod +x /usr/local/bin/phpstan \
  && curl -Ls https://github.com/etsy/phan/releases/download/0.9.3/phan.phar.zip > phan.phar.zip && unzip phan.phar.zip && rm phan.phar.zip && mv phan.phar /usr/local/bin/phan && chmod +x /usr/local/bin/phan \
  && curl -Ls https://phar.dephpend.com/dephpend.phar > /usr/local/bin/dephpend && chmod +x /usr/local/bin/dephpend \
  && curl -Ls http://phpdoc.org/phpDocumentor.phar > /usr/local/bin/phpDocumentor && chmod +x /usr/local/bin/phpDocumentor \
