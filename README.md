@@ -58,6 +58,20 @@ the project directory on the container:
 docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpstan analyse src
 ```
 
+You'll probably want to tweak this command for your needs and create an alias for convenience:
+
+```bash
+alias phpqa="docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa:alpine"
+```
+
+Add it to your `~/.bashrc` so it's defined every time you start a new terminal session.
+
+Now the command becomes a lot simpler:
+
+```bash
+phpqa phpstan analyse src
+```
+
 ## Building the image
 
 ```bash
