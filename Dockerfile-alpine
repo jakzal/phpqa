@@ -17,7 +17,7 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
  && curl -Ls https://getcomposer.org/composer.phar > /usr/local/bin/composer && chmod +x /usr/local/bin/composer \
  && curl -Ls https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box && chmod +x /usr/local/bin/box \
- && curl -Ls http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar > /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer \
+ && curl -Ls https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.6.0/php-cs-fixer.phar > /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer \
  && curl -Ls https://github.com/dunglas/phpdoc-to-typehint/releases/download/v0.1.0/phpdoc-to-typehint.phar > /usr/local/bin/phpdoc-to-typehint && chmod +x /usr/local/bin/phpdoc-to-typehint \
  && curl -Ls https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar > /usr/local/bin/phpmetrics && chmod +x /usr/local/bin/phpmetrics \
  && curl -Ls https://github.com/phpstan/phpstan/releases/download/0.8.3/phpstan.phar > /usr/local/bin/phpstan && chmod +x /usr/local/bin/phpstan \
