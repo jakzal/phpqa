@@ -37,6 +37,7 @@ Docker image providing static analysis tools for PHP.
 * design-pattern - [Dettects design patterns](https://github.com/Halleck45/DesignPatternDetector)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 * php-semver-checker - [Suggests a next version according to semantic versioning ](https://github.com/tomzx/php-semver-checker)
+* security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
 
 ## Running tools
 
