@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && curl -Ls http://get.sensiolabs.de/deptrac.phar > /usr/local/bin/deptrac && chmod +x /usr/local/bin/deptrac \
  && curl -sL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey > /usr/local/bin/phpda.pubkey && curl -sL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda > /usr/local/bin/phpda && chmod +x /usr/local/bin/phpda \
  && curl -Ls http://psvc.coreteks.org/php-semver-checker.phar > /usr/local/bin/php-semver-checker && chmod +x /usr/local/bin/php-semver-checker \
+ && curl -Ls http://get.sensiolabs.org/security-checker.phar > /usr/local/bin/security-checker && chmod +x /usr/local/bin/security-checker \
  && composer global require --no-suggest --prefer-dist --update-no-dev -n akeneo/php-coupling-detector edsonmedina/php_testability:dev-master vimeo/psalm povils/phpmnd wapmorgan/php-code-fixer wapmorgan/php-code-analyzer rskuipers/php-assumptions:dev-master bmitch/churn-php \
  && cd $HOME && git clone https://github.com/Qafoo/QualityAnalyzer.git && cd $HOME/QualityAnalyzer && composer install --no-dev --no-suggest --prefer-dist -n \
  && cd $HOME && git clone https://github.com/Halleck45/DesignPatternDetector.git && cd $HOME/DesignPatternDetector && composer install --no-dev --no-suggest --prefer-dist -n \
