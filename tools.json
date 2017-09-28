@@ -1,0 +1,342 @@
+{
+  "tools": [
+    {
+      "name": "analyze",
+      "summary": "Visualizes metrics and source code",
+      "website": "https://github.com/Qafoo/QualityAnalyzer",
+      "command": {
+        "composer-install": {
+          "repository": "https://github.com/Qafoo/QualityAnalyzer.git"
+        }
+      }
+    },
+    {
+      "name": "churn",
+      "summary": "Discovers good candidates for refactoring",
+      "website": "https://github.com/bmitch/churn-php",
+      "command": {
+        "composer-global-install": {
+          "package": "bmitch/churn-php"
+        }
+      }
+    },
+    {
+      "name": "dephpend",
+      "summary": "Detect flaws in your architecture",
+      "website": "https://dephpend.com/",
+      "command": {
+        "phar-download": {
+          "phar": "https://phar.dephpend.com/dephpend.phar",
+          "bin": "/usr/local/bin/dephpend"
+        }
+      }
+    },
+    {
+      "name": "deprecation-detector",
+      "summary": "Finds usages of deprecated code",
+      "website": "https://github.com/sensiolabs-de/deprecation-detector",
+      "command": {
+        "phar-download": {
+          "phar": "https://github.com/sensiolabs-de/deprecation-detector/releases/download/0.1.0-alpha4/deprecation-detector.phar",
+          "bin": "/usr/local/bin/deprecation-detector"
+        }
+      }
+    },
+    {
+      "name": "deptrac",
+      "summary": "Enforces dependency rules",
+      "website": "https://github.com/sensiolabs-de/deptrac",
+      "command": {
+        "phar-download": {
+          "phar": "http://get.sensiolabs.de/deptrac.phar",
+          "bin": "/usr/local/bin/deptrac"
+        }
+      }
+    },
+    {
+      "name": "design-pattern",
+      "summary": "Detects design patterns",
+      "website": "https://github.com/Halleck45/DesignPatternDetector",
+      "command": {
+        "composer-install": {
+          "repository": "https://github.com/Halleck45/DesignPatternDetector.git"
+        }
+      }
+    },
+    {
+      "name": "parallel-lint",
+      "summary": "Checks PHP file syntax",
+      "website": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
+      "command": {
+        "box-build": {
+          "repository": "https://github.com/JakubOnderka/PHP-Parallel-Lint.git",
+          "phar": "parallel-lint.phar",
+          "bin": "/usr/local/bin/parallel-lint"
+        }
+      }
+    },
+    {
+      "name": "pdepend",
+      "summary": "Static Analysis Tool",
+      "website": "https://pdepend.org/",
+      "command": {
+        "phar-download": {
+          "phar": "http://static.pdepend.org/php/latest/pdepend.phar",
+          "bin": "/usr/local/bin/pdepend"
+        }
+      }
+    },
+    {
+      "name": "phan",
+      "summary": "Static Analysis Tool",
+      "website": "https://github.com/etsy/phan",
+      "command": {
+        "phar-download": {
+          "phar": "https://github.com/etsy/phan/releases/download/0.9.4/phan.phar",
+          "bin": "/usr/local/bin/phan"
+        }
+      }
+    },
+    {
+      "name": "php-coupling-detector",
+      "summary": "Detects code coupling issues",
+      "website": "https://akeneo.github.io/php-coupling-detector/",
+      "command": {
+        "composer-global-install": {
+          "package": "akeneo/php-coupling-detector"
+        }
+      }
+    },
+    {
+      "name": "php-cs-fixer",
+      "summary": "PHP Coding Standards Fixer",
+      "website": "http://cs.sensiolabs.org/",
+      "command": {
+        "phar-download": {
+          "phar": "http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar",
+          "bin": "/usr/local/bin/php-cs-fixer"
+        }
+      }
+    },
+    {
+      "name": "php-formatter",
+      "summary": "Custom coding standards fixer",
+      "website": "https://github.com/mmoreram/php-formatter",
+      "command": {
+        "box-build": {
+          "repository": "https://github.com/mmoreram/php-formatter.git",
+          "phar": "build/php-formatter.phar",
+          "bin": "/usr/local/bin/php-formatter"
+        }
+      }
+    },
+    {
+      "name": "php-semver-checker",
+      "summary": "Suggests a next version according to semantic versioning",
+      "website": "https://github.com/tomzx/php-semver-checker",
+      "command": {
+        "phar-download": {
+          "phar": "http://psvc.coreteks.org/php-semver-checker.phar",
+          "bin": "/usr/local/bin/php-semver-checker"
+        }
+      }
+    },
+    {
+      "name": "phpDocumentor",
+      "summary": "Documentation generator",
+      "website": "https://www.phpdoc.org/",
+      "command": {
+        "phar-download": {
+          "phar": "http://phpdoc.org/phpDocumentor.phar",
+          "bin": "/usr/local/bin/phpDocumentor"
+        }
+      }
+    },
+    {
+      "name": "phpa",
+      "summary": "Checks for weak assumptions",
+      "website": "https://github.com/rskuipers/php-assumptions",
+      "command": {
+        "composer-global-install": {
+          "package": "rskuipers/php-assumptions:dev-master"
+        }
+      }
+    },
+    {
+      "name": "phpca",
+      "summary": "Finds usage of non-built-in extensions",
+      "website": "https://github.com/wapmorgan/PhpCodeAnalyzer",
+      "command": {
+        "composer-global-install": {
+          "package": "wapmorgan/php-code-analyzer"
+        }
+      }
+    },
+    {
+      "name": "phpcb",
+      "summary": "PHP Code Browser",
+      "website": "https://github.com/mayflower/PHP_CodeBrowser",
+      "command": {
+        "phar-download": {
+          "phar": "https://github.com/bytepark/php-phar-qatools/raw/master/phpcb.phar",
+          "bin": "/usr/local/bin/phpcb"
+        }
+      }
+    },
+    {
+      "name": "phpcbf",
+      "summary": "Automatically corrects coding standard violations",
+      "website": "https://github.com/squizlabs/PHP_CodeSniffer",
+      "command": {
+        "phar-download": {
+          "phar": "https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar",
+          "bin": "/usr/local/bin/phpcbf"
+        }
+      }
+    },
+    {
+      "name": "phpcf",
+      "summary": "Finds usage of deprecated features",
+      "website": "http://wapmorgan.github.io/PhpCodeFixer/",
+      "command": {
+        "composer-global-install": {
+          "package": "wapmorgan/php-code-fixer"
+        }
+      }
+    },
+    {
+      "name": "phpcpd",
+      "summary": "Copy/Paste Detector",
+      "website": "https://github.com/sebastianbergmann/phpcpd",
+      "command": {
+        "phar-download": {
+          "phar": "https://phar.phpunit.de/phpcpd.phar",
+          "bin": "/usr/local/bin/phpcpd"
+        }
+      }
+    },
+    {
+      "name": "phpcs",
+      "summary": "Detects coding standard violations",
+      "website": "https://github.com/squizlabs/PHP_CodeSniffer",
+      "command": {
+        "phar-download": {
+          "phar": "https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar",
+          "bin": "/usr/local/bin/phpcs"
+        }
+      }
+    },
+    {
+      "name": "phpda",
+      "summary": "Generates dependency graphs",
+      "website": "https://mamuz.github.io/PhpDependencyAnalysis/",
+      "command": {
+        "file-download": {
+          "url": "https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey",
+          "file": "/usr/local/bin/phpda.pubkey"
+        },
+        "phar-download": {
+          "phar": "https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda",
+          "bin": "/usr/local/bin/phpda"
+        }
+      }
+    },
+    {
+      "name": "phpdoc-to-typehint",
+      "summary": "Automatically adds type hints and return types based on PHPDocs",
+      "website": "https://github.com/dunglas/phpdoc-to-typehint",
+      "command": {
+        "phar-download": {
+          "phar": "https://github.com/dunglas/phpdoc-to-typehint/releases/download/v0.1.0/phpdoc-to-typehint.phar",
+          "bin": "/usr/local/bin/phpdoc-to-typehint"
+        }
+      }
+    },
+    {
+      "name": "phploc",
+      "summary": "A tool for quickly measuring the size of a PHP project",
+      "website": "https://github.com/sebastianbergmann/phploc",
+      "command": {
+        "phar-download": {
+          "phar": "https://phar.phpunit.de/phploc.phar",
+          "bin": "/usr/local/bin/phploc"
+        }
+      }
+    },
+    {
+      "name": "phpmd",
+      "summary": "A tool for finding problems in PHP code",
+      "website": "https://phpmd.org/",
+      "command": {
+        "phar-download": {
+          "phar": "http://static.phpmd.org/php/latest/phpmd.phar",
+          "bin": "/usr/local/bin/phpmd"
+        }
+      }
+    },
+    {
+      "name": "phpmetrics",
+      "summary": "Static Analysis Tool",
+      "website": "http://www.phpmetrics.org/",
+      "command": {
+        "phar-download": {
+          "phar": "https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar",
+          "bin": "/usr/local/bin/phpmetrics"
+        }
+      }
+    },
+    {
+      "name": "phpmnd",
+      "summary": "Helps to detect magic numbers",
+      "website": "https://github.com/povils/phpmnd",
+      "command": {
+        "composer-global-install": {
+          "package": "povils/phpmnd"
+        }
+      }
+    },
+    {
+      "name": "phpstan",
+      "summary": "Static Analysis Tool",
+      "website": "https://github.com/phpstan/phpstan",
+      "command": {
+        "phar-download": {
+          "phar": "https://github.com/phpstan/phpstan/releases/download/0.8.3/phpstan.phar",
+          "bin": "/usr/local/bin/phpstan"
+        }
+      }
+    },
+    {
+      "name": "psalm",
+      "summary": "Finds errors in PHP applications",
+      "website": "https://getpsalm.org/",
+      "command": {
+        "composer-global-install": {
+          "package": "vimeo/psalm"
+        }
+      }
+    },
+    {
+      "name": "security-checker",
+      "summary": "Checks composer dependencies for known security vulnerabilities",
+      "website": "https://github.com/sensiolabs/security-checker",
+      "command": {
+        "phar-download": {
+          "phar": "http://get.sensiolabs.org/security-checker.phar",
+          "bin": "/usr/local/bin/security-checker"
+        }
+      }
+    },
+    {
+      "name": "testability",
+      "summary": "Analyses and reports testability issues of a php codebase",
+      "website": "https://github.com/edsonmedina/php_testability",
+      "command": {
+        "composer-global-install": {
+          "package": "edsonmedina/php_testability:dev-master"
+        }
+      }
+    }
+  ]
+}
+
