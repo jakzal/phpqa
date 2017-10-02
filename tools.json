@@ -8,7 +8,8 @@
         "composer-install": {
           "repository": "https://github.com/Qafoo/QualityAnalyzer.git"
         }
-      }
+      },
+      "test": "analyze list"
     },
     {
       "name": "churn",
@@ -18,7 +19,8 @@
         "composer-global-install": {
           "package": "bmitch/churn-php"
         }
-      }
+      },
+      "test": "churn list"
     },
     {
       "name": "dephpend",
@@ -29,7 +31,8 @@
           "phar": "https://phar.dephpend.com/dephpend.phar",
           "bin": "/usr/local/bin/dephpend"
         }
-      }
+      },
+      "test": "dephpend list"
     },
     {
       "name": "deprecation-detector",
@@ -40,7 +43,8 @@
           "phar": "https://github.com/sensiolabs-de/deprecation-detector/releases/download/0.1.0-alpha4/deprecation-detector.phar",
           "bin": "/usr/local/bin/deprecation-detector"
         }
-      }
+      },
+      "test": "deprecation-detector list"
     },
     {
       "name": "deptrac",
@@ -51,7 +55,8 @@
           "phar": "http://get.sensiolabs.de/deptrac.phar",
           "bin": "/usr/local/bin/deptrac"
         }
-      }
+      },
+      "test": "deptrac list"
     },
     {
       "name": "design-pattern",
@@ -61,7 +66,8 @@
         "composer-install": {
           "repository": "https://github.com/Halleck45/DesignPatternDetector.git"
         }
-      }
+      },
+      "test": "design-pattern -V"
     },
     {
       "name": "parallel-lint",
@@ -73,7 +79,8 @@
           "phar": "parallel-lint.phar",
           "bin": "/usr/local/bin/parallel-lint"
         }
-      }
+      },
+      "test": "parallel-lint -h"
     },
     {
       "name": "pdepend",
@@ -84,7 +91,8 @@
           "phar": "http://static.pdepend.org/php/latest/pdepend.phar",
           "bin": "/usr/local/bin/pdepend"
         }
-      }
+      },
+      "test": "pdepend --version"
     },
     {
       "name": "phan",
@@ -95,7 +103,8 @@
           "phar": "https://github.com/etsy/phan/releases/download/0.10.0/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
-      }
+      },
+      "test": "phan -v"
     },
     {
       "name": "php-coupling-detector",
@@ -105,7 +114,8 @@
         "composer-global-install": {
           "package": "akeneo/php-coupling-detector"
         }
-      }
+      },
+      "test": "php-coupling-detector list"
     },
     {
       "name": "php-cs-fixer",
@@ -116,7 +126,8 @@
           "phar": "http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar",
           "bin": "/usr/local/bin/php-cs-fixer"
         }
-      }
+      },
+      "test": "php-cs-fixer list"
     },
     {
       "name": "php-formatter",
@@ -128,7 +139,8 @@
           "phar": "build/php-formatter.phar",
           "bin": "/usr/local/bin/php-formatter"
         }
-      }
+      },
+      "test": "php-formatter list"
     },
     {
       "name": "php-semver-checker",
@@ -139,7 +151,8 @@
           "phar": "http://psvc.coreteks.org/php-semver-checker.phar",
           "bin": "/usr/local/bin/php-semver-checker"
         }
-      }
+      },
+      "test": "php-semver-checker list"
     },
     {
       "name": "phpDocumentor",
@@ -150,7 +163,8 @@
           "phar": "http://phpdoc.org/phpDocumentor.phar",
           "bin": "/usr/local/bin/phpDocumentor"
         }
-      }
+      },
+      "test": "phpDocumentor list"
     },
     {
       "name": "phpa",
@@ -160,7 +174,8 @@
         "composer-global-install": {
           "package": "rskuipers/php-assumptions:dev-master"
         }
-      }
+      },
+      "test": "phpa"
     },
     {
       "name": "phpca",
@@ -170,7 +185,8 @@
         "composer-global-install": {
           "package": "wapmorgan/php-code-analyzer"
         }
-      }
+      },
+      "test": "phpca -h"
     },
     {
       "name": "phpcb",
@@ -181,7 +197,8 @@
           "phar": "https://github.com/bytepark/php-phar-qatools/raw/master/phpcb.phar",
           "bin": "/usr/local/bin/phpcb"
         }
-      }
+      },
+      "test": "phpcb -V"
     },
     {
       "name": "phpcbf",
@@ -192,7 +209,8 @@
           "phar": "https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar",
           "bin": "/usr/local/bin/phpcbf"
         }
-      }
+      },
+      "test": "phpcbf --help"
     },
     {
       "name": "phpcf",
@@ -202,7 +220,8 @@
         "composer-global-install": {
           "package": "wapmorgan/php-code-fixer"
         }
-      }
+      },
+      "test": "phpcf -h"
     },
     {
       "name": "phpcpd",
@@ -213,7 +232,8 @@
           "phar": "https://phar.phpunit.de/phpcpd.phar",
           "bin": "/usr/local/bin/phpcpd"
         }
-      }
+      },
+      "test": "phpcpd -V"
     },
     {
       "name": "phpcs",
@@ -224,7 +244,8 @@
           "phar": "https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar",
           "bin": "/usr/local/bin/phpcs"
         }
-      }
+      },
+      "test": "phpcs --help"
     },
     {
       "name": "phpda",
@@ -239,7 +260,8 @@
           "phar": "https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda",
           "bin": "/usr/local/bin/phpda"
         }
-      }
+      },
+      "test": "phpda list"
     },
     {
       "name": "phpdoc-to-typehint",
@@ -250,7 +272,8 @@
           "phar": "https://github.com/dunglas/phpdoc-to-typehint/releases/download/v0.1.0/phpdoc-to-typehint.phar",
           "bin": "/usr/local/bin/phpdoc-to-typehint"
         }
-      }
+      },
+      "test": "phpdoc-to-typehint -V"
     },
     {
       "name": "phploc",
@@ -261,7 +284,8 @@
           "phar": "https://phar.phpunit.de/phploc.phar",
           "bin": "/usr/local/bin/phploc"
         }
-      }
+      },
+      "test": "phploc -V"
     },
     {
       "name": "phpmd",
@@ -272,7 +296,8 @@
           "phar": "http://static.phpmd.org/php/latest/phpmd.phar",
           "bin": "/usr/local/bin/phpmd"
         }
-      }
+      },
+      "test": "phpmd /usr/local/bin/tools.php text unusedcode"
     },
     {
       "name": "phpmetrics",
@@ -283,7 +308,8 @@
           "phar": "https://github.com/phpmetrics/PhpMetrics/releases/download/v2.3.0/phpmetrics.phar",
           "bin": "/usr/local/bin/phpmetrics"
         }
-      }
+      },
+      "test": "phpmetrics --version"
     },
     {
       "name": "phpmnd",
@@ -293,7 +319,8 @@
         "composer-global-install": {
           "package": "povils/phpmnd"
         }
-      }
+      },
+      "test": "phpmnd -V"
     },
     {
       "name": "phpstan",
@@ -301,10 +328,11 @@
       "website": "https://github.com/phpstan/phpstan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpstan/phpstan/releases/download/0.8.5/phpstan.phar",
+          "phar": "https://github.com/phpstan/phpstan/releases/download/0.8.4/phpstan.phar",
           "bin": "/usr/local/bin/phpstan"
         }
-      }
+      },
+      "test": "phpstan list"
     },
     {
       "name": "psalm",
@@ -314,7 +342,8 @@
         "composer-global-install": {
           "package": "vimeo/psalm"
         }
-      }
+      },
+      "test": "psalm -h"
     },
     {
       "name": "security-checker",
@@ -325,7 +354,8 @@
           "phar": "http://get.sensiolabs.org/security-checker.phar",
           "bin": "/usr/local/bin/security-checker"
         }
-      }
+      },
+      "test": "security-checker"
     },
     {
       "name": "testability",
@@ -335,7 +365,8 @@
         "composer-global-install": {
           "package": "edsonmedina/php_testability:dev-master"
         }
-      }
+      },
+      "test": "testability --help"
     }
   ]
 }

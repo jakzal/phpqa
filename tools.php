@@ -8,20 +8,22 @@ namespace Model {
         private $summary;
         private $website;
         private $command;
+        private $testCommand;
 
-        public function __construct(string $name, string $summary, string $website, Command $command)
+        public function __construct(string $name, string $summary, string $website, Command $command, Command $testCommand)
         {
             $this->name = $name;
             $this->summary = $summary;
             $this->website = $website;
             $this->command = $command;
+            $this->testCommand = $testCommand;
         }
 
         public static function import(array $tool): self
         {
-            \Assert\requireFields(['name', 'summary', 'website', 'command'], $tool, 'tool');
+            \Assert\requireFields(['name', 'summary', 'website', 'command', 'test'], $tool, 'tool');
 
-            return new self($tool['name'], $tool['summary'], $tool['website'], self::importCommand($tool));
+            return new self($tool['name'], $tool['summary'], $tool['website'], self::importCommand($tool), new TestCommand($tool['test'], $tool['name']));
         }
 
         private static function importCommand(array $tool): Command
@@ -83,6 +85,11 @@ namespace Model {
         public function command(): Command
         {
             return $this->command;
+        }
+
+        public function testCommand(): Command
+        {
+            return $this->testCommand;
         }
     }
 
@@ -292,6 +299,23 @@ namespace Model {
             return $this->command;
         }
     }
+
+    final class TestCommand implements Command
+    {
+        private $command;
+        private $name;
+
+        public function __construct(string $command, string $name)
+        {
+            $this->command = $command;
+            $this->name = $name;
+        }
+
+        public function __toString(): string
+        {
+            return sprintf('((%s > /dev/null && echo -e "\e[0;32m✔\e[0m︎%s") || (echo -e "\e[1;31m✘\e[0m%s" && false))', $this->command, $this->name, $this->name);
+        }
+    }
 }
 
 namespace Assert {
@@ -422,6 +446,7 @@ namespace JsonLoader {
     use F\PleaseTry;
     use F\Success;
     use Model\ShCommand;
+    use Model\TestCommand;
     use Model\Tool;
 
     function LoadFile(string $source): string
@@ -449,10 +474,20 @@ namespace JsonLoader {
     function LoadTools(string $source): PleaseTry
     {
         $defaultTools = [
-            new Tool('composer', 'Dependency Manager for PHP', 'https://getcomposer.org/',
-                new ShCommand('curl -Ls https://getcomposer.org/composer.phar > /usr/local/bin/composer && chmod +x /usr/local/bin/composer')),
-            new Tool('box', 'An application for building and managing Phars', 'https://box-project.github.io/box2/',
-                new ShCommand('curl -Ls https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box && chmod +x /usr/local/bin/box')),
+            new Tool(
+                'composer',
+                'Dependency Manager for PHP',
+                'https://getcomposer.org/',
+                new ShCommand('curl -Ls https://getcomposer.org/composer.phar > /usr/local/bin/composer && chmod +x /usr/local/bin/composer'),
+                new TestCommand('composer list', 'composer')
+            ),
+            new Tool(
+                'box',
+                'An application for building and managing Phars',
+                'https://box-project.github.io/box2/',
+                new ShCommand('curl -Ls https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box && chmod +x /usr/local/bin/box'),
+                new TestCommand('box list', 'box')
+            ),
         ];
 
         return
@@ -504,6 +539,23 @@ namespace Installation {
     }
 }
 
+namespace Test {
+
+    use F\PleaseTry;
+    use Model\Command;
+    use Model\MultiStepCommand;
+    use Model\Tool;
+
+    function TestCommand(PleaseTry $tools): Command
+    {
+        $commands = $tools->map(function (Tool $tool) {
+            return $tool->testCommand();
+        });
+
+        return new MultiStepCommand($commands->get(), ' && ');
+    }
+}
+
 namespace DocUpdate {
 
     use F\PleaseTry;
@@ -522,11 +574,26 @@ namespace DocUpdate {
     }
 }
 
+namespace Runner {
+
+    use Model\Command;
+
+    function Run(Command $command): int {
+        $status = 1;
+
+        passthru((string) $command, $status);
+
+        return $status;
+    }
+}
+
 namespace {
 
     use function Installation\InstallCommand;
     use function JsonLoader\LoadTools;
     use function DocUpdate\UpdateReadme;
+    use function Runner\Run;
+    use function Test\TestCommand;
 
     $jsonPath = !empty(getenv('TOOLS_JSON')) ? getenv('TOOLS_JSON') : __DIR__ . '/tools.json';
     $action = $argv[1] ?? 'list';
@@ -534,7 +601,11 @@ namespace {
 
     switch ($action) {
         case 'install':
-            passthru((string) InstallCommand($tools));
+            exit(Run(InstallCommand($tools)));
+
+            break;
+        case 'test':
+            exit(Run(TestCommand($tools)));
 
             break;
         case 'update-readme':
@@ -544,12 +615,14 @@ namespace {
 
             break;
         case 'list':
-        default:
             print('Available tools:' . PHP_EOL);
             foreach ($tools->get() as $tool) {
                 printf('* %s - %s - %s' . PHP_EOL, $tool->name(), $tool->summary(), $tool->website());
             }
 
             break;
+        default:
+            printf('Unrecognised command: "%s".', $action);
+            exit(1);
     }
 }
