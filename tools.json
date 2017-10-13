@@ -224,6 +224,18 @@
       "test": "phpcf -h"
     },
     {
+      "name": "phpcov",
+      "summary": "a command-line frontend for the PHP_CodeCoverage library",
+      "website": "https://github.com/sebastianbergmann/phpcov",
+      "command": {
+        "phar-download": {
+          "phar": "https://phar.phpunit.de/phpcov.phar",
+          "bin": "/usr/local/bin/phpcov"
+        }
+      },
+      "test": "phpcov"
+    },
+    {
       "name": "phpcpd",
       "summary": "Copy/Paste Detector",
       "website": "https://github.com/sebastianbergmann/phpcpd",
@@ -367,18 +379,6 @@
         }
       },
       "test": "testability --help"
-    },
-    {
-      "name": "phpcov",
-      "summary": "phpcov is a command-line frontend for the PHP_CodeCoverage library.",
-      "website": "https://github.com/sebastianbergmann/phpcov",
-      "command": {
-        "phar-download": {
-          "phar": "https://phar.phpunit.de/phpcov.phar",
-          "bin": "/usr/local/bin/phpcov"
-        }
-      },
-      "test": "phpcov"
     }
   ]
 }
