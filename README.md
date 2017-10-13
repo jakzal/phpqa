@@ -27,6 +27,7 @@ Docker image providing static analysis tools for PHP.
 * phpcb - [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser)
 * phpcbf - [Automatically corrects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpcf - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/)
+* phpcov- [phpcov is a command-line frontend for the PHP_CodeCoverage library](https://github.com/sebastianbergmann/phpcov)
 * phpcpd - [Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
 * phpcs - [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpda - [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/)

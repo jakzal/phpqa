@@ -367,6 +367,18 @@
         }
       },
       "test": "testability --help"
+    },
+    {
+      "name": "phpcov",
+      "summary": "phpcov is a command-line frontend for the PHP_CodeCoverage library.",
+      "website": "https://github.com/sebastianbergmann/phpcov",
+      "command": {
+        "phar-download": {
+          "phar": "https://phar.phpunit.de/phpcov.phar",
+          "bin": "/usr/local/bin/phpcov"
+        }
+      },
+      "test": "phpcov"
     }
   ]
 }
