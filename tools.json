@@ -317,7 +317,7 @@
       "website": "http://www.phpmetrics.org/",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpmetrics/PhpMetrics/releases/download/v2.3.0/phpmetrics.phar",
+          "phar": "https://github.com/phpmetrics/PhpMetrics/releases/download/v2.3.2/phpmetrics.phar",
           "bin": "/usr/local/bin/phpmetrics"
         }
       },
