@@ -70,6 +70,17 @@
       "test": "design-pattern -V"
     },
     {
+      "name": "EasyCodingStandard",
+      "summary": "Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer",
+      "website": "https://github.com/Symplify/EasyCodingStandard",
+      "command": {
+        "composer-global-install": {
+          "package": "symplify/easy-coding-standard"
+        }
+      },
+      "test": "ecs -h"
+    },
+    {
       "name": "parallel-lint",
       "summary": "Checks PHP file syntax",
       "website": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
@@ -122,9 +133,8 @@
       "summary": "PHP Coding Standards Fixer",
       "website": "http://cs.sensiolabs.org/",
       "command": {
-        "phar-download": {
-          "phar": "http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar",
-          "bin": "/usr/local/bin/php-cs-fixer"
+        "composer-global-install": {
+          "package": "friendsofphp/php-cs-fixer"
         }
       },
       "test": "php-cs-fixer list"
@@ -252,9 +262,8 @@
       "summary": "Detects coding standard violations",
       "website": "https://github.com/squizlabs/PHP_CodeSniffer",
       "command": {
-        "phar-download": {
-          "phar": "https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar",
-          "bin": "/usr/local/bin/phpcs"
+        "composer-global-install": {
+          "package": "squizlabs/php_codesniffer"
         }
       },
       "test": "phpcs --help"
