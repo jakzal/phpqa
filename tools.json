@@ -70,6 +70,17 @@
       "test": "design-pattern -V"
     },
     {
+      "name": "EasyCodingStandard",
+      "summary": "Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer",
+      "website": "https://github.com/Symplify/EasyCodingStandard",
+      "command": {
+        "composer-install": {
+          "repository": "https://github.com/Symplify/EasyCodingStandard.git"
+        }
+      },
+      "test": "ecs -h"
+    },
+    {
       "name": "parallel-lint",
       "summary": "Checks PHP file syntax",
       "website": "https://github.com/JakubOnderka/PHP-Parallel-Lint",

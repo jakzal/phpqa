@@ -6,7 +6,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkgconf re2c unzip"
 ENV LIB_DEPS="zlib-dev"
 ENV TOOL_DEPS="git graphviz"
-ENV PATH="$PATH:/root/.composer/vendor/bin:/root/QualityAnalyzer/bin:/root/DesignPatternDetector/bin"
+ENV PATH="$PATH:/root/.composer/vendor/bin:/root/QualityAnalyzer/bin:/root/DesignPatternDetector/bin:/root/EasyCodingStandard/bin"
 ENV TOOLS_JSON=/root/tools.json
 
 ADD tools.json ${TOOLS_JSON}
