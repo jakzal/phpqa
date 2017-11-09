@@ -14,6 +14,7 @@ Docker image providing static analysis tools for PHP.
 * deprecation-detector - [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector)
 * deptrac - [Enforces dependency rules](https://github.com/sensiolabs-de/deptrac)
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
+* EasyCodingStandard - [Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer](https://github.com/Symplify/EasyCodingStandard)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 * pdepend - [Static Analysis Tool](https://pdepend.org/)
 * phan - [Static Analysis Tool](https://github.com/etsy/phan)
