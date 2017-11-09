@@ -70,8 +70,8 @@
       "test": "design-pattern -V"
     },
     {
-      "name": "EasyCodingStandard",
-      "summary": "Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer",
+      "name": "ecs",
+      "summary": "EasyCodingStandard sets up and runs coding standard checks with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer",
       "website": "https://github.com/Symplify/EasyCodingStandard",
       "command": {
         "composer-install": {
