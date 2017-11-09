@@ -100,7 +100,7 @@
       "website": "https://github.com/etsy/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/etsy/phan/releases/download/0.10.0/phan.phar",
+          "phar": "https://github.com/etsy/phan/releases/download/0.10.1/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },
@@ -340,7 +340,7 @@
       "website": "https://github.com/phpstan/phpstan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpstan/phpstan/releases/download/0.8.4/phpstan.phar",
+          "phar": "https://github.com/phpstan/phpstan/releases/download/0.8.5/phpstan.phar",
           "bin": "/usr/local/bin/phpstan"
         }
       },
