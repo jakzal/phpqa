@@ -1,6 +1,6 @@
 FROM php:7.1-cli
 
-MAINTAINER Jakub Zalas <jakub@zalas.pl>
+LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkg-config re2c unzip"
@@ -9,8 +9,8 @@ ENV TOOL_DEPS="git graphviz"
 ENV PATH="$PATH:/root/.composer/vendor/bin:/root/QualityAnalyzer/bin:/root/DesignPatternDetector/bin:/root/EasyCodingStandard/bin"
 ENV TOOLS_JSON=/root/tools.json
 
-ADD tools.json ${TOOLS_JSON}
-ADD tools.php /usr/local/bin/tools.php
+COPY tools.json ${TOOLS_JSON}
+COPY tools.php /usr/local/bin/tools.php
 
 RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
