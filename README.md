@@ -115,6 +115,14 @@ Finally, use your customised image instead of the default one:
 docker run -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
 ```
 
+## Debugger & Code Coverage
+
+The [php-dbg debugger](http://php.net/manual/en/debugger-about.php) is provided by default. No additional extensions (like XDebug) are required to calculate code coverage:
+
+```
+phpqa phpdbg -qrr ./vendor/bin/phpunit --coverage-text
+```
+
 ## Contributing
 
 Please read the [Contributing guide](CONTRIBUTING.md) to learn about contributing to this project.
