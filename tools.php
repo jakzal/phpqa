@@ -478,7 +478,7 @@ namespace JsonLoader {
                 'composer',
                 'Dependency Manager for PHP',
                 'https://getcomposer.org/',
-                new ShCommand('curl -Ls https://getcomposer.org/composer.phar > /usr/local/bin/composer && chmod +x /usr/local/bin/composer'),
+                new ShCommand('/usr/local/bin/install-composer.sh'),
                 new TestCommand('composer list', 'composer')
             ),
             new Tool(

@@ -11,6 +11,7 @@ ENV TOOLS_JSON=/root/tools.json
 
 COPY tools.json ${TOOLS_JSON}
 COPY tools.php /usr/local/bin/tools.php
+COPY install-composer.sh /usr/local/bin/install-composer.sh
 
 RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
