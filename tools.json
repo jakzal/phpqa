@@ -141,19 +141,6 @@
       "test": "php-cs-fixer list"
     },
     {
-      "name": "php-formatter",
-      "summary": "Custom coding standards fixer",
-      "website": "https://github.com/mmoreram/php-formatter",
-      "command": {
-        "box-build": {
-          "repository": "https://github.com/mmoreram/php-formatter.git",
-          "phar": "build/php-formatter.phar",
-          "bin": "/usr/local/bin/php-formatter"
-        }
-      },
-      "test": "php-formatter list"
-    },
-    {
       "name": "php-semver-checker",
       "summary": "Suggests a next version according to semantic versioning",
       "website": "https://github.com/tomzx/php-semver-checker",
@@ -351,7 +338,7 @@
       "website": "https://github.com/phpstan/phpstan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpstan/phpstan/releases/download/0.9/phpstan.phar",
+          "phar": "https://github.com/phpstan/phpstan/releases/download/0.9.1/phpstan.phar",
           "bin": "/usr/local/bin/phpstan"
         }
       },

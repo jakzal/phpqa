@@ -20,7 +20,6 @@ Docker image providing static analysis tools for PHP.
 * phan - [Static Analysis Tool](https://github.com/etsy/phan)
 * php-coupling-detector - [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/)
 * php-cs-fixer - [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
-* php-formatter - [Custom coding standards fixer](https://github.com/mmoreram/php-formatter)
 * php-semver-checker - [Suggests a next version according to semantic versioning](https://github.com/tomzx/php-semver-checker)
 * phpDocumentor - [Documentation generator](https://www.phpdoc.org/)
 * phpa - [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions)

@@ -530,7 +530,9 @@ namespace Installation {
             $filterCommands(ShCommand::class)
                 ->merge($filterCommands(PharDownloadCommand::class))
                 ->merge($filterCommands(MultiStepCommand::class))
-                ->merge(new Success(new ComposerGlobalMultiInstallCommand($filterCommands(ComposerGlobalInstallCommand::class)->get())))
+                // install via separate commands until the following composer bug is fixed: https://github.com/composer/composer/issues/6859
+                // ->merge(new Success(new ComposerGlobalMultiInstallCommand($filterCommands(ComposerGlobalInstallCommand::class)->get())))
+                ->merge($filterCommands(ComposerGlobalInstallCommand::class))
                 ->merge($filterCommands(ComposerInstallCommand::class))
                 ->merge($filterCommands(BoxBuildCommand::class))
                 ->get(),
