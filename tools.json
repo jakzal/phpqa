@@ -351,7 +351,7 @@
       "website": "https://github.com/phpstan/phpstan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpstan/phpstan/releases/download/0.9/phpstan.phar",
+          "phar": "https://github.com/phpstan/phpstan/releases/download/0.9.1/phpstan.phar",
           "bin": "/usr/local/bin/phpstan"
         }
       },
