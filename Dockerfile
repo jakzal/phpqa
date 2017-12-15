@@ -1,4 +1,4 @@
-FROM php:7.1-cli
+FROM php:7.2-cli
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
