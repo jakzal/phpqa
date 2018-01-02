@@ -108,10 +108,10 @@
     {
       "name": "phan",
       "summary": "Static Analysis Tool",
-      "website": "https://github.com/etsy/phan",
+      "website": "https://github.com/phan/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/etsy/phan/releases/download/0.11.0/phan.phar",
+          "phar": "https://github.com/phan/phan/releases/download/0.11.0/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },

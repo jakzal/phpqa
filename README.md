@@ -17,7 +17,7 @@ Docker image providing static analysis tools for PHP.
 * ecs - [EasyCodingStandard sets up and runs coding standard checks with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer](https://github.com/Symplify/EasyCodingStandard)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 * pdepend - [Static Analysis Tool](https://pdepend.org/)
-* phan - [Static Analysis Tool](https://github.com/etsy/phan)
+* phan - [Static Analysis Tool](https://github.com/phan/phan)
 * php-coupling-detector - [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/)
 * php-cs-fixer - [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
 * php-formatter - [Custom coding standards fixer](https://github.com/mmoreram/php-formatter)
