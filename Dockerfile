@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
  && php /usr/local/bin/tools.php install \
+ && rm -rf ~/.composer/cache \
  && apt-get purge -y --auto-remove $BUILD_DEPS
 
 CMD php /usr/local/bin/tools.php list
