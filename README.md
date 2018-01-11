@@ -82,7 +82,7 @@ phpqa phpstan analyse src
 ```bash
 git clone https://github.com/jakzal/phpqa.git
 cd phpqa
-make build
+make build-latest
 ```
 
 To build the alpine version:

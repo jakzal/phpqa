@@ -12,7 +12,7 @@ matrix:
   fast_finish: true
 
 script:
-  - if [ "$flavour" = "latest" ]; then make build; else make build-alpine; fi
+  - if [ "$flavour" = "latest" ]; then make build-latest; else make build-alpine; fi
   - docker run -it --rm jakzal/phpqa:$flavour php /usr/local/bin/tools.php test
   - docker run -it --rm jakzal/phpqa:$flavour
 

@@ -21,6 +21,7 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
  && php /usr/local/bin/tools.php install \
+ && rm -rf ~/.composer/cache \
  && apk del .build-deps
 
 CMD php /usr/local/bin/tools.php list
