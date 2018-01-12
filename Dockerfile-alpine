@@ -11,7 +11,7 @@ ENV TOOLS_JSON=/root/tools.json
 
 COPY tools.json ${TOOLS_JSON}
 COPY tools.php /usr/local/bin/tools.php
-COPY install-composer.sh /usr/local/bin/install-composer.sh
+COPY --from=composer:1.6 /usr/bin/composer /usr/bin/composer
 
 RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
