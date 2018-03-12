@@ -346,6 +346,18 @@
       "test": "phpmnd -V"
     },
     {
+      "name": "phpspec",
+      "summary": "SpecBDD Framework",
+      "website": "http://www.phpspec.net/",
+      "command": {
+        "phar-download": {
+          "phar": "https://github.com/phpspec/phpspec/releases/download/4.3.0/phpspec.phar",
+          "bin": "/usr/local/bin/phpspec"
+        }
+      },
+      "test": "phpspec --version"
+    },
+    {
       "name": "phpstan",
       "summary": "Static Analysis Tool",
       "website": "https://github.com/phpstan/phpstan",

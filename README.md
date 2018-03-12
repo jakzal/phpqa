@@ -37,6 +37,7 @@ Docker image providing static analysis tools for PHP.
 * phpmd - [A tool for finding problems in PHP code](https://phpmd.org/)
 * phpmetrics - [Static Analysis Tool](http://www.phpmetrics.org/)
 * phpmnd - [Helps to detect magic numbers](https://github.com/povils/phpmnd)
+* phpspec - [SpecBDD Framework](http://www.phpspec.net/)
 * phpstan - [Static Analysis Tool](https://github.com/phpstan/phpstan)
 * psalm - [Finds errors in PHP applications](https://getpsalm.org/)
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
