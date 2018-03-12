@@ -358,6 +358,18 @@
       "test": "phpstan list"
     },
     {
+      "name": "phpunit",
+      "summary": "The PHP testing framework",
+      "website": "https://phpunit.de/",
+      "command": {
+        "phar-download": {
+          "phar": "https://phar.phpunit.de/phpunit.phar",
+          "bin": "/usr/local/bin/phpunit"
+        }
+      },
+      "test": "phpunit --version"
+    },
+    {
       "name": "psalm",
       "summary": "Finds errors in PHP applications",
       "website": "https://getpsalm.org/",
