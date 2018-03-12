@@ -9,6 +9,7 @@ Docker image providing static analysis tools for PHP.
 * composer - [Dependency Manager for PHP](https://getcomposer.org/)
 * box - [An application for building and managing Phars](https://box-project.github.io/box2/)
 * analyze - [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer)
+* behat - [Helps to test business expectations](http://behat.org/)
 * churn - [Discovers good candidates for refactoring](https://github.com/bmitch/churn-php)
 * dephpend - [Detect flaws in your architecture](https://dephpend.com/)
 * deprecation-detector - [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector)

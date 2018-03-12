@@ -12,6 +12,19 @@
       "test": "analyze list"
     },
     {
+      "name": "behat",
+      "summary": "Helps to test business expectations",
+      "website": "http://behat.org/",
+      "command": {
+        "box-build": {
+          "repository": "https://github.com/behat/behat.git",
+          "phar": "behat.phar",
+          "bin": "/usr/local/bin/behat"
+        }
+      },
+      "test": "behat --version"
+    },
+    {
       "name": "churn",
       "summary": "Discovers good candidates for refactoring",
       "website": "https://github.com/bmitch/churn-php",
