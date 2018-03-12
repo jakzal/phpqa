@@ -81,6 +81,22 @@
       "test": "ecs -h"
     },
     {
+      "name": "infection",
+      "summary": "AST based PHP Mutation Testing Framework",
+      "website": "https://infection.github.io/",
+      "command": {
+        "file-download": {
+          "url": "https://github.com/infection/infection/releases/download/0.8.1/infection.phar.pubkey",
+          "file": "/usr/local/bin/infection.pubkey"
+        },
+        "phar-download": {
+          "phar": "https://github.com/infection/infection/releases/download/0.8.1/infection.phar",
+          "bin": "/usr/local/bin/infection"
+        }
+      },
+       "test": "infection --version"
+    },
+    {
       "name": "parallel-lint",
       "summary": "Checks PHP file syntax",
       "website": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
