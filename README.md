@@ -15,6 +15,7 @@ Docker image providing static analysis tools for PHP.
 * deptrac - [Enforces dependency rules](https://github.com/sensiolabs-de/deptrac)
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
 * ecs - [EasyCodingStandard sets up and runs coding standard checks with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer](https://github.com/Symplify/EasyCodingStandard)
+* infection - [AST based PHP Mutation Testing Framework](https://infection.github.io/)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 * pdepend - [Static Analysis Tool](https://pdepend.org/)
 * phan - [Static Analysis Tool](https://github.com/phan/phan)
