@@ -580,6 +580,52 @@ namespace DocUpdate {
     }
 }
 
+namespace ToolsUpdate {
+
+    use Model\Command;
+    use Model\MultiStepCommand;
+    use Model\ShCommand;
+
+    function FindLatestPharsCommand(string $jsonPath): Command
+    {
+        $command = <<<'CMD'
+            grep -e 'github\.com.*releases.*\.phar"' %TOOLS_JSON% |
+            sed -e 's@.*github.com/\(.*\)/releases.*@\1@' |
+            xargs -I"{}" sh -c "curl -s -XGET 'https://api.github.com/repos/{}/releases' -H 'Accept:application/json' | grep browser_download_url | head -n 1" |
+            sed -e 's/^[^:]*: "\([^"]*\)"/\1/'
+CMD;
+        $command = strtr($command, ['%TOOLS_JSON%' => $jsonPath]);
+
+        return new ShCommand($command);
+    }
+
+    function FindLatestPhars(string $jsonPath): array
+    {
+        $phars = [];
+
+        exec((string) FindLatestPharsCommand($jsonPath), $phars);
+
+        return $phars;
+    }
+
+    function UpdatePharsCommand(string $jsonPath, array $phars): Command
+    {
+        $replacements = implode(' ', array_map(
+            function (string $phar) {
+                $project = preg_replace('@https://[^/]*/([^/]*/[^/]*).*@', '$1', $phar);
+
+                return strtr(
+                    '-e "s@\"phar\": \"\([^\"]*%PROJECT%[^\"]*\)\"@\"phar\": \"%PHAR%\"@"',
+                    ['%PROJECT%' => $project, '%PHAR%' => $phar]
+                );
+            },
+            $phars
+        ));
+
+        return new ShCommand(sprintf('sed -i.bak %s %s', $replacements, $jsonPath));
+    }
+}
+
 namespace Runner {
 
     use Model\Command;
@@ -600,6 +646,8 @@ namespace {
     use function DocUpdate\UpdateReadme;
     use function Runner\Run;
     use function Test\TestCommand;
+    use function ToolsUpdate\FindLatestPhars;
+    use function ToolsUpdate\UpdatePharsCommand;
 
     $jsonPath = !empty(getenv('TOOLS_JSON')) ? getenv('TOOLS_JSON') : __DIR__ . '/tools.json';
     $action = $argv[1] ?? 'list';
@@ -618,6 +666,26 @@ namespace {
             $filePath = 'README.md';
             UpdateReadme($tools, $filePath);
             printf('%s was updated.', $filePath);
+
+            break;
+        case 'update-phars':
+            $phars = FindLatestPhars($jsonPath);
+
+            if (empty($phars)) {
+                print('Could not find any phars to update.');
+
+                exit(1);
+            }
+
+            print('Found phars:'.PHP_EOL);
+
+            foreach ($phars as $phar) {
+                printf('* %s'.PHP_EOL, $phar);
+            }
+
+            printf('Updated "%s".'.PHP_EOL, $jsonPath);
+
+            exit(Run(UpdatePharsCommand($jsonPath, $phars)));
 
             break;
         case 'list':
