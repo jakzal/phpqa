@@ -151,27 +151,30 @@ namespace Model {
         private $repository;
         private $phar;
         private $bin;
+        private $version;
 
-        private function __construct(string $repository, string $phar, string $bin)
+        private function __construct(string $repository, string $phar, string $bin, ?string $version = null)
         {
             $this->repository = $repository;
             $this->phar = $phar;
             $this->bin = $bin;
+            $this->version = $version;
         }
 
         public static function import(array $command): Command
         {
             \Assert\requireFields(['repository', 'phar', 'bin'], $command, 'BoxBuildCommand');
 
-            return new self($command['repository'], $command['phar'], $command['bin']);
+            return new self($command['repository'], $command['phar'], $command['bin'], $command['version'] ?? null);
         }
 
         public function __toString(): string
         {
             return sprintf(
-                'cd $HOME && git clone %s && cd $HOME/%s && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv %s %s && chmod +x %s && cd && rm -rf $HOME/%s',
+                'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv %s %s && chmod +x %s && cd && rm -rf $HOME/%s',
                 $this->repository,
                 $this->getTargetDir(),
+                $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)',
                 $this->phar,
                 $this->bin,
                 $this->bin,
@@ -188,25 +191,28 @@ namespace Model {
     final class ComposerInstallCommand implements Command
     {
         private $repository;
+        private $version;
 
-        public function __construct(string $repository)
+        public function __construct(string $repository, ?string $version = null)
         {
             $this->repository = $repository;
+            $this->version = $version;
         }
 
         public static function import(array $command): Command
         {
             \Assert\requireFields(['repository'], $command, 'ComposerInstallCommand');
 
-            return new self($command['repository']);
+            return new self($command['repository'], $command['version'] ?? null);
         }
 
         public function __toString(): string
         {
             return sprintf(
-                'cd $HOME && git clone %s && cd $HOME/%s && composer install --no-dev --no-suggest --prefer-dist -n',
+                'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n',
                 $this->repository,
-                $this->getTargetDir()
+                $this->getTargetDir(),
+                $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)'
             );
         }
 

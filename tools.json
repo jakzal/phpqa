@@ -177,7 +177,8 @@
         "box-build": {
           "repository": "https://github.com/mmoreram/php-formatter.git",
           "phar": "build/php-formatter.phar",
-          "bin": "/usr/local/bin/php-formatter"
+          "bin": "/usr/local/bin/php-formatter",
+          "version": "1fa3d9a3e1c67654f3fe2511bd28fa7c33b59d7e"
         }
       },
       "test": "php-formatter list"
