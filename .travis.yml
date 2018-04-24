@@ -21,4 +21,4 @@ after_script:
   - docker run -it --rm jakzal/phpqa:$flavour sh -c 'php /usr/local/bin/tools.php update-phars && diff $TOOLS_JSON.bak $TOOLS_JSON || echo -e "\033[0;91mSome tools might have new phar releases. Update tools.json.\033[0m"'
 
 after_success:
- - if [[ "$TRAVIS_BRANCH" == "master" ]];then make build-nightly; fi
+  - [ "$TRAVIS_EVENT_TYPE" = "cron" ] && make build-nightly
