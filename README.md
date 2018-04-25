@@ -2,7 +2,7 @@
 
 Docker image providing static analysis tools for PHP.
 
-[![Build Status](https://travis-ci.org/jakzal/phpqa.svg?branch=master)](https://travis-ci.org/jakzal/phpqa) [![Docker Build](https://img.shields.io/docker/build/jakzal/phpqa.svg)](https://hub.docker.com/r/jakzal/phpqa/) [![Docker Pulls](https://img.shields.io/docker/pulls/jakzal/phpqa.svg)](https://hub.docker.com/r/jakzal/phpqa/) [![Alpine Image Size](https://img.shields.io/microbadger/image-size/jakzal/phpqa/alpine.svg)](https://hub.docker.com/r/jakzal/phpqa/) [![Latest Image Size](https://img.shields.io/microbadger/image-size/jakzal/phpqa/latest.svg)](https://hub.docker.com/r/jakzal/phpqa/)
+[![Build Status](https://travis-ci.org/jakzal/phpqa.svg?branch=master)](https://travis-ci.org/jakzal/phpqa) [![Docker Build](https://img.shields.io/docker/build/jakzal/phpqa.svg)](https://hub.docker.com/r/jakzal/phpqa/)
 
 ## Available tools
 
