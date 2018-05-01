@@ -1,14 +1,13 @@
 language: bash
 sudo: required
 
+services:
+  - docker
+
 matrix:
   include:
     - env: flavour=latest
-      services:
-        - docker
     - env: flavour=alpine
-      services:
-        - docker
   fast_finish: true
 
 script:
@@ -21,7 +20,10 @@ after_script:
   - docker run -it --rm jakzal/phpqa:$flavour sh -c 'php /usr/local/bin/tools.php update-phars && diff $TOOLS_JSON.bak $TOOLS_JSON || echo -e "\033[0;91mSome tools might have new phar releases. Update tools.json.\033[0m"'
 
 after_success:
-  - [ "$TRAVIS_EVENT_TYPE" = "cron" ] && (if [ "$flavour" = "latest" ]; then make build-nightly; else make build-nightly-alpine; fi)
+  - |
+    if [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+      if [ "$flavour" = "latest" ]; then make build-nightly; else make build-nightly-alpine; fi
+    fi
 
 env:
   - secure: "jb4NZs3rbbJEwXFtZV7aZo5ZFdwxb6RaugDefv1XnXkoDBWejYGzZZRnbybID8K5adMvmO4GiyvGyjy/Augt4BziSoBQbYdablBA/tKCeAmoreDwDPSFUv65KM4OXfBbeOOCryDHWBObPzkfRk3djQqcvO+6+Kstixp19/t1+Gr8lWSYhYMUXzgvZLUKg3yeQW8jGcMrfgiAeG+l4Gc7Uqnegcd7mjopaeWP6KOK+5dlV8PrhoE1R2B/dHX+FagJfGwgfp8x9FKMdr9Y0iGowbqwj/AuG/5HSsflfqWNXVprMmKCpHLZP+s614RW91gcI37IfQU2C3Zf4CEIp1bKIgfxTIlCDnTbltjQoQw51K9SqJLYYqgCb2aRPnJeLPBwoJw50dBKW4PvrGp9treGIdBm8tBSTOgTODI7hucR2QJmVUzsbJa8Rgb3WigoPKJGD+KNbygSMLJi0r0I6k3+kqkLWpyNuLhrzENUWRYT69qcSwRf4DzhPB9cLH9aGYnvko47gtNSd7I1eD84HhKb8gQx+tqLK1dkQNBvPKySkp6kJH3p87z+KY1+A0umDbAoqw0GcT3d3UmitkGUGB1WQzrwD6bIUlIxbDa5vCKQefWmxm4thxiMVKcXblSRTPiw68h8/tmfwRpF2vwMhfUFYz83CsxpWL8J8u0oWAhIeW8="
