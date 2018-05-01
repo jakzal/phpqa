@@ -22,6 +22,7 @@ after_script:
 after_success:
   - |
     if [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+      curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST https://registry.hub.docker.com/u/jakzal/phpqa/trigger/$DOCKER_HUB_TRIGGER_TOKEN/
       if [ "$flavour" = "latest" ]; then make build-nightly; else make build-nightly-alpine; fi
     fi
 
@@ -29,3 +30,4 @@ env:
   global:
     - secure: "jb4NZs3rbbJEwXFtZV7aZo5ZFdwxb6RaugDefv1XnXkoDBWejYGzZZRnbybID8K5adMvmO4GiyvGyjy/Augt4BziSoBQbYdablBA/tKCeAmoreDwDPSFUv65KM4OXfBbeOOCryDHWBObPzkfRk3djQqcvO+6+Kstixp19/t1+Gr8lWSYhYMUXzgvZLUKg3yeQW8jGcMrfgiAeG+l4Gc7Uqnegcd7mjopaeWP6KOK+5dlV8PrhoE1R2B/dHX+FagJfGwgfp8x9FKMdr9Y0iGowbqwj/AuG/5HSsflfqWNXVprMmKCpHLZP+s614RW91gcI37IfQU2C3Zf4CEIp1bKIgfxTIlCDnTbltjQoQw51K9SqJLYYqgCb2aRPnJeLPBwoJw50dBKW4PvrGp9treGIdBm8tBSTOgTODI7hucR2QJmVUzsbJa8Rgb3WigoPKJGD+KNbygSMLJi0r0I6k3+kqkLWpyNuLhrzENUWRYT69qcSwRf4DzhPB9cLH9aGYnvko47gtNSd7I1eD84HhKb8gQx+tqLK1dkQNBvPKySkp6kJH3p87z+KY1+A0umDbAoqw0GcT3d3UmitkGUGB1WQzrwD6bIUlIxbDa5vCKQefWmxm4thxiMVKcXblSRTPiw68h8/tmfwRpF2vwMhfUFYz83CsxpWL8J8u0oWAhIeW8="
     - secure: "iO9RzZwdZiq/txA3qaKrcEgGePvBaIEQd9Znh4JMNlynunJ21ewgqzFKYlDejEqdc3Q9KCwDSlfXSaJ1mNPWxyEjBcdVWNe/IRj5+5U/bbczio4mKZ7dfw/ocCjlpeSkmCyPF3CwKmcybzWk9wQiWZkXrGdwdfzdwWgfmDb/gKzrDO3LQtEalnSiqAu8E7aE5Mwrul+0zn1IqHU3zu46GPYfs7hOpgNXg7v3L/GT8L/WGbTzRwDN0miNewxiY61J4U9ktyTeOk4mX01+lACTZuJCQe9ZKX2MatY8Bs+O9RxQSK2EAAZ4Pi25Yim9g/ry+FaV4a6K+4u/zvQKwZLjW96Hm8+/1gGfYecPOXzw7FUEEow+xzY5jyAuQpGATrXRiay7sT1bQlS6Ga7t2KATS0ifgatzDGK3LRFzlcXJkO2lD5z3uH7M5ft9eVUkVtr51BtP5Q7vwv26uq/+0/NS+9vVZe9XzK1Ew4SpdU3Z0Y7mJH4PrOTkjIOC+8j1Xu+FcqVynEzsUn1l3Bka+Y0bICekU6QrzFn1PfhRBypZHy/k0gndhXBvGXAU9qA4QscMDwdSMAjMDC/i1D/qOk5KeGHoG6/CtocMLXXB+k8MCLA0LX6uHRMEqUgIUyEKX+14luFBeMbfUCOF1cXozqOOVZnm4pgSJMddl3+AvRaQIq0="
+    - secure: "ddd+1gMQ/ll8o3MZ8g8HQl7RsawJHETzUq7rncNQbJRc29vZmDfOcDworCsjJUmOQ9rIADxcylFlU1HXuEjkh9nmE78o8YMI44fJPHIGbYvuw6wvlPYR/GEqdmAhy8EE94eZQMLROhBFqj8J70H2Prpy/06+YvijtPipbEjNd3w2RVLjiyYj1BBC5i5psIXbX/OHfFsKDOHQv5ZIWeRvdeTW951bOPdEbCbOWKwz4cz4xvggJAMVlclbqdHqNFz2YWDAhyglGgwXt6dapRQuYskT4kXfht+CDIhulIdiEgRDaKM6PzKS7Irxv7P18VCtFbsbwf7LGDMbnvio5mOPRp2nk6VK5wdiBUyKQGAR6cuc2X3dpDJsu/zImJspqhLeYYeYcUSDQu6Z2QYZMk5my7A3VHsc9h5DFKwkGBDsD7Y8AfxDAbNah3+B9hNM0t+MaoQDou0vrcGrjtG6pMKEE6X3Ilpe6IebtAbby3RGIZjpU04OqnY8Tv1hCmQ+gEN/6eLJxqjEwHp6KZ7VGhH8ceMlpXJ+qhW1zGqcU5TNrO4ljb8ibIO+PsYDTuXR8YhVzm050yeKb4vtPkeFNBmDesKKGlK9JFb3aeRxGy9O7dx5Hxgq51rZlwuFtccOb8shYwMmk7lWCPTY5WehN6iYVVTA6Ky989aWPlmuK/pOUdw="
