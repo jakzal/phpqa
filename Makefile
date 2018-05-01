@@ -12,8 +12,16 @@ build-alpine:
 .PHONY: build-alpine
 
 
-NIGHTLY_TAG := jakzal/phpqa:nightly-$(shell date +%y%m%d)
+NIGHTLY_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)
 build-nightly:
 	docker build -t $(NIGHTLY_TAG) .
-	@docker login -u ${DOCKERHUB_LOGIN} -p ${DOCKERHUB_PASSWORD}
+	@docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}
 	docker push $(NIGHTLY_TAG)
+.PHONY: build-nightly
+
+NIGHTLY_ALPINE_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)-alpine
+build-nightly-alpine:
+	docker build -f Dockerfile-alpine -t $(NIGHTLY_ALPINE_TAG) .
+	@docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}
+	docker push $(NIGHTLY_ALPINE_TAG)
+.PHONY: build-nightly-alpine
