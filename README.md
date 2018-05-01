@@ -4,6 +4,10 @@ Docker image providing static analysis tools for PHP.
 
 [![Build Status](https://travis-ci.org/jakzal/phpqa.svg?branch=master)](https://travis-ci.org/jakzal/phpqa)
 
+Docker hub repository: https://hub.docker.com/r/jakzal/phpqa/
+
+Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
+
 ## Available tools
 
 * composer - [Dependency Manager for PHP](https://getcomposer.org/)
