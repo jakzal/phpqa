@@ -329,6 +329,17 @@
       "test": "phpdoc-to-typehint -V"
     },
     {
+      "name": "phplint",
+      "summary": "A tool that can speed up linting of php files by running several lint processes at once",
+      "website": "https://github.com/overtrue/phplint",
+      "command": {
+        "composer-global-install": {
+          "package": "overtrue/phplint"
+        }
+      },
+      "test": "phplint -V"
+    },
+    {
       "name": "phploc",
       "summary": "A tool for quickly measuring the size of a PHP project",
       "website": "https://github.com/sebastianbergmann/phploc",

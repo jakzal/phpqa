@@ -39,6 +39,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * phpcs - [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpda - [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/)
 * phpdoc-to-typehint - [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint)
+* phplint - [A tool that can speed up linting of php files by running several lint processes at once](https://github.com/overtrue/phplint)
 * phploc - [A tool for quickly measuring the size of a PHP project](https://github.com/sebastianbergmann/phploc)
 * phpmd - [A tool for finding problems in PHP code](https://phpmd.org/)
 * phpmetrics - [Static Analysis Tool](http://www.phpmetrics.org/)
