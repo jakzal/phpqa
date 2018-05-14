@@ -258,8 +258,9 @@
       "summary": "Finds usage of deprecated features",
       "website": "http://wapmorgan.github.io/PhpCodeFixer/",
       "command": {
-        "composer-global-install": {
-          "package": "wapmorgan/php-code-fixer"
+        "phar-download": {
+          "phar": "https://github.com/wapmorgan/PhpCodeFixer/releases/download/2.0.13/phpcf-2.0.13-1-g0dd0ff3.phar",
+          "bin": "/usr/local/bin/phpcf"
         }
       },
       "test": "phpcf -h"
