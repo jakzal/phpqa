@@ -140,7 +140,7 @@
       "website": "https://github.com/phan/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phan/phan/releases/download/0.12.7/phan.phar",
+          "phar": "https://github.com/phan/phan/releases/download/0.12.8/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },
@@ -427,8 +427,13 @@
       "summary": "Finds errors in PHP applications",
       "website": "https://getpsalm.org/",
       "command": {
-        "composer-global-install": {
-          "package": "vimeo/psalm"
+        "file-download": {
+          "url": "https://github.com/vimeo/psalm/releases/download/2.0.0/psalm.phar.asc",
+          "file": "/usr/local/bin/psalm.phar.asc"
+        },
+        "phar-download": {
+          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.0/psalm.phar",
+          "bin": "/usr/local/bin/psalm"
         }
       },
       "test": "psalm -h"
