@@ -223,8 +223,9 @@
       "summary": "Finds usage of non-built-in extensions",
       "website": "https://github.com/wapmorgan/PhpCodeAnalyzer",
       "command": {
-        "composer-global-install": {
-          "package": "wapmorgan/php-code-analyzer"
+        "phar-download": {
+          "phar": "https://github.com/wapmorgan/PhpCodeAnalyzer/releases/download/1.0.4/phpca.phar",
+          "bin": "/usr/local/bin/phpca"
         }
       },
       "test": "phpca -h"
