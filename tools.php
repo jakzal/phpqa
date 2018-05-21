@@ -53,7 +53,7 @@ namespace Model {
                 'box-build' => 'Model\BoxBuildCommand::import',
                 'composer-install' => 'Model\ComposerInstallCommand::import',
                 'composer-global-install' => 'Model\ComposerGlobalInstallCommand::import',
-
+                'composer-bin-plugin' => 'Model\ComposerBinPluginCommand::import',
             ];
 
             if (!isset($factories[$type])) {
@@ -246,6 +246,30 @@ namespace Model {
         public function getPackage(): string
         {
             return $this->package;
+        }
+    }
+
+    final class ComposerBinPluginCommand implements Command
+    {
+        private $package;
+        private $namespace;
+
+        public function __construct(string $package, string $namespace)
+        {
+            $this->package = $package;
+            $this->namespace = $namespace;
+        }
+
+        public static function import(array $command): Command
+        {
+            \Assert\requireFields(['package', 'namespace'], $command, 'ComposerBinPluginCommand');
+
+            return new self($command['package'], $command['namespace']);
+        }
+
+        public function __toString(): string
+        {
+            return sprintf('composer global bin %s require --no-suggest --prefer-dist --update-no-dev -n %s', $this->namespace, $this->package);
         }
     }
 
@@ -488,6 +512,13 @@ namespace JsonLoader {
                 new TestCommand('composer list', 'composer')
             ),
             new Tool(
+                'composer-bin-plugin',
+                'Composer plugin to install bin vendors in isolated locations',
+                'https://github.com/bamarni/composer-bin-plugin',
+                new ShCommand('composer global require bamarni/composer-bin-plugin'),
+                new TestCommand('composer global show bamarni/composer-bin-plugin', 'composer-bin-plugin')
+            ),
+            new Tool(
                 'box',
                 'An application for building and managing Phars',
                 'https://box-project.github.io/box2/',
@@ -514,6 +545,7 @@ namespace Installation {
     use F\Success;
     use Model\BoxBuildCommand;
     use Model\Command;
+    use Model\ComposerBinPluginCommand;
     use Model\ComposerGlobalInstallCommand;
     use Model\ComposerGlobalMultiInstallCommand;
     use Model\ComposerInstallCommand;
@@ -538,6 +570,7 @@ namespace Installation {
                 ->merge($filterCommands(MultiStepCommand::class))
                 ->merge(new Success(new ComposerGlobalMultiInstallCommand($filterCommands(ComposerGlobalInstallCommand::class)->get())))
                 ->merge($filterCommands(ComposerInstallCommand::class))
+                ->merge($filterCommands(ComposerBinPluginCommand::class))
                 ->merge($filterCommands(BoxBuildCommand::class))
                 ->get(),
             ' && ' . PHP_EOL
