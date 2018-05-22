@@ -226,9 +226,9 @@
       "summary": "Finds usage of non-built-in extensions",
       "website": "https://github.com/wapmorgan/PhpCodeAnalyzer",
       "command": {
-        "phar-download": {
-          "phar": "https://github.com/wapmorgan/PhpCodeAnalyzer/releases/download/1.0.4/phpca.phar",
-          "bin": "/usr/local/bin/phpca"
+        "composer-bin-plugin": {
+          "package": "wapmorgan/php-code-analyzer",
+          "namespace": "tools"
         }
       },
       "test": "phpca -h"
@@ -262,9 +262,9 @@
       "summary": "Finds usage of deprecated features",
       "website": "http://wapmorgan.github.io/PhpCodeFixer/",
       "command": {
-        "phar-download": {
-          "phar": "https://github.com/wapmorgan/PhpCodeFixer/releases/download/2.0.13/phpcf-2.0.13-1-g0dd0ff3.phar",
-          "bin": "/usr/local/bin/phpcf"
+        "composer-bin-plugin": {
+          "package": "wapmorgan/php-code-fixer",
+          "namespace": "tools"
         }
       },
       "test": "phpcf -h"
