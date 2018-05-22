@@ -271,6 +271,16 @@ namespace Model {
         {
             return sprintf('composer global bin %s require --no-suggest --prefer-dist --update-no-dev -n %s', $this->namespace, $this->package);
         }
+
+        public function package(): string
+        {
+            return $this->package;
+        }
+
+        public function namespace(): string
+        {
+            return $this->namespace;
+        }
     }
 
     final class MultiStepCommand implements Command
@@ -308,10 +318,46 @@ namespace Model {
         public function __toString(): string
         {
             $packages = implode(' ', array_map(function (ComposerGlobalInstallCommand $command) {
-                return $command->getPackage();
+                return $command->package();
             }, $this->commands));
 
             return sprintf('composer global require --no-suggest --prefer-dist --update-no-dev -n %s', $packages);
+        }
+    }
+
+    final class OptimisedComposerBinPluginCommand implements Command
+    {
+        private $commands;
+
+        public function __construct(array $commands)
+        {
+            $this->commands = array_map(function (ComposerBinPluginCommand $command) {
+                return $command;
+            }, $commands);
+        }
+
+        public function __toString(): string
+        {
+            return implode(' && ', $this->commandsToRun($this->packagesGroupedByNamespace()));
+        }
+
+        private function packagesGroupedByNamespace(): array
+        {
+            return array_reduce($this->commands, function (array $packages, ComposerBinPluginCommand $command) {
+                $packages[$command->namespace()][] = $command->package();
+
+                return $packages;
+            }, []);
+        }
+
+        private function commandToRun(string $namespace, array $packages): string
+        {
+            return sprintf('composer global bin %s require --no-suggest --prefer-dist --update-no-dev -n %s', $namespace, implode(' ', $packages));
+        }
+
+        private function commandsToRun(array $packagesGrouped): array
+        {
+            return array_map([$this, 'commandToRun'], array_keys($packagesGrouped), $packagesGrouped);
         }
     }
 
@@ -550,6 +596,7 @@ namespace Installation {
     use Model\ComposerGlobalMultiInstallCommand;
     use Model\ComposerInstallCommand;
     use Model\MultiStepCommand;
+    use Model\OptimisedComposerBinPluginCommand;
     use Model\PharDownloadCommand;
     use Model\ShCommand;
     use Model\Tool;
@@ -569,8 +616,8 @@ namespace Installation {
                 ->merge($filterCommands(PharDownloadCommand::class))
                 ->merge($filterCommands(MultiStepCommand::class))
                 ->merge(new Success(new ComposerGlobalMultiInstallCommand($filterCommands(ComposerGlobalInstallCommand::class)->get())))
+                ->merge(new Success(new OptimisedComposerBinPluginCommand($filterCommands(ComposerBinPluginCommand::class)->get())))
                 ->merge($filterCommands(ComposerInstallCommand::class))
-                ->merge($filterCommands(ComposerBinPluginCommand::class))
                 ->merge($filterCommands(BoxBuildCommand::class))
                 ->get(),
             ' && ' . PHP_EOL
