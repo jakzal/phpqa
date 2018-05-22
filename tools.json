@@ -29,8 +29,9 @@
       "summary": "Discovers good candidates for refactoring",
       "website": "https://github.com/bmitch/churn-php",
       "command": {
-        "composer-global-install": {
-          "package": "bmitch/churn-php"
+        "composer-bin-plugin": {
+          "package": "bmitch/churn-php",
+          "namespace": "tools"
         }
       },
       "test": "churn list"
@@ -151,8 +152,9 @@
       "summary": "Detects code coupling issues",
       "website": "https://akeneo.github.io/php-coupling-detector/",
       "command": {
-        "composer-global-install": {
-          "package": "akeneo/php-coupling-detector"
+        "composer-bin-plugin": {
+          "package": "akeneo/php-coupling-detector",
+          "namespace": "tools"
         }
       },
       "test": "php-coupling-detector list"
@@ -212,8 +214,9 @@
       "summary": "Checks for weak assumptions",
       "website": "https://github.com/rskuipers/php-assumptions",
       "command": {
-        "composer-global-install": {
-          "package": "rskuipers/php-assumptions:dev-master"
+        "composer-bin-plugin": {
+          "package": "rskuipers/php-assumptions:dev-master",
+          "namespace": "tools"
         }
       },
       "test": "phpa"
@@ -335,8 +338,9 @@
       "summary": "A tool that can speed up linting of php files by running several lint processes at once",
       "website": "https://github.com/overtrue/phplint",
       "command": {
-        "composer-global-install": {
-          "package": "overtrue/phplint"
+        "composer-bin-plugin": {
+          "package": "overtrue/phplint",
+          "namespace": "tools"
         }
       },
       "test": "phplint -V"
@@ -382,8 +386,9 @@
       "summary": "Helps to detect magic numbers",
       "website": "https://github.com/povils/phpmnd",
       "command": {
-        "composer-global-install": {
-          "package": "povils/phpmnd"
+        "composer-bin-plugin": {
+          "package": "povils/phpmnd",
+          "namespace": "tools"
         }
       },
       "test": "phpmnd -V"
@@ -457,8 +462,9 @@
       "summary": "Analyses and reports testability issues of a php codebase",
       "website": "https://github.com/edsonmedina/php_testability",
       "command": {
-        "composer-global-install": {
-          "package": "edsonmedina/php_testability:dev-master"
+        "composer-bin-plugin": {
+          "package": "edsonmedina/php_testability:dev-master",
+          "namespace": "tools"
         }
       },
       "test": "testability --help"
