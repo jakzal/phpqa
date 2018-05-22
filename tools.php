@@ -173,16 +173,16 @@ namespace Model {
             return sprintf(
                 'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv %s %s && chmod +x %s && cd && rm -rf $HOME/%s',
                 $this->repository,
-                $this->getTargetDir(),
+                $this->targetDir(),
                 $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)',
                 $this->phar,
                 $this->bin,
                 $this->bin,
-                $this->getTargetDir()
+                $this->targetDir()
             );
         }
 
-        private function getTargetDir(): string
+        private function targetDir(): string
         {
             return preg_replace('#^.*/(.*?)(.git)?$#', '$1', $this->repository) ?? 'tmp';
         }
@@ -211,12 +211,12 @@ namespace Model {
             return sprintf(
                 'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n',
                 $this->repository,
-                $this->getTargetDir(),
+                $this->targetDir(),
                 $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)'
             );
         }
 
-        private function getTargetDir(): string
+        private function targetDir(): string
         {
             return preg_replace('#^.*/(.*?)(.git)?$#', '$1', $this->repository) ?? 'tmp';
         }
@@ -243,7 +243,7 @@ namespace Model {
             return sprintf('composer global require --no-suggest --prefer-dist --update-no-dev -n %s', $this->package);
         }
 
-        public function getPackage(): string
+        public function package(): string
         {
             return $this->package;
         }
@@ -616,7 +616,6 @@ namespace DocUpdate {
 namespace ToolsUpdate {
 
     use Model\Command;
-    use Model\MultiStepCommand;
     use Model\ShCommand;
 
     function FindLatestPharsCommand(string $jsonPath): Command
