@@ -367,7 +367,7 @@
           "bin": "/usr/local/bin/phpmd"
         }
       },
-      "test": "phpmd /usr/local/bin/tools.php text unusedcode"
+      "test": "phpmd --version"
     },
     {
       "name": "phpmetrics",
