@@ -118,7 +118,7 @@ namespace Model {
 
         public function __toString(): string
         {
-            return sprintf('curl -Ls %s > %s && chmod +x %s', $this->phar, $this->bin, $this->bin);
+            return sprintf('curl -Ls -w %%{filename_effective}\'\n\' %s -o %s && chmod +x %s', $this->phar, $this->bin, $this->bin);
         }
     }
 
@@ -142,7 +142,7 @@ namespace Model {
 
         public function __toString(): string
         {
-            return sprintf('curl -Ls %s > %s', $this->url, $this->file);
+            return sprintf('curl -Ls -w %%{filename_effective}\'\n\' %s -o %s', $this->url, $this->file);
         }
     }
 
