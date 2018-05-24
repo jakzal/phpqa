@@ -29,8 +29,9 @@
       "summary": "Discovers good candidates for refactoring",
       "website": "https://github.com/bmitch/churn-php",
       "command": {
-        "composer-global-install": {
-          "package": "bmitch/churn-php"
+        "composer-bin-plugin": {
+          "package": "bmitch/churn-php",
+          "namespace": "tools"
         }
       },
       "test": "churn list"
@@ -151,8 +152,9 @@
       "summary": "Detects code coupling issues",
       "website": "https://akeneo.github.io/php-coupling-detector/",
       "command": {
-        "composer-global-install": {
-          "package": "akeneo/php-coupling-detector"
+        "composer-bin-plugin": {
+          "package": "akeneo/php-coupling-detector",
+          "namespace": "tools"
         }
       },
       "test": "php-coupling-detector list"
@@ -212,8 +214,9 @@
       "summary": "Checks for weak assumptions",
       "website": "https://github.com/rskuipers/php-assumptions",
       "command": {
-        "composer-global-install": {
-          "package": "rskuipers/php-assumptions:dev-master"
+        "composer-bin-plugin": {
+          "package": "rskuipers/php-assumptions:dev-master",
+          "namespace": "tools"
         }
       },
       "test": "phpa"
@@ -223,9 +226,9 @@
       "summary": "Finds usage of non-built-in extensions",
       "website": "https://github.com/wapmorgan/PhpCodeAnalyzer",
       "command": {
-        "phar-download": {
-          "phar": "https://github.com/wapmorgan/PhpCodeAnalyzer/releases/download/1.0.4/phpca.phar",
-          "bin": "/usr/local/bin/phpca"
+        "composer-bin-plugin": {
+          "package": "wapmorgan/php-code-analyzer",
+          "namespace": "tools"
         }
       },
       "test": "phpca -h"
@@ -259,9 +262,9 @@
       "summary": "Finds usage of deprecated features",
       "website": "http://wapmorgan.github.io/PhpCodeFixer/",
       "command": {
-        "phar-download": {
-          "phar": "https://github.com/wapmorgan/PhpCodeFixer/releases/download/2.0.13/phpcf-2.0.13-1-g0dd0ff3.phar",
-          "bin": "/usr/local/bin/phpcf"
+        "composer-bin-plugin": {
+          "package": "wapmorgan/php-code-fixer",
+          "namespace": "tools"
         }
       },
       "test": "phpcf -h"
@@ -335,8 +338,9 @@
       "summary": "A tool that can speed up linting of php files by running several lint processes at once",
       "website": "https://github.com/overtrue/phplint",
       "command": {
-        "composer-global-install": {
-          "package": "overtrue/phplint"
+        "composer-bin-plugin": {
+          "package": "overtrue/phplint",
+          "namespace": "tools"
         }
       },
       "test": "phplint -V"
@@ -363,7 +367,7 @@
           "bin": "/usr/local/bin/phpmd"
         }
       },
-      "test": "phpmd /usr/local/bin/tools.php text unusedcode"
+      "test": "phpmd --version"
     },
     {
       "name": "phpmetrics",
@@ -382,8 +386,9 @@
       "summary": "Helps to detect magic numbers",
       "website": "https://github.com/povils/phpmnd",
       "command": {
-        "composer-global-install": {
-          "package": "povils/phpmnd"
+        "composer-bin-plugin": {
+          "package": "povils/phpmnd",
+          "namespace": "tools"
         }
       },
       "test": "phpmnd -V"
@@ -405,12 +410,12 @@
       "summary": "Static Analysis Tool",
       "website": "https://github.com/phpstan/phpstan",
       "command": {
-        "phar-download": {
-          "phar": "https://github.com/phpstan/phpstan/releases/download/0.9.2/phpstan.phar",
-          "bin": "/usr/local/bin/phpstan"
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan",
+          "namespace": "phpstan"
         }
       },
-      "test": "phpstan list"
+      "test": "phpstan --version"
     },
     {
       "name": "phpunit",
@@ -457,8 +462,9 @@
       "summary": "Analyses and reports testability issues of a php codebase",
       "website": "https://github.com/edsonmedina/php_testability",
       "command": {
-        "composer-global-install": {
-          "package": "edsonmedina/php_testability:dev-master"
+        "composer-bin-plugin": {
+          "package": "edsonmedina/php_testability:dev-master",
+          "namespace": "tools"
         }
       },
       "test": "testability --help"

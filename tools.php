@@ -53,7 +53,7 @@ namespace Model {
                 'box-build' => 'Model\BoxBuildCommand::import',
                 'composer-install' => 'Model\ComposerInstallCommand::import',
                 'composer-global-install' => 'Model\ComposerGlobalInstallCommand::import',
-
+                'composer-bin-plugin' => 'Model\ComposerBinPluginCommand::import',
             ];
 
             if (!isset($factories[$type])) {
@@ -118,7 +118,7 @@ namespace Model {
 
         public function __toString(): string
         {
-            return sprintf('curl -Ls %s > %s && chmod +x %s', $this->phar, $this->bin, $this->bin);
+            return sprintf('curl -Ls -w %%{filename_effective}\'\n\' %s -o %s && chmod +x %s', $this->phar, $this->bin, $this->bin);
         }
     }
 
@@ -142,7 +142,7 @@ namespace Model {
 
         public function __toString(): string
         {
-            return sprintf('curl -Ls %s > %s', $this->url, $this->file);
+            return sprintf('curl -Ls -w %%{filename_effective}\'\n\' %s -o %s', $this->url, $this->file);
         }
     }
 
@@ -173,16 +173,16 @@ namespace Model {
             return sprintf(
                 'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv %s %s && chmod +x %s && cd && rm -rf $HOME/%s',
                 $this->repository,
-                $this->getTargetDir(),
+                $this->targetDir(),
                 $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)',
                 $this->phar,
                 $this->bin,
                 $this->bin,
-                $this->getTargetDir()
+                $this->targetDir()
             );
         }
 
-        private function getTargetDir(): string
+        private function targetDir(): string
         {
             return preg_replace('#^.*/(.*?)(.git)?$#', '$1', $this->repository) ?? 'tmp';
         }
@@ -211,12 +211,12 @@ namespace Model {
             return sprintf(
                 'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n',
                 $this->repository,
-                $this->getTargetDir(),
+                $this->targetDir(),
                 $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)'
             );
         }
 
-        private function getTargetDir(): string
+        private function targetDir(): string
         {
             return preg_replace('#^.*/(.*?)(.git)?$#', '$1', $this->repository) ?? 'tmp';
         }
@@ -243,9 +243,43 @@ namespace Model {
             return sprintf('composer global require --no-suggest --prefer-dist --update-no-dev -n %s', $this->package);
         }
 
-        public function getPackage(): string
+        public function package(): string
         {
             return $this->package;
+        }
+    }
+
+    final class ComposerBinPluginCommand implements Command
+    {
+        private $package;
+        private $namespace;
+
+        public function __construct(string $package, string $namespace)
+        {
+            $this->package = $package;
+            $this->namespace = $namespace;
+        }
+
+        public static function import(array $command): Command
+        {
+            \Assert\requireFields(['package', 'namespace'], $command, 'ComposerBinPluginCommand');
+
+            return new self($command['package'], $command['namespace']);
+        }
+
+        public function __toString(): string
+        {
+            return sprintf('composer global bin %s require --no-suggest --prefer-dist --update-no-dev -n %s', $this->namespace, $this->package);
+        }
+
+        public function package(): string
+        {
+            return $this->package;
+        }
+
+        public function namespace(): string
+        {
+            return $this->namespace;
         }
     }
 
@@ -284,10 +318,46 @@ namespace Model {
         public function __toString(): string
         {
             $packages = implode(' ', array_map(function (ComposerGlobalInstallCommand $command) {
-                return $command->getPackage();
+                return $command->package();
             }, $this->commands));
 
             return sprintf('composer global require --no-suggest --prefer-dist --update-no-dev -n %s', $packages);
+        }
+    }
+
+    final class OptimisedComposerBinPluginCommand implements Command
+    {
+        private $commands;
+
+        public function __construct(array $commands)
+        {
+            $this->commands = array_map(function (ComposerBinPluginCommand $command) {
+                return $command;
+            }, $commands);
+        }
+
+        public function __toString(): string
+        {
+            return implode(' && ', $this->commandsToRun($this->packagesGroupedByNamespace()));
+        }
+
+        private function packagesGroupedByNamespace(): array
+        {
+            return array_reduce($this->commands, function (array $packages, ComposerBinPluginCommand $command) {
+                $packages[$command->namespace()][] = $command->package();
+
+                return $packages;
+            }, []);
+        }
+
+        private function commandToRun(string $namespace, array $packages): string
+        {
+            return sprintf('composer global bin %s require --no-suggest --prefer-dist --update-no-dev -n %s', $namespace, implode(' ', $packages));
+        }
+
+        private function commandsToRun(array $packagesGrouped): array
+        {
+            return array_map([$this, 'commandToRun'], array_keys($packagesGrouped), $packagesGrouped);
         }
     }
 
@@ -488,6 +558,13 @@ namespace JsonLoader {
                 new TestCommand('composer list', 'composer')
             ),
             new Tool(
+                'composer-bin-plugin',
+                'Composer plugin to install bin vendors in isolated locations',
+                'https://github.com/bamarni/composer-bin-plugin',
+                new ShCommand('composer global require bamarni/composer-bin-plugin'),
+                new TestCommand('composer global show bamarni/composer-bin-plugin', 'composer-bin-plugin')
+            ),
+            new Tool(
                 'box',
                 'An application for building and managing Phars',
                 'https://box-project.github.io/box2/',
@@ -514,10 +591,12 @@ namespace Installation {
     use F\Success;
     use Model\BoxBuildCommand;
     use Model\Command;
+    use Model\ComposerBinPluginCommand;
     use Model\ComposerGlobalInstallCommand;
     use Model\ComposerGlobalMultiInstallCommand;
     use Model\ComposerInstallCommand;
     use Model\MultiStepCommand;
+    use Model\OptimisedComposerBinPluginCommand;
     use Model\PharDownloadCommand;
     use Model\ShCommand;
     use Model\Tool;
@@ -537,6 +616,7 @@ namespace Installation {
                 ->merge($filterCommands(PharDownloadCommand::class))
                 ->merge($filterCommands(MultiStepCommand::class))
                 ->merge(new Success(new ComposerGlobalMultiInstallCommand($filterCommands(ComposerGlobalInstallCommand::class)->get())))
+                ->merge(new Success(new OptimisedComposerBinPluginCommand($filterCommands(ComposerBinPluginCommand::class)->get())))
                 ->merge($filterCommands(ComposerInstallCommand::class))
                 ->merge($filterCommands(BoxBuildCommand::class))
                 ->get(),
@@ -583,7 +663,6 @@ namespace DocUpdate {
 namespace ToolsUpdate {
 
     use Model\Command;
-    use Model\MultiStepCommand;
     use Model\ShCommand;
 
     function FindLatestPharsCommand(string $jsonPath): Command
