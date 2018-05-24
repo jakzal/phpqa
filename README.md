@@ -125,6 +125,23 @@ Finally, use your customised image instead of the default one:
 docker run -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
 ```
 
+### Adding PHPStan extensions
+
+Use the composer-bin-plugin to install any PHPStan extensions in the `phpstan` namespace:
+
+```
+FROM jakzal/phpqa:alpine
+
+RUN global bin phpstan require phpstan/phpstan-phpunit
+```
+
+You'll be able to include them in your PHPStan configuration from the `/root/.composer/vendor-bin/phpstan/vendor` path:
+
+```yaml
+includes:
+    - /root/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
+```
+
 ## Debugger & Code Coverage
 
 The [php-dbg debugger](http://php.net/manual/en/debugger-about.php) is provided by default. No additional extensions (like XDebug) are required to calculate code coverage:
