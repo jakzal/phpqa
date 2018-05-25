@@ -141,7 +141,7 @@
       "website": "https://github.com/phan/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phan/phan/releases/download/0.12.8/phan.phar",
+          "phar": "https://github.com/phan/phan/releases/download/0.12.9/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },
@@ -215,11 +215,11 @@
       "website": "https://github.com/rskuipers/php-assumptions",
       "command": {
         "composer-bin-plugin": {
-          "package": "rskuipers/php-assumptions:dev-master",
+          "package": "rskuipers/php-assumptions",
           "namespace": "tools"
         }
       },
-      "test": "phpa"
+      "test": "phpa --version"
     },
     {
       "name": "phpca",
