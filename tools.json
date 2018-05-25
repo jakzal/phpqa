@@ -215,7 +215,7 @@
       "website": "https://github.com/rskuipers/php-assumptions",
       "command": {
         "composer-bin-plugin": {
-          "package": "rskuipers/php-assumptions:dev-master",
+          "package": "rskuipers/php-assumptions",
           "namespace": "tools"
         }
       },
