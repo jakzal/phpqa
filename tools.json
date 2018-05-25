@@ -219,7 +219,7 @@
           "namespace": "tools"
         }
       },
-      "test": "phpa"
+      "test": "phpa --version"
     },
     {
       "name": "phpca",
