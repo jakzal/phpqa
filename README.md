@@ -78,7 +78,7 @@ docker run -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakz
 You'll probably want to tweak this command for your needs and create an alias for convenience:
 
 ```bash
-alias phpqa="docker run -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa:alpine"
+alias phpqa='docker run -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa:alpine'
 ```
 
 Add it to your `~/.bashrc` so it's defined every time you start a new terminal session.
