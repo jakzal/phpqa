@@ -70,15 +70,17 @@ To run the selected tool inside the container, you'll need to mount
 the project directory on the container with `-v $(pwd):/project`.
 Some tools like to write to the `/tmp` directory (like PHPStan, or Behat in some cases), therefore it's often useful
 to share it between docker runs, i.e. with `-v $(pwd)/tmp-phpqa:/tmp`.
+If you want to be able to interrupt the selected tool if it takes too much time to complete, you can use the
+`--init` option. Please refer to the [docker run documentation](https://docs.docker.com/engine/reference/commandline/run/) for more information.
 
 ```bash
-docker run -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa phpstan analyse src
+docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa phpstan analyse src
 ```
 
 You'll probably want to tweak this command for your needs and create an alias for convenience:
 
 ```bash
-alias phpqa="docker run -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa:alpine"
+alias phpqa="docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa:alpine"
 ```
 
 Add it to your `~/.bashrc` so it's defined every time you start a new terminal session.
@@ -124,7 +126,7 @@ docker build -t foo/phpqa .
 Finally, use your customised image instead of the default one:
 
 ```
-docker run -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
+docker run --init -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
 ```
 
 ### Adding PHPStan extensions
