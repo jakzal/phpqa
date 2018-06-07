@@ -439,7 +439,7 @@
           "file": "/usr/local/bin/psalm.phar.asc"
         },
         "phar-download": {
-          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.0/psalm.phar",
+          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.2/psalm.phar",
           "bin": "/usr/local/bin/psalm"
         }
       },
