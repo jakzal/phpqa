@@ -104,7 +104,7 @@
           "file": "/usr/local/bin/infection.pubkey"
         },
         "phar-download": {
-          "phar": "https://github.com/infection/infection/releases/download/0.8.1/infection.phar",
+          "phar": "https://github.com/infection/infection/releases/download/0.8.2/infection.phar",
           "bin": "/usr/local/bin/infection"
         }
       },
@@ -141,7 +141,7 @@
       "website": "https://github.com/phan/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phan/phan/releases/download/0.12.9/phan.phar",
+          "phar": "https://github.com/phan/phan/releases/download/0.12.11/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },
@@ -439,7 +439,7 @@
           "file": "/usr/local/bin/psalm.phar.asc"
         },
         "phar-download": {
-          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.0/psalm.phar",
+          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.2/psalm.phar",
           "bin": "/usr/local/bin/psalm"
         }
       },
