@@ -446,6 +446,18 @@
       "test": "psalm -h"
     },
     {
+      "name": "psecio-parse",
+      "summary": "Parse scanner is a static scanning tool to review your PHP code for potential security-related issues",
+      "website": "https://github.com/psecio/parse",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "psecio/parse:dev-master",
+          "namespace": "psecio-parse"
+        }
+      },
+      "test": "psecio-parse --version"
+    },
+    {
       "name": "security-checker",
       "summary": "Checks composer dependencies for known security vulnerabilities",
       "website": "https://github.com/sensiolabs/security-checker",
