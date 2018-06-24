@@ -141,7 +141,7 @@
       "website": "https://github.com/phan/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phan/phan/releases/download/0.12.12/phan.phar",
+          "phar": "https://github.com/phan/phan/releases/download/0.12.13/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },
@@ -435,11 +435,11 @@
       "website": "https://getpsalm.org/",
       "command": {
         "file-download": {
-          "url": "https://github.com/vimeo/psalm/releases/download/2.0.0/psalm.phar.asc",
+          "url": "https://github.com/vimeo/psalm/releases/download/2.0.4/psalm.phar.asc",
           "file": "/usr/local/bin/psalm.phar.asc"
         },
         "phar-download": {
-          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.2/psalm.phar",
+          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.4/psalm.phar",
           "bin": "/usr/local/bin/psalm"
         }
       },
