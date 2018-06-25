@@ -6,24 +6,24 @@ services:
 
 matrix:
   include:
-    - env: flavour=latest
-    - env: flavour=alpine
+    - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-latest
+    - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-alpine
   fast_finish: true
 
 script:
-  - if [ "$flavour" = "latest" ]; then make build-latest; else make build-alpine; fi
-  - docker run -it --rm jakzal/phpqa:$flavour php /usr/local/bin/tools.php test
-  - docker run -it --rm jakzal/phpqa:$flavour
+  - make build-$flavour
+  - docker run -it --rm $BUILD_TAG php /usr/local/bin/tools.php test
+  - docker run -it --rm $BUILD_TAG
 
 after_script:
   - docker images
-  - docker run -it --rm jakzal/phpqa:$flavour sh -c '(php /usr/local/bin/tools.php update-phars && diff $TOOLS_JSON.bak $TOOLS_JSON) || echo -e "\033[0;91mSome tools might have new phar releases. Update tools.json.\033[0m"'
+  - docker run -it --rm $BUILD_TAG sh -c '(php /usr/local/bin/tools.php update-phars && diff $TOOLS_JSON.bak $TOOLS_JSON) || echo -e "\033[0;91mSome tools might have new phar releases. Update tools.json.\033[0m"'
 
 after_success:
   - |
     if [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
       curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST https://registry.hub.docker.com/u/jakzal/phpqa/trigger/$DOCKER_HUB_TRIGGER_TOKEN/
-      if [ "$flavour" = "latest" ]; then make build-nightly; else make build-nightly-alpine; fi
+      make build-nightly-$flavour
     fi
 
 env:
