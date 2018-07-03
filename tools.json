@@ -418,6 +418,102 @@
       "test": "phpstan --version"
     },
     {
+      "name": "phpstan-deprecation-rules",
+      "summary": "PHPStan rules for detecting usage of deprecated classes, methods, properties, constants and traits.",
+      "website": "https://github.com/phpstan/phpstan-deprecation-rules",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan-deprecation-rules",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
+      "name": "phpstan-strict-rules",
+      "summary": "Extra strict and opinionated rules for PHPStan",
+      "website": "https://github.com/phpstan/phpstan-strict-rules",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan-strict-rules",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
+      "name": "phpstan-doctrine",
+      "summary": "Doctrine extensions for PHPStan",
+      "website": "https://github.com/phpstan/phpstan-doctrine",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan-doctrine",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
+      "name": "phpstan-phpunit",
+      "summary": "PHPUnit extensions and rules for PHPStan",
+      "website": "https://github.com/phpstan/phpstan-phpunit",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan-phpunit",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
+      "name": "phpstan-symfony",
+      "summary": "Symfony extension for PHPStan",
+      "website": "https://github.com/phpstan/phpstan-symfony",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan-symfony",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
+      "name": "phpstan-beberlei-assert",
+      "summary": "PHPStan extension for beberlei/assert",
+      "website": "https://github.com/phpstan/phpstan-beberlei-assert",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan-beberlei-assert",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
+      "name": "phpstan-webmozart-assert",
+      "summary": "PHPStan extension for webmozart/assert",
+      "website": "https://github.com/phpstan/phpstan-webmozart-assert",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "phpstan/phpstan-webmozart-assert",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
+      "name": "phpstan-exception-rules",
+      "summary": "PHPStan rules for detecting usage of deprecated classes, methods, properties, constants and traits.l",
+      "website": "https://github.com/pepakriz/phpstan-exception-rules",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "pepakriz/phpstan-exception-rules",
+          "namespace": "phpstan"
+        }
+      },
+      "test": "true"
+    },
+    {
       "name": "phpunit",
       "summary": "The PHP testing framework",
       "website": "https://phpunit.de/",
