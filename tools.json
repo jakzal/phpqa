@@ -100,11 +100,11 @@
       "website": "https://infection.github.io/",
       "command": {
         "file-download": {
-          "url": "https://github.com/infection/infection/releases/download/0.8.1/infection.phar.pubkey",
+          "url": "https://github.com/infection/infection/releases/download/0.9.0/infection.phar.pubkey",
           "file": "/usr/local/bin/infection.pubkey"
         },
         "phar-download": {
-          "phar": "https://github.com/infection/infection/releases/download/0.9.0-beta.2/infection.phar",
+          "phar": "https://github.com/infection/infection/releases/download/0.9.0/infection.phar",
           "bin": "/usr/local/bin/infection"
         }
       },
@@ -399,7 +399,7 @@
       "website": "http://www.phpspec.net/",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpspec/phpspec/releases/download/4.3.0/phpspec.phar",
+          "phar": "https://github.com/phpspec/phpspec/releases/download/4.3.1/phpspec.phar",
           "bin": "/usr/local/bin/phpspec"
         }
       },
