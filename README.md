@@ -140,7 +140,9 @@ docker run --init -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
 
 ### Adding PHPStan extensions
 
-Use the composer-bin-plugin to install any PHPStan extensions in the `phpstan` namespace:
+A number of PHPStan extensions is available on the image in `/root/.composer/vendor-bin/phpstan/vendor` out of the box.
+
+Use the composer-bin-plugin to install any additional PHPStan extensions in the `phpstan` namespace:
 
 ```
 FROM jakzal/phpqa:alpine
