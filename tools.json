@@ -154,7 +154,7 @@
       "command": {
         "composer-bin-plugin": {
           "package": "akeneo/php-coupling-detector",
-          "namespace": "tools"
+          "namespace": "php-coupling-detector"
         }
       },
       "test": "php-coupling-detector list"
