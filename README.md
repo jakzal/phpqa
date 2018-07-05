@@ -47,6 +47,14 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * phpmnd - [Helps to detect magic numbers](https://github.com/povils/phpmnd)
 * phpspec - [SpecBDD Framework](http://www.phpspec.net/)
 * phpstan - [Static Analysis Tool](https://github.com/phpstan/phpstan)
+* phpstan-deprecation-rules - [PHPStan rules for detecting usage of deprecated classes, methods, properties, constants and traits](https://github.com/phpstan/phpstan-deprecation-rules)
+* phpstan-strict-rules - [Extra strict and opinionated rules for PHPStan](https://github.com/phpstan/phpstan-strict-rules)
+* phpstan-doctrine - [Doctrine extensions for PHPStan](https://github.com/phpstan/phpstan-doctrine)
+* phpstan-phpunit - [PHPUnit extensions and rules for PHPStan](https://github.com/phpstan/phpstan-phpunit)
+* phpstan-symfony - [Symfony extension for PHPStan](https://github.com/phpstan/phpstan-symfony)
+* phpstan-beberlei-assert - [PHPStan extension for beberlei/assert](https://github.com/phpstan/phpstan-beberlei-assert)
+* phpstan-webmozart-assert - [PHPStan extension for webmozart/assert](https://github.com/phpstan/phpstan-webmozart-assert)
+* phpstan-exception-rules - [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules)
 * phpunit - [The PHP testing framework](https://phpunit.de/)
 * psalm - [Finds errors in PHP applications](https://getpsalm.org/)
 * psecio-parse - [Parse scanner is a static scanning tool to review your PHP code for potential security-related issues](https://github.com/psecio/parse)
@@ -132,7 +140,14 @@ docker run --init -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
 
 ### Adding PHPStan extensions
 
-Use the composer-bin-plugin to install any PHPStan extensions in the `phpstan` namespace:
+A number of PHPStan extensions is available on the image in `/root/.composer/vendor-bin/phpstan/vendor` out of the box.
+You can find them with the command below:
+
+```
+phpqa find /root/.composer/vendor-bin/phpstan/vendor/ -iname 'rules.neon' -or -iname 'extension.neon'
+```
+
+Use the composer-bin-plugin to install any additional PHPStan extensions in the `phpstan` namespace:
 
 ```
 FROM jakzal/phpqa:alpine
