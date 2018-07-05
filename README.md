@@ -141,6 +141,11 @@ docker run --init -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
 ### Adding PHPStan extensions
 
 A number of PHPStan extensions is available on the image in `/root/.composer/vendor-bin/phpstan/vendor` out of the box.
+You can find them with the command below:
+
+```
+phpqa find /root/.composer/vendor-bin/phpstan/vendor/ -iname 'rules.neon' -or -iname 'extension.neon'
+```
 
 Use the composer-bin-plugin to install any additional PHPStan extensions in the `phpstan` namespace:
 
