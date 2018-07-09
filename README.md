@@ -83,13 +83,13 @@ If you want to be able to interrupt the selected tool if it takes too much time 
 `--init` option. Please refer to the [docker run documentation](https://docs.docker.com/engine/reference/commandline/run/) for more information.
 
 ```bash
-docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa phpstan analyse src
+docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp jakzal/phpqa phpstan analyse src
 ```
 
 You'll probably want to tweak this command for your needs and create an alias for convenience:
 
 ```bash
-alias phpqa='docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa:alpine'
+alias phpqa='docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp jakzal/phpqa:alpine'
 ```
 
 Add it to your `~/.bashrc` so it's defined every time you start a new terminal session.
@@ -135,7 +135,7 @@ docker build -t foo/phpqa .
 Finally, use your customised image instead of the default one:
 
 ```
-docker run --init -it --rm -v $(pwd):/project -w /project foo/phpqa phpmetrics .
+docker run --init -it --rm -v $(pwd):/project foo/phpqa phpmetrics .
 ```
 
 ### Adding PHPStan extensions
