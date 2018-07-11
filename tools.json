@@ -583,7 +583,7 @@
       "website": "https://github.com/exussum12/coverageChecker",
       "command": {
         "composer-bin-plugin": {
-          "package": "exussum12/coverageChecker:dev-master",
+          "package": "exussum12/coverage-checker:dev-master",
           "namespace": "tools"
         }
       },
