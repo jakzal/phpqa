@@ -576,6 +576,18 @@
         }
       },
       "test": "testability --help"
+    },
+    {
+      "name": "CoverageChecker",
+      "summary": "Applies QA tools to run on a single pull request",
+      "website": "https://github.com/exussum12/coverageChecker",
+      "command": {
+        "composer-bin-plugin": {
+          "package": "exussum12/coverage-checker:dev-master",
+          "namespace": "tools"
+        }
+      },
+      "test": "diffFilter -v"
     }
   ]
 }
