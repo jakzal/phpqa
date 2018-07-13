@@ -1,6 +1,7 @@
 FROM php:7.2-cli
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
+WORKDIR /project
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME=/tools/.composer
