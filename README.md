@@ -20,6 +20,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * deprecation-detector - [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector)
 * deptrac - [Enforces dependency rules](https://github.com/sensiolabs-de/deptrac)
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
+* diffFilter - [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker)
 * ecs - [EasyCodingStandard sets up and runs coding standard checks with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer](https://github.com/Symplify/EasyCodingStandard)
 * infection - [AST based PHP Mutation Testing Framework](https://infection.github.io/)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
