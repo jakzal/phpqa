@@ -171,7 +171,7 @@ namespace Model {
         public function __toString(): string
         {
             return sprintf(
-                'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv %s %s && chmod +x %s && cd && rm -rf $HOME/%s',
+                'cd /tools && git clone %s && cd /tools/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n && box build && mv %s %s && chmod +x %s && cd && rm -rf /tools/%s',
                 $this->repository,
                 $this->targetDir(),
                 $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)',
@@ -209,7 +209,7 @@ namespace Model {
         public function __toString(): string
         {
             return sprintf(
-                'cd $HOME && git clone %s && cd $HOME/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n',
+                'cd /tools && git clone %s && cd /tools/%s && git checkout %s && composer install --no-dev --no-suggest --prefer-dist -n',
                 $this->repository,
                 $this->targetDir(),
                 $this->version ?? '$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null)'

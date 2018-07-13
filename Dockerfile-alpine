@@ -3,11 +3,12 @@ FROM php:7.2-alpine
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_HOME=/tools/.composer
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkgconf re2c unzip"
 ENV LIB_DEPS="zlib-dev"
 ENV TOOL_DEPS="git graphviz"
-ENV PATH="$PATH:/root/.composer/vendor/bin:/root/QualityAnalyzer/bin:/root/DesignPatternDetector/bin:/root/EasyCodingStandard/bin"
-ENV TOOLS_JSON=/root/tools.json
+ENV PATH="$PATH:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:/tools/DesignPatternDetector/bin:/tools/EasyCodingStandard/bin"
+ENV TOOLS_JSON=/tools/tools.json
 
 COPY tools.json ${TOOLS_JSON}
 COPY tools.php /usr/local/bin/tools.php
