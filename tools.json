@@ -543,11 +543,11 @@
       "website": "https://getpsalm.org/",
       "command": {
         "file-download": {
-          "url": "https://github.com/vimeo/psalm/releases/download/2.0.5/psalm.phar.asc",
+          "url": "https://github.com/vimeo/psalm/releases/download/2.0.9/psalm.phar.asc",
           "file": "/usr/local/bin/psalm.phar.asc"
         },
         "phar-download": {
-          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.5/psalm.phar",
+          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.9/psalm.phar",
           "bin": "/usr/local/bin/psalm"
         }
       },
