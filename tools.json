@@ -153,7 +153,7 @@
       "website": "https://github.com/phan/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phan/phan/releases/download/0.12.13/phan.phar",
+          "phar": "https://github.com/phan/phan/releases/download/0.12.15/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },
@@ -387,7 +387,7 @@
       "website": "http://www.phpmetrics.org/",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpmetrics/PhpMetrics/releases/download/v2.3.2/phpmetrics.phar",
+          "phar": "https://github.com/phpmetrics/PhpMetrics/releases/download/v2.4.1/phpmetrics.phar",
           "bin": "/usr/local/bin/phpmetrics"
         }
       },
