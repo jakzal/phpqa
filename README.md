@@ -4,9 +4,23 @@ Docker image providing static analysis tools for PHP.
 
 [![Build Status](https://travis-ci.org/jakzal/phpqa.svg?branch=master)](https://travis-ci.org/jakzal/phpqa) [![Docker Build](https://img.shields.io/docker/build/jakzal/phpqa.svg)](https://hub.docker.com/r/jakzal/phpqa/)
 
+## Supported platforms and PHP versions
+
 Docker hub repository: https://hub.docker.com/r/jakzal/phpqa/
 
 Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
+
+### Debian
+
+* `1.12.1`, `1.12`, `latest` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.12.1/7.2/debian/Dockerfile))
+* `1.12.1-php7.1`, `1.12-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.12.1/7.1/debian/Dockerfile))
+* `1.12.1-php7.2`, `1.12-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.12.1/7.2/debian/Dockerfile))
+
+### Alpine
+
+* `1.12.1-alpine`, `1.12-alpine`, `alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.12.1/7.2/alpine/Dockerfile))
+* `1.12.1-php7.1-alpine`, `1.12-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.12.1/7.2/alpine/Dockerfile))
+* `1.12.1-php7.2-alpine`, `1.12-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.12.1/7.2/alpine/Dockerfile))
 
 ## Available tools
 
