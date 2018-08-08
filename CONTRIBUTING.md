@@ -11,7 +11,8 @@ Please note we have a [code of conduct](CODE_OF_CONDUCT.md). Please follow it in
 * Prefer `phar` downloads or `composer-bin-plugin` installation over `composer global` installations to avoid dependency conflicts.
 * Update the `README.md` and `tools.json` with any new tools'd like to add (`php tools.php update-readme`).
 * Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-* Make changes to both Debian and Alpine images (`Dockerfile` and `Dockerfile-alpine`).
+* Make changes to both Debian and Alpine docker file templates (`Dockerfile-debian` and `Dockerfile-alpine`).
+  Once you made your changes, regenerate docker files with `make generate`.
 * Provide a good commit message describing what you've done.
 
 ## Adding a new tool
