@@ -8,24 +8,24 @@ build: build-latest build-alpine
 
 build-latest: BUILD_TAG ?= jakzal/phpqa:latest
 build-latest: $(PHP_VERSION)/debian/Dockerfile
-	docker build -t $(BUILD_TAG) -f $(PHP_VERSION)/debian/Dockerfile .
+	cd $(PHP_VERSION)/debian && docker build -t $(BUILD_TAG) .
 .PHONY: build-latest
 
 build-alpine: BUILD_TAG ?= jakzal/phpqa:alpine
 build-alpine: $(PHP_VERSION)/alpine/Dockerfile
-	docker build -f Dockerfile-alpine -t $(BUILD_TAG) -f $(PHP_VERSION)/alpine/Dockerfile .
+	cd $(PHP_VERSION)/alpine && docker build -t $(BUILD_TAG) .
 .PHONY: build-alpine
 
 NIGHTLY_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)
 build-nightly-latest: $(PHP_VERSION)/debian/Dockerfile
-	docker build -t $(NIGHTLY_TAG) -f $(PHP_VERSION)/debian/Dockerfile .
+	cd $(PHP_VERSION)/debian && docker build -t $(NIGHTLY_TAG) .
 	@docker login -u jakzal -p ${DOCKER_HUB_PASSWORD}
 	docker push $(NIGHTLY_TAG)
 .PHONY: build-nightly-latest
 
 NIGHTLY_ALPINE_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)-alpine
 build-nightly-alpine: $(PHP_VERSION)/alpine/Dockerfile
-	docker build -t $(NIGHTLY_ALPINE_TAG) -f $(PHP_VERSION)/alpine/Dockerfile .
+	cd $(PHP_VERSION)/alpine && docker build -t $(NIGHTLY_ALPINE_TAG) .
 	@docker login -u jakzal -p ${DOCKER_HUB_PASSWORD}
 	docker push $(NIGHTLY_ALPINE_TAG)
 .PHONY: build-nightly-alpine
@@ -36,6 +36,7 @@ generate: generate-alpine generate-debian
 generate-alpine generate-debian: Dockerfile-alpine Dockerfile-debian
 	for php_version in $(PHP_VERSIONS); do \
 		mkdir -p $$php_version/$(subst generate-,,$@) && \
+		cp tools.json tools.php $$php_version/$(subst generate-,,$@) && \
 		cat "Dockerfile-$(subst generate-,,$@)" | sed -e 's#\(FROM php:\)[^\-]*\(-.*\)#\1'$$php_version'\2#g' > $$php_version/$(subst generate-,,$@)/Dockerfile; \
 	done
 .PHONY: generate-alpine generate-debian
