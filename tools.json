@@ -113,7 +113,7 @@
       "command": {
         "file-download": {
           "url": "https://github.com/infection/infection/releases/download/0.10.0/infection.phar.asc",
-          "file": "/usr/local/bin/infection.pubkey"
+          "file": "/usr/local/bin/infection.phar.asc"
         },
         "phar-download": {
           "phar": "https://github.com/infection/infection/releases/download/0.10.0/infection.phar",
