@@ -19,7 +19,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Alpine
 
 * `1.13.2-alpine`, `1.13-alpine`, `alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.13.2/7.2/alpine/Dockerfile))
-* `1.13.2-php7.1-alpine`, `1.13-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.13.2/7.2/alpine/Dockerfile))
+* `1.13.2-php7.1-alpine`, `1.13-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.13.2/7.1/alpine/Dockerfile))
 * `1.13.2-php7.2-alpine`, `1.13-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.13.2/7.2/alpine/Dockerfile))
 
 ## Available tools
