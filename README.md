@@ -167,7 +167,7 @@ Use the composer-bin-plugin to install any additional PHPStan extensions in the 
 ```
 FROM jakzal/phpqa:alpine
 
-RUN global bin phpstan require phpstan/phpstan-phpunit
+RUN composer global bin phpstan require phpstan/phpstan-phpunit
 ```
 
 You'll be able to include them in your PHPStan configuration from the `/tools/.composer/vendor-bin/phpstan/vendor` path:
