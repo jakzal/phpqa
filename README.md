@@ -45,6 +45,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * php-formatter - [Custom coding standards fixer](https://github.com/mmoreram/php-formatter)
 * php-semver-checker - [Suggests a next version according to semantic versioning](https://github.com/tomzx/php-semver-checker)
 * phpDocumentor - [Documentation generator](https://www.phpdoc.org/)
+* phpbench - [PHP Benchmarking framework](https://github.com/phpbench/phpbench)
 * phpa - [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions)
 * phpca - [Finds usage of non-built-in extensions](https://github.com/wapmorgan/PhpCodeAnalyzer)
 * phpcb - [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser)
