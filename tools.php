@@ -9,21 +9,36 @@ namespace Model {
         private $website;
         private $command;
         private $testCommand;
+        private $require;
 
-        public function __construct(string $name, string $summary, string $website, Command $command, Command $testCommand)
-        {
+        public function __construct(
+            string $name,
+            string $summary,
+            string $website,
+            Command $command,
+            Command $testCommand,
+            ?array $require = null
+        ) {
             $this->name = $name;
             $this->summary = $summary;
             $this->website = $website;
             $this->command = $command;
             $this->testCommand = $testCommand;
+            $this->require = $require;
         }
 
         public static function import(array $tool): self
         {
             \Assert\requireFields(['name', 'summary', 'website', 'command', 'test'], $tool, 'tool');
 
-            return new self($tool['name'], $tool['summary'], $tool['website'], self::importCommand($tool), new TestCommand($tool['test'], $tool['name']));
+            return new self(
+                $tool['name'],
+                $tool['summary'],
+                $tool['website'],
+                self::importCommand($tool),
+                new TestCommand($tool['test'], $tool['name']),
+                $tool['require'] ?? null
+            );
         }
 
         private static function importCommand(array $tool): Command
@@ -90,6 +105,21 @@ namespace Model {
         public function testCommand(): Command
         {
             return $this->testCommand;
+        }
+
+        public function require(): ?array
+        {
+            return $this->require;
+        }
+
+        public function requirementsMatch(): bool
+        {
+            $requirePhpVersion = $this->require()['php'] ?? false;
+            if ($requirePhpVersion) {
+                return version_compare($requirePhpVersion, PHP_VERSION, '>=');
+            }
+
+            return true;
         }
     }
 
@@ -630,11 +660,15 @@ namespace Test {
     use F\PleaseTry;
     use Model\Command;
     use Model\MultiStepCommand;
+    use Model\TestCommand;
     use Model\Tool;
 
     function TestCommand(PleaseTry $tools): Command
     {
         $commands = $tools->map(function (Tool $tool) {
+            if (!$tool->requirementsMatch()) {
+                return new TestCommand('true', $tool->name());
+            }
             return $tool->testCommand();
         });
 
