@@ -15,12 +15,11 @@ matrix:
 script:
   - make build-$flavour
   - docker run -it --rm $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION
-  - docker run -it --rm $BUILD_TAG php /usr/local/bin/tools.php test
+  - docker run -it --rm $BUILD_TAG php /tools/toolbox test
   - docker run -it --rm $BUILD_TAG
 
 after_script:
   - docker images
-  - docker run -it --rm $BUILD_TAG sh -c '(php /usr/local/bin/tools.php update-phars && diff $TOOLS_JSON.bak $TOOLS_JSON) || echo -e "\033[0;91mSome tools might have new phar releases. Update tools.json.\033[0m"'
 
 after_success:
   - |

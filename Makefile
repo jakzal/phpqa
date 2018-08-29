@@ -36,7 +36,6 @@ generate: generate-alpine generate-debian
 generate-alpine generate-debian: Dockerfile-alpine Dockerfile-debian
 	for php_version in $(PHP_VERSIONS); do \
 		mkdir -p $$php_version/$(subst generate-,,$@) && \
-		cp tools.json tools.php $$php_version/$(subst generate-,,$@) && \
 		cat "Dockerfile-$(subst generate-,,$@)" | sed -e 's#\(FROM php:\)[^\-]*\(-.*\)#\1'$$php_version'\2#g' > $$php_version/$(subst generate-,,$@)/Dockerfile; \
 	done
 .PHONY: generate-alpine generate-debian
@@ -46,3 +45,18 @@ $(PHP_VERSIONS:%=%/debian/Dockerfile): generate-debian
 $(PHP_VERSIONS:%=%/alpine): generate-alpine
 $(PHP_VERSIONS:%=%/debian): generate-debian
 $(PHP_VERSIONS): generate
+
+update-readme-tools:
+	curl -s https://api.github.com/repos/jakzal/toolbox/releases/latest | grep "browser_download_url.*devkit.phar" | cut -d '"' -f 4 | xargs curl -Ls -o devkit && chmod +x devkit
+	./devkit update:readme --readme README.md
+.PHONY: update-readme-tools
+
+update-readme-release:
+	$(eval LATEST_RELEASE=$(shell curl -s https://api.github.com/repos/jakzal/phpqa/releases/latest | grep tag_name | cut -d '"' -f 4 | sed -e 's/^v//'))
+	$(eval LATEST_RELEASE_MINOR=$(shell echo $(LATEST_RELEASE) | cut -f1,2 -d.))
+	$(eval README_RELEASE=$(shell cat README.md | grep 'jakzal/phpqa/blob/v' | sed -e 's/^[^`]*`\([^`\-]*\).*/\1/' | head -n 1))
+	$(eval README_RELEASE_MINOR=$(shell echo $(README_RELEASE) | cut -f1,2 -d.))
+	sed -i.bkp -e 's/$(README_RELEASE)/$(LATEST_RELEASE)/g' README.md
+	sed -i.bkp -e 's/$(README_RELEASE_MINOR)/$(LATEST_RELEASE_MINOR)/g' README.md
+	@rm README.md.bkp
+.PHONY: update-readme-release
