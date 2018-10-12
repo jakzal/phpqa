@@ -222,6 +222,22 @@
       "test": "phpDocumentor list"
     },
     {
+      "name": "phpbench",
+      "summary": "PHP Benchmarking framework",
+      "website": "https://github.com/phpbench/phpbench",
+      "command": {
+        "file-download": {
+          "url": "https://phpbench.github.io/phpbench/phpbench.phar.pubkey",
+          "file": "/usr/local/bin/phpbench.pubkey"
+        },
+        "phar-download": {
+          "phar": "https://phpbench.github.io/phpbench/phpbench.phar",
+          "bin": "/usr/local/bin/phpbench"
+        }
+      },
+      "test": "phpbench"
+    },
+    {
       "name": "phpa",
       "summary": "Checks for weak assumptions",
       "website": "https://github.com/rskuipers/php-assumptions",
@@ -543,11 +559,11 @@
       "website": "https://getpsalm.org/",
       "command": {
         "file-download": {
-          "url": "https://github.com/vimeo/psalm/releases/download/2.0.9/psalm.phar.asc",
+          "url": "https://github.com/vimeo/psalm/releases/download/2.0.10/psalm.phar.asc",
           "file": "/usr/local/bin/psalm.phar.asc"
         },
         "phar-download": {
-          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.9/psalm.phar",
+          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.10/psalm.phar",
           "bin": "/usr/local/bin/psalm"
         }
       },
