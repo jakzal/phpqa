@@ -62,11 +62,11 @@
     },
     {
       "name": "deptrac",
-      "summary": "Enforces dependency rules",
+      "summary": "Enforces dependency rules between software layers",
       "website": "https://github.com/sensiolabs-de/deptrac",
       "command": {
         "phar-download": {
-          "phar": "http://get.sensiolabs.de/deptrac.phar",
+          "phar": "https://github.com/sensiolabs-de/deptrac/releases/download/0.3.0/deptrac.phar",
           "bin": "/usr/local/bin/deptrac"
         }
       },
