@@ -12,15 +12,15 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 
 ### Debian
 
-* `1.14.0`, `1.14`, `latest` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.0/7.2/debian/Dockerfile))
-* `1.14.0-php7.1`, `1.14-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.0/7.1/debian/Dockerfile))
-* `1.14.0-php7.2`, `1.14-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.0/7.2/debian/Dockerfile))
+* `1.14.1`, `1.14`, `latest` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.1/7.2/debian/Dockerfile))
+* `1.14.1-php7.1`, `1.14-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.1/7.1/debian/Dockerfile))
+* `1.14.1-php7.2`, `1.14-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.1/7.2/debian/Dockerfile))
 
 ### Alpine
 
-* `1.14.0-alpine`, `1.14-alpine`, `alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.0/7.2/alpine/Dockerfile))
-* `1.14.0-php7.1-alpine`, `1.14-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.0/7.1/alpine/Dockerfile))
-* `1.14.0-php7.2-alpine`, `1.14-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.0/7.2/alpine/Dockerfile))
+* `1.14.1-alpine`, `1.14-alpine`, `alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.1/7.2/alpine/Dockerfile))
+* `1.14.1-php7.1-alpine`, `1.14-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.1/7.1/alpine/Dockerfile))
+* `1.14.1-php7.2-alpine`, `1.14-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.14.1/7.2/alpine/Dockerfile))
 
 ## Available tools
 
