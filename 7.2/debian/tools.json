@@ -62,11 +62,11 @@
     },
     {
       "name": "deptrac",
-      "summary": "Enforces dependency rules",
+      "summary": "Enforces dependency rules between software layers",
       "website": "https://github.com/sensiolabs-de/deptrac",
       "command": {
         "phar-download": {
-          "phar": "http://get.sensiolabs.de/deptrac.phar",
+          "phar": "https://github.com/sensiolabs-de/deptrac/releases/download/0.3.0/deptrac.phar",
           "bin": "/usr/local/bin/deptrac"
         }
       },
@@ -112,11 +112,11 @@
       "website": "https://infection.github.io/",
       "command": {
         "file-download": {
-          "url": "https://github.com/infection/infection/releases/download/0.10.0/infection.phar.asc",
+          "url": "https://github.com/infection/infection/releases/download/0.10.5/infection.phar.asc",
           "file": "/usr/local/bin/infection.phar.asc"
         },
         "phar-download": {
-          "phar": "https://github.com/infection/infection/releases/download/0.10.0/infection.phar",
+          "phar": "https://github.com/infection/infection/releases/download/0.10.5/infection.phar",
           "bin": "/usr/local/bin/infection"
         }
       },
@@ -153,7 +153,7 @@
       "website": "https://github.com/phan/phan",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phan/phan/releases/download/1.0.0/phan.phar",
+          "phar": "https://github.com/phan/phan/releases/download/1.1.2/phan.phar",
           "bin": "/usr/local/bin/phan"
         }
       },
@@ -427,7 +427,7 @@
       "website": "http://www.phpspec.net/",
       "command": {
         "phar-download": {
-          "phar": "https://github.com/phpspec/phpspec/releases/download/4.3.1/phpspec.phar",
+          "phar": "https://github.com/phpspec/phpspec/releases/download/4.3.2/phpspec.phar",
           "bin": "/usr/local/bin/phpspec"
         }
       },
@@ -559,11 +559,11 @@
       "website": "https://getpsalm.org/",
       "command": {
         "file-download": {
-          "url": "https://github.com/vimeo/psalm/releases/download/2.0.10/psalm.phar.asc",
+          "url": "https://github.com/vimeo/psalm/releases/download/2.0.15/psalm.phar.asc",
           "file": "/usr/local/bin/psalm.phar.asc"
         },
         "phar-download": {
-          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.10/psalm.phar",
+          "phar": "https://github.com/vimeo/psalm/releases/download/2.0.15/psalm.phar",
           "bin": "/usr/local/bin/psalm"
         }
       },
