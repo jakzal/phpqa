@@ -46,8 +46,10 @@ $(PHP_VERSIONS:%=%/alpine): generate-alpine
 $(PHP_VERSIONS:%=%/debian): generate-debian
 $(PHP_VERSIONS): generate
 
-update-readme-tools:
+devkit:
 	curl -s https://api.github.com/repos/jakzal/toolbox/releases/latest | grep "browser_download_url.*devkit.phar" | cut -d '"' -f 4 | xargs curl -Ls -o devkit && chmod +x devkit
+
+update-readme-tools: devkit
 	./devkit update:readme --readme README.md
 .PHONY: update-readme-tools
 
