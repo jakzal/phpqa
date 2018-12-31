@@ -7,10 +7,11 @@ ENV COMPOSER_HOME=/tools/.composer
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkg-config re2c"
 ENV LIB_DEPS="zlib1g-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz unzip"
+ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.1"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:/tools/DesignPatternDetector/bin:/tools/EasyCodingStandard/bin"
 
-COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \

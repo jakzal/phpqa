@@ -7,10 +7,11 @@ ENV COMPOSER_HOME=/tools/.composer
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkgconf re2c"
 ENV LIB_DEPS="zlib-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz unzip"
+ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.3"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:/tools/DesignPatternDetector/bin:/tools/EasyCodingStandard/bin"
 
-COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
 
 RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
