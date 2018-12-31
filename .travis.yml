@@ -8,8 +8,10 @@ matrix:
   include:
     - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-php7.1-latest PHP_VERSION=7.1
     - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.1-alpine PHP_VERSION=7.1
-    - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-php7.2-latest PHP_VERSION=7.2 TRIGGER_DOCKER_HUB=true
-    - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.2-alpine PHP_VERSION=7.2 TRIGGER_DOCKER_HUB=true
+    - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-php7.2-latest PHP_VERSION=7.2
+    - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.2-alpine PHP_VERSION=7.2
+    - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-php7.3-latest PHP_VERSION=7.3 TRIGGER_DOCKER_HUB=true
+    - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.3-alpine PHP_VERSION=7.3 TRIGGER_DOCKER_HUB=true
   fast_finish: true
 
 script:

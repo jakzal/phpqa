@@ -5,7 +5,7 @@ LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME=/tools/.composer
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkgconf re2c"
-ENV LIB_DEPS="zlib-dev"
+ENV LIB_DEPS="zlib-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz unzip"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:/tools/DesignPatternDetector/bin:/tools/EasyCodingStandard/bin"
