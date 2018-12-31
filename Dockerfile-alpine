@@ -1,4 +1,4 @@
-FROM php:7.2-alpine
+FROM php:7.3-alpine
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
@@ -7,7 +7,7 @@ ENV COMPOSER_HOME=/tools/.composer
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkgconf re2c"
 ENV LIB_DEPS="zlib-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz unzip"
-ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.2"
+ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.3"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:/tools/DesignPatternDetector/bin:/tools/EasyCodingStandard/bin"
 
@@ -20,7 +20,7 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
  && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
- && mkdir /tools && curl -Ls https://github.com/jakzal/toolbox/releases/download/v0.3.0/toolbox.phar -o /tools/toolbox && chmod +x /tools/toolbox \
+ && mkdir /tools && curl -Ls https://github.com/jakzal/toolbox/releases/download/v1.0.0/toolbox.phar -o /tools/toolbox && chmod +x /tools/toolbox \
  && php /tools/toolbox install \
  && rm -rf ~/.composer/cache \
  && apk del .build-deps

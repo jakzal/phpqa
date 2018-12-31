@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
  && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
- && mkdir /tools && curl -Ls https://github.com/jakzal/toolbox/releases/download/v0.3.0/toolbox.phar -o /tools/toolbox && chmod +x /tools/toolbox \
+ && mkdir /tools && curl -Ls https://github.com/jakzal/toolbox/releases/download/v1.0.0/toolbox.phar -o /tools/toolbox && chmod +x /tools/toolbox \
  && php /tools/toolbox install \
  && rm -rf ~/.composer/cache \
  && apt-get purge -y --auto-remove $BUILD_DEPS
