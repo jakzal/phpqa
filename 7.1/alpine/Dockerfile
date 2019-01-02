@@ -2,14 +2,14 @@ FROM php:7.1-alpine
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_HOME=/tools/.composer
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkgconf re2c"
 ENV LIB_DEPS="zlib-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.1"
 ENV TOOLBOX_TARGET_DIR="/tools"
-ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:/tools/DesignPatternDetector/bin:/tools/EasyCodingStandard/bin"
+ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:$TOOLBOX_TARGET_DIR/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
+ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
 
 COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
 
@@ -20,9 +20,9 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
  && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
- && mkdir /tools && curl -Ls https://github.com/jakzal/toolbox/releases/download/v1.0.0/toolbox.phar -o /tools/toolbox && chmod +x /tools/toolbox \
- && php /tools/toolbox install \
+ && mkdir -p $TOOLBOX_TARGET_DIR && curl -Ls https://github.com/jakzal/toolbox/releases/download/v1.0.0/toolbox.phar -o $TOOLBOX_TARGET_DIR/toolbox && chmod +x $TOOLBOX_TARGET_DIR/toolbox \
+ && php $TOOLBOX_TARGET_DIR/toolbox install \
  && rm -rf ~/.composer/cache \
  && apk del .build-deps
 
-CMD php /tools/toolbox list-tools
+CMD php $TOOLBOX_TARGET_DIR/toolbox list-tools
