@@ -1,6 +1,7 @@
 # Static Analysis Tools for PHP
 
 Docker image providing static analysis tools for PHP.
+The list of available tools and the installer are actually managed in the [`jakzal/toolbox` repository](https://github.com/jakzal/toolbox).
 
 [![Build Status](https://travis-ci.org/jakzal/phpqa.svg?branch=master)](https://travis-ci.org/jakzal/phpqa) [![Docker Build](https://img.shields.io/docker/build/jakzal/phpqa.svg)](https://hub.docker.com/r/jakzal/phpqa/)
 
@@ -35,7 +36,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * deptrac - [Enforces dependency rules between software layers](https://github.com/sensiolabs-de/deptrac)
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
 * diffFilter - [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker)
-* ecs - [EasyCodingStandard sets up and runs coding standard checks with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer](https://github.com/Symplify/EasyCodingStandard)
+* ecs - [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard)
 * infection - [AST based PHP Mutation Testing Framework](https://infection.github.io/)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 * pdepend - [Static Analysis Tool](https://pdepend.org/)
@@ -56,14 +57,14 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * phpcs - [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpda - [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/)
 * phpdoc-to-typehint - [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint)
-* phplint - [A tool that can speed up linting of php files by running several lint processes at once](https://github.com/overtrue/phplint)
+* phplint - [Lints php files in parallel](https://github.com/overtrue/phplint)
 * phploc - [A tool for quickly measuring the size of a PHP project](https://github.com/sebastianbergmann/phploc)
 * phpmd - [A tool for finding problems in PHP code](https://phpmd.org/)
 * phpmetrics - [Static Analysis Tool](http://www.phpmetrics.org/)
 * phpmnd - [Helps to detect magic numbers](https://github.com/povils/phpmnd)
 * phpspec - [SpecBDD Framework](http://www.phpspec.net/)
 * phpstan - [Static Analysis Tool](https://github.com/phpstan/phpstan)
-* phpstan-deprecation-rules - [PHPStan rules for detecting usage of deprecated classes, methods, properties, constants and traits](https://github.com/phpstan/phpstan-deprecation-rules)
+* phpstan-deprecation-rules - [PHPStan rules for detecting deprecated code](https://github.com/phpstan/phpstan-deprecation-rules)
 * phpstan-strict-rules - [Extra strict and opinionated rules for PHPStan](https://github.com/phpstan/phpstan-strict-rules)
 * phpstan-doctrine - [Doctrine extensions for PHPStan](https://github.com/phpstan/phpstan-doctrine)
 * phpstan-phpunit - [PHPUnit extensions and rules for PHPStan](https://github.com/phpstan/phpstan-phpunit)
@@ -73,7 +74,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * phpstan-exception-rules - [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules)
 * phpunit - [The PHP testing framework](https://phpunit.de/)
 * psalm - [Finds errors in PHP applications](https://getpsalm.org/)
-* psecio-parse - [Parse scanner is a static scanning tool to review your PHP code for potential security-related issues](https://github.com/psecio/parse)
+* psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
 * testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
 
