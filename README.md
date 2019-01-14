@@ -14,18 +14,18 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Debian
 
 * `latest` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/7.3/debian/Dockerfile))
-* `1.15.0`, `1.15` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.3/debian/Dockerfile))
-* `1.15.0-php7.1`, `1.15-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.1/debian/Dockerfile))
-* `1.15.0-php7.2`, `1.15-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.2/debian/Dockerfile))
-* `1.15.0-php7.3`, `1.15-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.3/debian/Dockerfile))
+* `1.16.0`, `1.16` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.3/debian/Dockerfile))
+* `1.16.0-php7.1`, `1.16-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.1/debian/Dockerfile))
+* `1.16.0-php7.2`, `1.16-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.2/debian/Dockerfile))
+* `1.16.0-php7.3`, `1.16-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.3/debian/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/master/7.3/alpine/Dockerfile))
-* `1.15.0-alpine`, `1.15-alpine`, ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.3/alpine/Dockerfile))
-* `1.15.0-php7.1-alpine`, `1.15-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.1/alpine/Dockerfile))
-* `1.15.0-php7.2-alpine`, `1.15-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.2/alpine/Dockerfile))
-* `1.15.0-php7.3-alpine`, `1.15-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.15.0/7.3/alpine/Dockerfile))
+* `1.16.0-alpine`, `1.16-alpine`, ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.3/alpine/Dockerfile))
+* `1.16.0-php7.1-alpine`, `1.16-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.1/alpine/Dockerfile))
+* `1.16.0-php7.2-alpine`, `1.16-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.2/alpine/Dockerfile))
+* `1.16.0-php7.3-alpine`, `1.16-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.16.0/7.3/alpine/Dockerfile))
 
 ## Available tools
 
@@ -80,6 +80,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * psalm - [Finds errors in PHP applications](https://getpsalm.org/)
 * psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
+* simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
 * testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
 
 ## Running tools
