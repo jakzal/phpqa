@@ -77,6 +77,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * phpstan-webmozart-assert - [PHPStan extension for webmozart/assert](https://github.com/phpstan/phpstan-webmozart-assert)
 * phpstan-exception-rules - [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules)
 * phpunit - [The PHP testing framework](https://phpunit.de/)
+* phpunit-7 - [The PHP testing framework (7.x version)](https://phpunit.de/)
 * psalm - [Finds errors in PHP applications](https://getpsalm.org/)
 * psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
