@@ -60,8 +60,8 @@ update-readme-tools: devkit
 	./devkit update:readme --readme README.md
 .PHONY: update-readme-tools
 
+update-readme-release: LATEST_RELEASE ?= 0.0.0
 update-readme-release:
-	$(eval LATEST_RELEASE=$(shell curl -s https://api.github.com/repos/jakzal/phpqa/releases/latest | grep tag_name | cut -d '"' -f 4 | sed -e 's/^v//'))
 	$(eval LATEST_RELEASE_MINOR=$(shell echo $(LATEST_RELEASE) | cut -f1,2 -d.))
 	$(eval README_RELEASE=$(shell cat README.md | grep 'jakzal/phpqa/blob/v' | sed -e 's/^[^`]*`\([^`\-]*\).*/\1/' | head -n 1))
 	$(eval README_RELEASE_MINOR=$(shell echo $(README_RELEASE) | cut -f1,2 -d.))
