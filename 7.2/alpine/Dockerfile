@@ -2,9 +2,9 @@ FROM php:7.2-alpine
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
-ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkgconf re2c"
+ENV BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 ENV LIB_DEPS="zlib-dev libzip-dev"
-ENV TOOL_DEPS="git graphviz unzip"
+ENV TOOL_DEPS="git graphviz make unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.2"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV TOOLBOX_VERSION="1.2.6"

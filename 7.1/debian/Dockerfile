@@ -2,9 +2,9 @@ FROM php:7.1-cli
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
-ENV BUILD_DEPS="autoconf file g++ gcc libc-dev make pkg-config re2c"
+ENV BUILD_DEPS="autoconf file g++ gcc libc-dev pkg-config re2c"
 ENV LIB_DEPS="zlib1g-dev libzip-dev"
-ENV TOOL_DEPS="git graphviz unzip"
+ENV TOOL_DEPS="git graphviz make unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.1"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV TOOLBOX_VERSION="1.2.6"
