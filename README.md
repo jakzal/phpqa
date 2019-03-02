@@ -80,6 +80,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * phpunit-7 - [The PHP testing framework (7.x version)](https://phpunit.de/)
 * psalm - [Finds errors in PHP applications](https://getpsalm.org/)
 * psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
+* roave-backward-compatibility-check - [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck)
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
 * simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
 * testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
