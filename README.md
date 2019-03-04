@@ -85,6 +85,12 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
 * testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
 
+## More tools
+
+Some tools are not included in the docker image, to use them refer to their documentation:
+
+* exakat - [a real time PHP static analyser](https://www.exakat.io]
+
 ## Running tools
 
 Pull the image:
