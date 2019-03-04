@@ -89,7 +89,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 
 Some tools are not included in the docker image, to use them refer to their documentation:
 
-* exakat - [a real time PHP static analyser](https://www.exakat.io]
+* exakat - [a real time PHP static analyser](https://www.exakat.io)
 
 ## Running tools
 
