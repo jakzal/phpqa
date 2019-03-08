@@ -135,7 +135,7 @@ phpqa phpstan analyse src
 To quickly setup a new repository with CI integration a package starter-kit is available. It utilizes the image into
 a `Makefile` and configures some tools by default.
 
-See [`ro0NL\php-package-starter-kit`](https://github.com/ro0NL/php-package-starter-kit)
+See [`ro0NL/php-package-starter-kit`](https://github.com/ro0NL/php-package-starter-kit)
 
 ## Building the image
 
