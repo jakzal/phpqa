@@ -116,7 +116,7 @@ If you want to be able to interrupt the selected tool if it takes too much time 
 docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa phpstan analyse src
 ```
 
-You'll probably want to tweak this command for your needs and create an alias for convenience:
+You might want to tweak this command to your needs and create an alias for convenience:
 
 ```bash
 alias phpqa='docker run --init -it --rm -v $(pwd):/project -v $(pwd)/tmp-phpqa:/tmp -w /project jakzal/phpqa:alpine'
@@ -129,6 +129,13 @@ Now the command becomes a lot simpler:
 ```bash
 phpqa phpstan analyse src
 ```
+
+## Package starter-kit
+
+To quickly setup a new repository with CI integration a package starter-kit is available. It utilizes the image into a
+`Makefile` and configures some tools by default.
+
+See [`ro0NL\php-package-starter-kit`](https://github.com/ro0NL/php-package-starter-kit)
 
 ## Building the image
 
