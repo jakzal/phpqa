@@ -69,3 +69,26 @@ update-readme-release:
 	sed -i.bkp -e 's/$(README_RELEASE_MINOR)/$(LATEST_RELEASE_MINOR)/g' README.md
 	@rm README.md.bkp
 .PHONY: update-readme-release
+
+update-toolbox-version:
+	$(eval LATEST_TOOLBOX_VERSION=$(shell curl -Ls 'https://api.github.com/repos/jakzal/toolbox/releases/latest' | jq -r .tag_name | cut -c 2-))
+	$(eval CURRENT_TOOLBOX_VERSION=$(shell cat Dockerfile-alpine | grep 'TOOLBOX_VERSION=' | sed -e 's/.*"\(.*\)"/\1/'))
+	@[ "$(LATEST_TOOLBOX_VERSION)" != "" ] || (echo "Failed to check the latest toolbox release" && exit 1)
+	[ "$(CURRENT_TOOLBOX_VERSION)" = "$(LATEST_TOOLBOX_VERSION)" ] || ( \
+	  sed -e 's/$(CURRENT_TOOLBOX_VERSION)/$(LATEST_TOOLBOX_VERSION)/g' -i'.bkp' Dockerfile-alpine Dockerfile-debian \
+	  && rm -f Dockerfile-alpine.bkp Dockerfile-docker.bkp \
+	)
+.PHONY: update-toolbox-version
+
+update-toolbox-pr: update-toolbox-version generate
+	$(eval VERSION_CHANGE=$(shell git diff --name-only Dockerfile-* */*/Dockerfile | head -n 1 | xargs git diff | grep TOOLBOX_VERSION | sed -e 's/.*"\(.*\)"/\1/g' | xargs echo | sed -e 's/ / -> /'))
+	[ "$(VERSION_CHANGE)" = "" ] || \
+	( \
+	    $(eval PR_MESSAGE=$(shell curl -Ls 'https://api.github.com/repos/jakzal/toolbox/releases/latest' | jq -r .body | awk 'BEGIN { RS="\n";} { gsub(/\r/, ""); gsub(/\(/, "\\("); gsub(/\)/, "\\)"); gsub(/#/, "\\#"); gsub(/"/, "\\\\\\\""); print "-m \\\""$$0"\\\""}')) \
+	    git checkout -b toolbox-update && \
+	    git add Dockerfile-* ./*/*/Dockerfile && \
+	    git commit -m "Update toolbox $(VERSION_CHANGE)" -m "" "$(PR_MESSAGE)" && \
+	    git push origin toolbox-update && \
+	    hub pull-request -h toolbox-update -a jakzal -m 'Update toolbox $(VERSION_CHANGE)' -m '' -m ':robot: This pull request was automagically sent from [Travis CI]('$(TRAVIS_BUILD_WEB_URL)').' "$(PR_MESSAGE)" \
+	)
+.PHONY: update-toolbox-pr
