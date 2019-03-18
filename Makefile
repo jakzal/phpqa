@@ -76,7 +76,7 @@ update-toolbox-version:
 	@[ "$(LATEST_TOOLBOX_VERSION)" != "" ] || (echo "Failed to check the latest toolbox release" && exit 1)
 	[ "$(CURRENT_TOOLBOX_VERSION)" = "$(LATEST_TOOLBOX_VERSION)" ] || ( \
 	  sed -e 's/$(CURRENT_TOOLBOX_VERSION)/$(LATEST_TOOLBOX_VERSION)/g' -i'.bkp' Dockerfile-alpine Dockerfile-debian \
-	  && rm -f Dockerfile-alpine.bkp Dockerfile-docker.bkp \
+	  && rm -f Dockerfile-alpine.bkp Dockerfile-debian.bkp \
 	)
 .PHONY: update-toolbox-version
 
