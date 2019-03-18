@@ -10,8 +10,8 @@ matrix:
     - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.1-alpine PHP_VERSION=7.1
     - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-php7.2-latest PHP_VERSION=7.2
     - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.2-alpine PHP_VERSION=7.2
-    - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-php7.3-latest PHP_VERSION=7.3 TRIGGER_DOCKER_HUB=true
-    - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.3-alpine PHP_VERSION=7.3 TRIGGER_DOCKER_HUB=true
+    - env: flavour=latest BUILD_TAG=jakzal/phpqa:travis-php7.3-latest PHP_VERSION=7.3 BUILD_NIGHTLY=true
+    - env: flavour=alpine BUILD_TAG=jakzal/phpqa:travis-php7.3-alpine PHP_VERSION=7.3 TRIGGER_DOCKER_HUB=true BUILD_NIGHTLY=true
   fast_finish: true
 
 script:
@@ -27,6 +27,9 @@ after_success:
   - |
     if [ "$TRAVIS_EVENT_TYPE" == "cron" ] && [ "$TRIGGER_DOCKER_HUB" == "true" ]; then
       curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST https://registry.hub.docker.com/u/jakzal/phpqa/trigger/$DOCKER_HUB_TRIGGER_TOKEN/
+    fi
+  - |
+    if [ "$TRAVIS_EVENT_TYPE" == "cron" ] && [ "$BUILD_NIGHTLY" == "true" ]; then
       make build-nightly-$flavour
     fi
 
