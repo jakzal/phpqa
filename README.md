@@ -3,7 +3,7 @@
 Docker image providing static analysis tools for PHP.
 The list of available tools and the installer are actually managed in the [`jakzal/toolbox` repository](https://github.com/jakzal/toolbox).
 
-[![Build Status](https://travis-ci.org/jakzal/phpqa.svg?branch=master)](https://travis-ci.org/jakzal/phpqa) [![Docker Build](https://img.shields.io/docker/build/jakzal/phpqa.svg)](https://hub.docker.com/r/jakzal/phpqa/)
+[![Build Status](https://travis-ci.com/jakzal/phpqa.svg?branch=master)](https://travis-ci.com/jakzal/phpqa) [![Docker Build](https://img.shields.io/docker/build/jakzal/phpqa.svg)](https://hub.docker.com/r/jakzal/phpqa/)
 
 ## Supported platforms and PHP versions
 
