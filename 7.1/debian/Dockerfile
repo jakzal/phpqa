@@ -7,7 +7,7 @@ ENV LIB_DEPS="zlib1g-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz make unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.1"
 ENV TOOLBOX_TARGET_DIR="/tools"
-ENV TOOLBOX_VERSION="1.5.0"
+ENV TOOLBOX_VERSION="1.5.2"
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
