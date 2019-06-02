@@ -8,7 +8,7 @@ ENV TOOL_DEPS="git graphviz make unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.2"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV TOOLBOX_VERSION="1.6.0"
-ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:/tools/.composer/vendor/bin:/tools/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
+ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:$TOOLBOX_TARGET_DIR/.composer/vendor/bin:/tools/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
 
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
  && mkdir -p $TOOLBOX_TARGET_DIR && curl -Ls https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar -o $TOOLBOX_TARGET_DIR/toolbox && chmod +x $TOOLBOX_TARGET_DIR/toolbox \
  && php $TOOLBOX_TARGET_DIR/toolbox install \
- && rm -rf ~/.composer/cache \
+ && rm -rf $COMPOSER_HOME/cache \
  && apt-get purge -y --auto-remove $BUILD_DEPS
 
 CMD php $TOOLBOX_TARGET_DIR/toolbox list-tools
