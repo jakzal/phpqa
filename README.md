@@ -135,12 +135,17 @@ Now the command becomes a lot simpler:
 phpqa phpstan analyse src
 ```
 
-## Package starter-kit
+## Starter-kits / Templates
 
-To quickly setup a new repository with CI integration a package starter-kit is available. It utilizes the image into
-a `Makefile` and configures some tools by default.
+### [`ro0NL/php-package-starter-kit`](https://github.com/ro0NL/php-package-starter-kit)
 
-See [`ro0NL/php-package-starter-kit`](https://github.com/ro0NL/php-package-starter-kit)
+A template repository for agnostic PHP libraries. It utilizes the PHPQA image into a `Makefile` and configures some
+tools by default.
+
+### [`ro0NL/symfony-docker`](https://github.com/ro0NL/symfony-docker)
+
+A template repository for Docker based [Symfony](https://symfony.com) applications. It utilizes the PHPQA image into
+a `Dockerfile` and integrates in the composed landscape.
 
 ## Building the image
 
