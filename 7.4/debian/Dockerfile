@@ -1,21 +1,20 @@
-FROM php:7.4-alpine
+FROM php:7.4-cli
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
-ENV BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
-ENV LIB_DEPS="zlib-dev libzip-dev"
+ENV BUILD_DEPS="autoconf file g++ gcc libc-dev pkg-config re2c"
+ENV LIB_DEPS="zlib1g-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz make unzip"
-ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.3"
+ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.4"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV TOOLBOX_VERSION="1.14.0"
-ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:$TOOLBOX_TARGET_DIR/.composer/vendor/bin:$TOOLBOX_TARGET_DIR/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
+ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:$TOOLBOX_TARGET_DIR/.composer/vendor/bin:/tools/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
 
 COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
 
-RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
- && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
+RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
  && docker-php-ext-install zip pcntl \
  && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
@@ -24,7 +23,7 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && mkdir -p $TOOLBOX_TARGET_DIR && curl -Ls https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar -o $TOOLBOX_TARGET_DIR/toolbox && chmod +x $TOOLBOX_TARGET_DIR/toolbox \
  && php $TOOLBOX_TARGET_DIR/toolbox install \
  && rm -rf $COMPOSER_HOME/cache \
- && apk del .build-deps
+ && apt-get purge -y --auto-remove $BUILD_DEPS
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
