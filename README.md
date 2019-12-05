@@ -14,18 +14,23 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Debian
 
 * `latest` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/7.3/debian/Dockerfile))
-* `1.26.0`, `1.26` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.3/debian/Dockerfile))
-* `1.26.0-php7.1`, `1.26-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.1/debian/Dockerfile))
-* `1.26.0-php7.2`, `1.26-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.2/debian/Dockerfile))
-* `1.26.0-php7.3`, `1.26-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.3/debian/Dockerfile))
+* `1.27.0`, `1.27` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.27.0/7.3/debian/Dockerfile))
+* `1.27.0-php7.2`, `1.27-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.27.0/7.2/debian/Dockerfile))
+* `1.27.0-php7.3`, `1.27-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.27.0/7.3/debian/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/master/7.3/alpine/Dockerfile))
-* `1.26.0-alpine`, `1.26-alpine`, ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.3/alpine/Dockerfile))
+* `1.27.0-alpine`, `1.27-alpine`, ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.27.0/7.3/alpine/Dockerfile))
+* `1.27.0-php7.2-alpine`, `1.27-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.27.0/7.2/alpine/Dockerfile))
+* `1.27.0-php7.3-alpine`, `1.27-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.27.0/7.3/alpine/Dockerfile))
+
+### Legacy
+
+These are the latest tags for PHP versions that are no longer supported:
+
+* `1.26.0-php7.1`, `1.26-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.1/debian/Dockerfile))
 * `1.26.0-php7.1-alpine`, `1.26-php7.1-alpine`, `php7.1-alpine` ([7.1/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.1/alpine/Dockerfile))
-* `1.26.0-php7.2-alpine`, `1.26-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.2/alpine/Dockerfile))
-* `1.26.0-php7.3-alpine`, `1.26-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.3/alpine/Dockerfile))
 
 ## Available tools
 
