@@ -155,27 +155,19 @@ name: Static code analysis
 on: [pull_request]
 
 jobs:
-  phpstan:
+  static-code-analysis:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Run PHPStan
+      - name: PHPStan
         uses: docker://jakzal/phpqa:php7.3-alpine
         with:
           args: phpstan analyze src/ -l 1
-  php-cs-fixer:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Run PHP-CS-Fixer
+      - name: PHP-CS-Fixer
         uses: docker://jakzal/phpqa:php7.3-alpine
         with:
           args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
-  deptrac:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Run Deptrac
+      - name: Deptrac
         uses: docker://jakzal/phpqa:php7.3-alpine
         with:
           args: deptrac --no-interaction --ansi --formatter-graphviz-display=0
