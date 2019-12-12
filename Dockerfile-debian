@@ -25,4 +25,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUI
  && rm -rf $COMPOSER_HOME/cache \
  && apt-get purge -y --auto-remove $BUILD_DEPS
 
+ADD entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 CMD php $TOOLBOX_TARGET_DIR/toolbox list-tools

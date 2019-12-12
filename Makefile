@@ -36,6 +36,7 @@ generate: generate-alpine generate-debian
 generate-alpine generate-debian: Dockerfile-alpine Dockerfile-debian
 	for php_version in $(PHP_VERSIONS); do \
 		mkdir -p $$php_version/$(subst generate-,,$@) && \
+		cp entrypoint.sh $$php_version/$(subst generate-,,$@)/entrypoint.sh && \
 		cat "Dockerfile-$(subst generate-,,$@)" \
 		  | sed -e 's#\(FROM php:\)[^\-]*\(-.*\)#\1'$$php_version'\2#g' \
 		  | sed -e 's#\(exclude-php:\)[0-9.]*\(.*\)#\1'$$php_version'\2#g' \

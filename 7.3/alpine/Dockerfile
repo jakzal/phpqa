@@ -26,4 +26,6 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && rm -rf $COMPOSER_HOME/cache \
  && apk del .build-deps
 
+ADD entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 CMD php $TOOLBOX_TARGET_DIR/toolbox list-tools
