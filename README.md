@@ -143,6 +143,44 @@ Now the command becomes a lot simpler:
 phpqa phpstan analyse src
 ```
 
+## GitHub actions
+
+The image can be used with GitHub actions.
+Below is an example for several static analysis tools.
+
+```yaml
+# .github/workflows/static-code-analysis.yml
+name: Static code analysis
+
+on: [pull_request]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run PHPStan
+        uses: docker://jakzal/phpqa:php7.3-alpine
+        with:
+          args: phpstan analyze src/ -l 1
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run PHP-CS-Fixer
+        uses: docker://jakzal/phpqa:php7.3-alpine
+        with:
+          args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
+  deptrac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Deptrac
+        uses: docker://jakzal/phpqa:php7.3-alpine
+        with:
+          args: deptrac --no-interaction --ansi --formatter-graphviz-display=0
+```
+
 ## Starter-kits / Templates
 
 ### [`ro0NL/php-package-starter-kit`](https://github.com/ro0NL/php-package-starter-kit)
