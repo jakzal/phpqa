@@ -76,7 +76,7 @@ These are the latest tags for PHP versions that are no longer supported:
 * phpspec - [SpecBDD Framework](http://www.phpspec.net/)
 * phpstan - [Static Analysis Tool](https://github.com/phpstan/phpstan)
 * phpstan-deprecation-rules - [PHPStan rules for detecting deprecated code](https://github.com/phpstan/phpstan-deprecation-rules)
-* phpstan-localheinz-rules - [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules)
+* phpstan-ergebnis-rules - [Additional rules for PHPstan](https://github.com/ergebnis/phpstan-rules)
 * phpstan-strict-rules - [Extra strict and opinionated rules for PHPStan](https://github.com/phpstan/phpstan-strict-rules)
 * phpstan-doctrine - [Doctrine extensions for PHPStan](https://github.com/phpstan/phpstan-doctrine)
 * phpstan-phpunit - [PHPUnit extensions and rules for PHPStan](https://github.com/phpstan/phpstan-phpunit)
@@ -86,7 +86,7 @@ These are the latest tags for PHP versions that are no longer supported:
 * phpstan-exception-rules - [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules)
 * phpunit - [The PHP testing framework](https://phpunit.de/)
 * phpunit-7 - [The PHP testing framework (7.x version)](https://phpunit.de/)
-* psalm - [Finds errors in PHP applications](https://getpsalm.org/)
+* psalm - [Finds errors in PHP applications](https://psalm.dev/)
 * psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
 * rector - [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector)
 * roave-backward-compatibility-check - [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck)
@@ -103,6 +103,7 @@ Some tools are not included in the docker image, to use them refer to their docu
 
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
 * testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
+* phpstan-localheinz-rules - [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules)
 
 ## Running tools
 
