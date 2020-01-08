@@ -38,11 +38,13 @@ These are the latest tags for PHP versions that are no longer supported:
 
 * composer - [Dependency Manager for PHP](https://getcomposer.org/)
 * composer-bin-plugin - [Composer plugin to install bin vendors in isolated locations](https://github.com/bamarni/composer-bin-plugin)
-* box - [An application for building and managing Phars](https://box-project.github.io/box2/)
+* box - [Fast, zero config application bundler with PHARs](https://github.com/humbug/box)
+* box-legacy - [Legacy version of box](https://box-project.github.io/box2/)
 * analyze - [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer)
 * behat - [Helps to test business expectations](http://behat.org/)
 * churn - [Discovers good candidates for refactoring](https://github.com/bmitch/churn-php)
-* composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize)
+* composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/ergebnis/composer-normalize)
+* composer-unused - [Show unused packages by scanning your code](https://github.com/icanhazstring/composer-unused)
 * dephpend - [Detect flaws in your architecture](https://dephpend.com/)
 * deprecation-detector - [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector)
 * deptrac - [Enforces dependency rules between software layers](https://github.com/sensiolabs-de/deptrac)
@@ -60,6 +62,7 @@ These are the latest tags for PHP versions that are no longer supported:
 * phpDocumentor - [Documentation generator](https://www.phpdoc.org/)
 * phpbench - [PHP Benchmarking framework](https://github.com/phpbench/phpbench)
 * phpa - [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions)
+* phpat - [Easy to use architecture testing tool](https://github.com/carlosas/phpat)
 * phpca - [Finds usage of non-built-in extensions](https://github.com/wapmorgan/PhpCodeAnalyzer)
 * phpcb - [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser)
 * phpcbf - [Automatically corrects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
@@ -106,6 +109,7 @@ Some tools are not included in the docker image, to use them refer to their docu
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
 * testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
 * phpstan-localheinz-rules - [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules)
+* composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize)
 
 ## Running tools
 
