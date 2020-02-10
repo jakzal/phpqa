@@ -280,10 +280,22 @@ includes:
 
 ## Debugger & Code Coverage
 
-The [php-dbg debugger](http://php.net/manual/en/debugger-about.php) is provided by default. No additional extensions (like XDebug) are required to calculate code coverage:
+The [pcov](https://github.com/krakjoe/pcov) code coverage extension,
+as well as the [php-dbg debugger](http://php.net/manual/en/debugger-about.php),
+are provided on the image out of the box.
+
+pcov is disabled by default so it doesn't affect performance when it's not needed,
+and doesn't break interoperability with other coverage extensions.
+It can be enabled by setting `pcov.enabled=1`:
 
 ```
-phpqa phpdbg -qrr ./vendor/bin/phpunit --coverage-text
+phpqa php -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-text
+```
+
+Infection users will need to define initial php options:
+
+```
+phpqa /tools/infection run --initial-tests-php-options='-dpcov.enabled=1'
 ```
 
 ## Contributing
