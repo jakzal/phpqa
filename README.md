@@ -98,6 +98,7 @@ These are the latest tags for PHP versions that are no longer supported:
 * roave-backward-compatibility-check - [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck)
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
 * simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
+* larastan - [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan)
 
 ## More tools
 
