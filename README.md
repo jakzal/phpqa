@@ -92,13 +92,16 @@ These are the latest tags for PHP versions that are no longer supported:
 * phpunit - [The PHP testing framework](https://phpunit.de/)
 * phpunit-8 - [The PHP testing framework (8.x version)](https://phpunit.de/)
 * phpunit-7 - [The PHP testing framework (7.x version)](https://phpunit.de/)
+* phpunit-5 - [The PHP testing framework (5.x version)](https://phpunit.de/)
 * psalm - [Finds errors in PHP applications](https://psalm.dev/)
 * psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
 * rector - [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector)
 * roave-backward-compatibility-check - [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck)
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
 * simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
+* twig-lint - [Standalone twig linter](https://github.com/asm89/twig-lint)
 * larastan - [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan)
+* yaml-lint - [Compact command line utility for checking YAML file syntax](https://github.com/j13k/yaml-lint)
 
 ## More tools
 
