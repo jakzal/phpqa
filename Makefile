@@ -19,14 +19,14 @@ build-alpine: $(PHP_VERSION)/alpine/Dockerfile
 NIGHTLY_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)
 build-nightly-latest: $(PHP_VERSION)/debian/Dockerfile
 	cd $(PHP_VERSION)/debian && docker build -t $(NIGHTLY_TAG) .
-	@docker login -u jakzal -p ${DOCKER_HUB_PASSWORD}
+	@echo ${DOCKER_HUB_PASSWORD} | docker login -u jakzal --password-stdin
 	docker push $(NIGHTLY_TAG)
 .PHONY: build-nightly-latest
 
 NIGHTLY_ALPINE_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)-alpine
 build-nightly-alpine: $(PHP_VERSION)/alpine/Dockerfile
 	cd $(PHP_VERSION)/alpine && docker build -t $(NIGHTLY_ALPINE_TAG) .
-	@docker login -u jakzal -p ${DOCKER_HUB_PASSWORD}
+	@echo ${DOCKER_HUB_PASSWORD} | docker login -u jakzal --password-stdin
 	docker push $(NIGHTLY_ALPINE_TAG)
 .PHONY: build-nightly-alpine
 
