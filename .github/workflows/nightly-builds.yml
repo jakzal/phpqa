@@ -1,0 +1,21 @@
+name: Nightly builds
+
+on:
+    pull_request:
+    schedule:
+        -   cron: '30 0 * * *'
+
+jobs:
+    nightly-builds:
+        runs-on: ubuntu-latest
+        name: Build
+        strategy:
+            matrix:
+                flavour: [latest, alpine]
+                php: [7.4]
+        steps:
+            -   uses: actions/checkout@master
+            -   run: make build-nightly-${{matrix.flavour}}
+                env:
+                    PHP_VERSION: ${{ matrix.php }}
+                    DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
