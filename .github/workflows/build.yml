@@ -1,0 +1,30 @@
+name: Build
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+    release:
+        types: [created]
+    schedule:
+        -   cron: '0 0 * * *'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        name: Build
+        strategy:
+            matrix:
+                flavour: [latest, alpine]
+                php: [7.2, 7.3, 7.4]
+        steps:
+            -   uses: actions/checkout@master
+            -   run: |
+                    make build-${{matrix.flavour}} && \
+                    docker run --rm $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
+                    docker run --rm $BUILD_TAG php /tools/toolbox test && \
+                    docker run --rm $BUILD_TAG && \
+                    docker images
+                env:
+                    PHP_VERSION: ${{ matrix.php }}
+                    BUILD_TAG: jakzal/phpqa:travis-php${{ matrix.php }}-${{ matrix.flavour }}
