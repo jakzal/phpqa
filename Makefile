@@ -90,6 +90,6 @@ update-toolbox-pr: update-toolbox-version generate
 	    git add Dockerfile-* */*/Dockerfile && \
 	    git commit -m "Update toolbox $(VERSION_CHANGE)" -m "" $(PR_MESSAGE) && \
 	    git push origin toolbox-update && \
-	    hub pull-request -h toolbox-update -a jakzal -m 'Update toolbox $(VERSION_CHANGE)' -m '' -m ':robot: This pull request was automagically sent from [Travis CI]('$(TRAVIS_BUILD_WEB_URL)').' -m '' $(PR_MESSAGE) \
+	    hub pull-request -h toolbox-update -a jakzal -m 'Update toolbox $(VERSION_CHANGE)' -m '' -m ':robot: This pull request was automagically sent from a Github action.' -m '' $(PR_MESSAGE) \
 	)
 .PHONY: update-toolbox-pr
