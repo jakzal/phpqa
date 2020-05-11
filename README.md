@@ -94,6 +94,7 @@ These are the latest tags for PHP versions that are no longer supported:
 * phpunit-7 - [The PHP testing framework (7.x version)](https://phpunit.de/)
 * phpunit-5 - [The PHP testing framework (5.x version)](https://phpunit.de/)
 * psalm - [Finds errors in PHP applications](https://psalm.dev/)
+* doctrine-psalm-plugin - [Stubs to let Psalm understand Doctrine better](https://github.com/weirdan/doctrine-psalm-plugin)
 * psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
 * rector - [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector)
 * roave-backward-compatibility-check - [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck)
