@@ -101,6 +101,7 @@ These are the latest tags for PHP versions that are no longer supported:
 * security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
 * simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
 * twig-lint - [Standalone twig linter](https://github.com/asm89/twig-lint)
+* twigcs - [The missing checkstyle for twig!](https://github.com/friendsoftwig/twigcs)
 * larastan - [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan)
 * yaml-lint - [Compact command line utility for checking YAML file syntax](https://github.com/j13k/yaml-lint)
 
