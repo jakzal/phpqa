@@ -7,12 +7,12 @@ ENV LIB_DEPS="zlib1g-dev libzip-dev"
 ENV TOOL_DEPS="git graphviz make unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.4"
 ENV TOOLBOX_TARGET_DIR="/tools"
-ENV TOOLBOX_VERSION="1.27.7"
+ENV TOOLBOX_VERSION="1.27.8"
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:$TOOLBOX_TARGET_DIR/.composer/vendor/bin:/tools/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
 
-COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
