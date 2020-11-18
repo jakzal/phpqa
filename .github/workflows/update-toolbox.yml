@@ -10,7 +10,6 @@ jobs:
         name: Update
         steps:
             -   uses: actions/checkout@master
-            -   uses: geertvdc/setup-hub@master
             -   run: git config user.email 'jakub@zalas.pl' && git config user.name 'Jakub Zalas'
             -   run: make update-toolbox-pr
                 env:
