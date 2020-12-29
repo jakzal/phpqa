@@ -68,11 +68,11 @@ These are the latest tags for PHP versions that are no longer supported:
 * phpca - [Finds usage of non-built-in extensions](https://github.com/wapmorgan/PhpCodeAnalyzer)
 * phpcb - [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser)
 * phpcbf - [Automatically corrects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
-* phpcf - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/)
 * phpcov - [a command-line frontend for the PHP_CodeCoverage library](https://github.com/sebastianbergmann/phpcov)
 * phpcpd - [Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
 * phpcs - [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
 * phpda - [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/)
+* phpdd - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpDeprecationDetector)
 * phpdoc-to-typehint - [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint)
 * phpinsights - [Analyses code quality, style, architecture and complexity](https://phpinsights.com/)
 * phplint - [Lints php files in parallel](https://github.com/overtrue/phplint)
@@ -115,10 +115,11 @@ Some tools are not included in the docker image, to use them refer to their docu
 
 ### Removed tools
 
+* composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize)
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
+* phpcf - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/)
 * testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
 * phpstan-localheinz-rules - [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules)
-* composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize)
 
 ## Running tools
 
