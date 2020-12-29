@@ -3,7 +3,7 @@ FROM php:7.3-alpine
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
-ENV LIB_DEPS="zlib-dev libzip-dev"
+ENV LIB_DEPS="zlib-dev libzip-dev bzip2-dev"
 ENV TOOL_DEPS="git graphviz make unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.3"
 ENV TOOLBOX_TARGET_DIR="/tools"
@@ -18,7 +18,7 @@ RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
  && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
  && pecl install pcov && docker-php-ext-enable pcov \
- && docker-php-ext-install zip pcntl \
+ && docker-php-ext-install zip pcntl bz2 \
  && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
  && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
  && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
