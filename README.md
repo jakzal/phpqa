@@ -14,18 +14,18 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Debian
 
 * `latest` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/debian/Dockerfile))
-* `1.47.0`, `1.47` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/8.0/debian/Dockerfile))
-* `1.47.0-php7.3`, `1.47-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/7.3/debian/Dockerfile))
-* `1.47.0-php7.4`, `1.47-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/7.4/debian/Dockerfile))
-* `1.47.0-php8.0`, `1.47-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/8.0/debian/Dockerfile))
+* `1.48.0`, `1.48` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/8.0/debian/Dockerfile))
+* `1.48.0-php7.3`, `1.48-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/7.3/debian/Dockerfile))
+* `1.48.0-php7.4`, `1.48-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/7.4/debian/Dockerfile))
+* `1.48.0-php8.0`, `1.48-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/8.0/debian/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/alpine/Dockerfile))
-* `1.47.0-alpine`, `1.47-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/8.0/alpine/Dockerfile))
-* `1.47.0-php7.3-alpine`, `1.47-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/7.3/alpine/Dockerfile))
-* `1.47.0-php7.4-alpine`, `1.47-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/7.4/alpine/Dockerfile))
-* `1.47.0-php8.0-alpine`, `1.47-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.47.0/8.0/alpine/Dockerfile))
+* `1.48.0-alpine`, `1.48-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/8.0/alpine/Dockerfile))
+* `1.48.0-php7.3-alpine`, `1.48-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/7.3/alpine/Dockerfile))
+* `1.48.0-php7.4-alpine`, `1.48-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/7.4/alpine/Dockerfile))
+* `1.48.0-php8.0-alpine`, `1.48-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.48.0/8.0/alpine/Dockerfile))
 
 ### Legacy
 
@@ -55,6 +55,7 @@ These are the latest tags for PHP versions that are no longer supported:
 * ecs - [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard)
 * infection - [AST based PHP Mutation Testing Framework](https://infection.github.io/)
 * larastan - [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan)
+* local-php-security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/fabpot/local-php-security-checker)
 * parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
 * paratest - [Parallel testing for PHPUnit](https://github.com/paratestphp/paratest)
 * pdepend - [Static Analysis Tool](https://pdepend.org/)
@@ -101,7 +102,6 @@ These are the latest tags for PHP versions that are no longer supported:
 * psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
 * rector - [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector)
 * roave-backward-compatibility-check - [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck)
-* security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
 * simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
 * twig-lint - [Standalone twig linter](https://github.com/asm89/twig-lint)
 * twigcs - [The missing checkstyle for twig!](https://github.com/friendsoftwig/twigcs)
@@ -118,8 +118,9 @@ Some tools are not included in the docker image, to use them refer to their docu
 * composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize)
 * design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
 * phpcf - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/)
-* testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
 * phpstan-localheinz-rules - [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules)
+* security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
+* testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
 
 ## Running tools
 
