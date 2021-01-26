@@ -3,7 +3,7 @@ FROM php:7.4-cli
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev pkg-config re2c"
-ENV LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev"
+ENV LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
 ENV TOOL_DEPS="git graphviz make unzip"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:7.3"
 ENV TOOLBOX_TARGET_DIR="/tools"
