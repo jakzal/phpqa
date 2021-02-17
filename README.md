@@ -14,18 +14,18 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Debian
 
 * `latest` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/debian/Dockerfile))
-* `1.49.0`, `1.49` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/8.0/debian/Dockerfile))
-* `1.49.0-php7.3`, `1.49-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/7.3/debian/Dockerfile))
-* `1.49.0-php7.4`, `1.49-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/7.4/debian/Dockerfile))
-* `1.49.0-php8.0`, `1.49-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/8.0/debian/Dockerfile))
+* `1.50.0`, `1.50` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/8.0/debian/Dockerfile))
+* `1.50.0-php7.3`, `1.50-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/7.3/debian/Dockerfile))
+* `1.50.0-php7.4`, `1.50-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/7.4/debian/Dockerfile))
+* `1.50.0-php8.0`, `1.50-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/8.0/debian/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/alpine/Dockerfile))
-* `1.49.0-alpine`, `1.49-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/8.0/alpine/Dockerfile))
-* `1.49.0-php7.3-alpine`, `1.49-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/7.3/alpine/Dockerfile))
-* `1.49.0-php7.4-alpine`, `1.49-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/7.4/alpine/Dockerfile))
-* `1.49.0-php8.0-alpine`, `1.49-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.49.0/8.0/alpine/Dockerfile))
+* `1.50.0-alpine`, `1.50-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/8.0/alpine/Dockerfile))
+* `1.50.0-php7.3-alpine`, `1.50-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/7.3/alpine/Dockerfile))
+* `1.50.0-php7.4-alpine`, `1.50-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/7.4/alpine/Dockerfile))
+* `1.50.0-php8.0-alpine`, `1.50-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.50.0/8.0/alpine/Dockerfile))
 
 ### Legacy
 
