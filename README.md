@@ -14,18 +14,18 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Debian
 
 * `latest` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/debian/Dockerfile))
-* `1.51.0`, `1.51` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/8.0/debian/Dockerfile))
-* `1.51.0-php7.3`, `1.51-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/7.3/debian/Dockerfile))
-* `1.51.0-php7.4`, `1.51-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/7.4/debian/Dockerfile))
-* `1.51.0-php8.0`, `1.51-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/8.0/debian/Dockerfile))
+* `1.52.0`, `1.52` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/8.0/debian/Dockerfile))
+* `1.52.0-php7.3`, `1.52-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/7.3/debian/Dockerfile))
+* `1.52.0-php7.4`, `1.52-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/7.4/debian/Dockerfile))
+* `1.52.0-php8.0`, `1.52-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/8.0/debian/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/alpine/Dockerfile))
-* `1.51.0-alpine`, `1.51-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/8.0/alpine/Dockerfile))
-* `1.51.0-php7.3-alpine`, `1.51-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/7.3/alpine/Dockerfile))
-* `1.51.0-php7.4-alpine`, `1.51-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/7.4/alpine/Dockerfile))
-* `1.51.0-php8.0-alpine`, `1.51-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.51.0/8.0/alpine/Dockerfile))
+* `1.52.0-alpine`, `1.52-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/8.0/alpine/Dockerfile))
+* `1.52.0-php7.3-alpine`, `1.52-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/7.3/alpine/Dockerfile))
+* `1.52.0-php7.4-alpine`, `1.52-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/7.4/alpine/Dockerfile))
+* `1.52.0-php8.0-alpine`, `1.52-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.52.0/8.0/alpine/Dockerfile))
 
 ### Legacy
 
@@ -38,77 +38,79 @@ These are the latest tags for PHP versions that are no longer supported:
 
 ## Available tools
 
-* analyze - [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer)
-* behat - [Helps to test business expectations](http://behat.org/)
-* box - [Fast, zero config application bundler with PHARs](https://github.com/humbug/box)
-* box-legacy - [Legacy version of box](https://box-project.github.io/box2/)
-* churn - [Discovers good candidates for refactoring](https://github.com/bmitch/churn-php)
-* composer - [Dependency Manager for PHP](https://getcomposer.org/)
-* composer-bin-plugin - [Composer plugin to install bin vendors in isolated locations](https://github.com/bamarni/composer-bin-plugin)
-* composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/ergebnis/composer-normalize)
-* composer-unused - [Show unused packages by scanning your code](https://github.com/icanhazstring/composer-unused)
-* dephpend - [Detect flaws in your architecture](https://dephpend.com/)
-* deprecation-detector - [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector)
-* deptrac - [Enforces dependency rules between software layers](https://github.com/qossmic/deptrac)
-* diffFilter - [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker)
-* doctrine-psalm-plugin - [Stubs to let Psalm understand Doctrine better](https://github.com/weirdan/doctrine-psalm-plugin)
-* ecs - [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard)
-* infection - [AST based PHP Mutation Testing Framework](https://infection.github.io/)
-* larastan - [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan)
-* local-php-security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/fabpot/local-php-security-checker)
-* parallel-lint - [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint)
-* paratest - [Parallel testing for PHPUnit](https://github.com/paratestphp/paratest)
-* pdepend - [Static Analysis Tool](https://pdepend.org/)
-* phan - [Static Analysis Tool](https://github.com/phan/phan)
-* php-coupling-detector - [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/)
-* php-cs-fixer - [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
-* php-formatter - [Custom coding standards fixer](https://github.com/mmoreram/php-formatter)
-* php-semver-checker - [Suggests a next version according to semantic versioning](https://github.com/tomzx/php-semver-checker)
-* phpa - [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions)
-* phpat - [Easy to use architecture testing tool](https://github.com/carlosas/phpat)
-* phpbench - [PHP Benchmarking framework](https://github.com/phpbench/phpbench)
-* phpca - [Finds usage of non-built-in extensions](https://github.com/wapmorgan/PhpCodeAnalyzer)
-* phpcb - [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser)
-* phpcbf - [Automatically corrects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
-* phpcodesniffer-composer-install - [Easy installation of PHP_CodeSniffer coding standards (rulesets).](https://github.com/Dealerdirect/phpcodesniffer-composer-installer)
-* phpcov - [a command-line frontend for the PHP_CodeCoverage library](https://github.com/sebastianbergmann/phpcov)
-* phpcpd - [Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
-* phpcs - [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer)
-* phpcs-security-audit - [Finds vulnerabilities and weaknesses related to security in PHP code](https://github.com/FloeDesignTechnologies/phpcs-security-audit)
-* phpda - [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/)
-* phpdd - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpDeprecationDetector)
-* phpdoc-to-typehint - [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint)
-* phpDocumentor - [Documentation generator](https://www.phpdoc.org/)
-* phpinsights - [Analyses code quality, style, architecture and complexity](https://phpinsights.com/)
-* phplint - [Lints php files in parallel](https://github.com/overtrue/phplint)
-* phploc - [A tool for quickly measuring the size of a PHP project](https://github.com/sebastianbergmann/phploc)
-* phpmd - [A tool for finding problems in PHP code](https://phpmd.org/)
-* phpmetrics - [Static Analysis Tool](http://www.phpmetrics.org/)
-* phpmnd - [Helps to detect magic numbers](https://github.com/povils/phpmnd)
-* phpspec - [SpecBDD Framework](http://www.phpspec.net/)
-* phpstan - [Static Analysis Tool](https://github.com/phpstan/phpstan)
-* phpstan-beberlei-assert - [PHPStan extension for beberlei/assert](https://github.com/phpstan/phpstan-beberlei-assert)
-* phpstan-deprecation-rules - [PHPStan rules for detecting deprecated code](https://github.com/phpstan/phpstan-deprecation-rules)
-* phpstan-doctrine - [Doctrine extensions for PHPStan](https://github.com/phpstan/phpstan-doctrine)
-* phpstan-ergebnis-rules - [Additional rules for PHPstan](https://github.com/ergebnis/phpstan-rules)
-* phpstan-exception-rules - [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules)
-* phpstan-larastan - [Separate installation of phpstan for larastan](https://github.com/phpstan/phpstan)
-* phpstan-phpunit - [PHPUnit extensions and rules for PHPStan](https://github.com/phpstan/phpstan-phpunit)
-* phpstan-strict-rules - [Extra strict and opinionated rules for PHPStan](https://github.com/phpstan/phpstan-strict-rules)
-* phpstan-symfony - [Symfony extension for PHPStan](https://github.com/phpstan/phpstan-symfony)
-* phpstan-webmozart-assert - [PHPStan extension for webmozart/assert](https://github.com/phpstan/phpstan-webmozart-assert)
-* phpunit - [The PHP testing framework](https://phpunit.de/)
-* phpunit-5 - [The PHP testing framework (5.x version)](https://phpunit.de/)
-* phpunit-7 - [The PHP testing framework (7.x version)](https://phpunit.de/)
-* phpunit-8 - [The PHP testing framework (8.x version)](https://phpunit.de/)
-* psalm - [Finds errors in PHP applications](https://psalm.dev/)
-* psecio-parse - [Scans code for potential security-related issues](https://github.com/psecio/parse)
-* rector - [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector)
-* roave-backward-compatibility-check - [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck)
-* simple-phpunit - [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html)
-* twig-lint - [Standalone twig linter](https://github.com/asm89/twig-lint)
-* twigcs - [The missing checkstyle for twig!](https://github.com/friendsoftwig/twigcs)
-* yaml-lint - [Compact command line utility for checking YAML file syntax](https://github.com/j13k/yaml-lint)
+| Name | Description | PHP 7.3 | PHP 7.4 | PHP 8.0
+| :--- | :---------- | :------ | :------ | :------
+| analyze | [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer) | &#x2705; | &#x2705; | &#x274C; |
+| behat | [Helps to test business expectations](http://behat.org/) | &#x2705; | &#x2705; | &#x2705; |
+| box | [Fast, zero config application bundler with PHARs](https://github.com/humbug/box) | &#x2705; | &#x2705; | &#x274C; |
+| box-legacy | [Legacy version of box](https://box-project.github.io/box2/) | &#x2705; | &#x2705; | &#x2705; |
+| churn | [Discovers good candidates for refactoring](https://github.com/bmitch/churn-php) | &#x2705; | &#x2705; | &#x2705; |
+| composer | [Dependency Manager for PHP](https://getcomposer.org/) | &#x2705; | &#x2705; | &#x2705; |
+| composer-bin-plugin | [Composer plugin to install bin vendors in isolated locations](https://github.com/bamarni/composer-bin-plugin) | &#x2705; | &#x2705; | &#x2705; |
+| composer-normalize | [Composer plugin to normalize composer.json files](https://github.com/ergebnis/composer-normalize) | &#x2705; | &#x2705; | &#x2705; |
+| composer-unused | [Show unused packages by scanning your code](https://github.com/icanhazstring/composer-unused) | &#x2705; | &#x2705; | &#x2705; |
+| dephpend | [Detect flaws in your architecture](https://dephpend.com/) | &#x2705; | &#x2705; | &#x2705; |
+| deprecation-detector | [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector) | &#x2705; | &#x2705; | &#x2705; |
+| deptrac | [Enforces dependency rules between software layers](https://github.com/qossmic/deptrac) | &#x2705; | &#x2705; | &#x2705; |
+| diffFilter | [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker) | &#x2705; | &#x2705; | &#x274C; |
+| doctrine-psalm-plugin | [Stubs to let Psalm understand Doctrine better](https://github.com/weirdan/doctrine-psalm-plugin) | &#x2705; | &#x2705; | &#x274C; |
+| ecs | [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard) | &#x2705; | &#x2705; | &#x2705; |
+| infection | [AST based PHP Mutation Testing Framework](https://infection.github.io/) | &#x274C; | &#x2705; | &#x2705; |
+| larastan | [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan) | &#x2705; | &#x2705; | &#x2705; |
+| local-php-security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/fabpot/local-php-security-checker) | &#x2705; | &#x2705; | &#x2705; |
+| parallel-lint | [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint) | &#x2705; | &#x2705; | &#x274C; |
+| paratest | [Parallel testing for PHPUnit](https://github.com/paratestphp/paratest) | &#x2705; | &#x2705; | &#x274C; |
+| pdepend | [Static Analysis Tool](https://pdepend.org/) | &#x2705; | &#x2705; | &#x2705; |
+| phan | [Static Analysis Tool](https://github.com/phan/phan) | &#x2705; | &#x2705; | &#x2705; |
+| php-coupling-detector | [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/) | &#x2705; | &#x2705; | &#x274C; |
+| php-cs-fixer | [PHP Coding Standards Fixer](http://cs.sensiolabs.org/) | &#x2705; | &#x2705; | &#x2705; |
+| php-formatter | [Custom coding standards fixer](https://github.com/mmoreram/php-formatter) | &#x2705; | &#x2705; | &#x274C; |
+| php-semver-checker | [Suggests a next version according to semantic versioning](https://github.com/tomzx/php-semver-checker) | &#x2705; | &#x2705; | &#x2705; |
+| phpa | [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions) | &#x2705; | &#x2705; | &#x2705; |
+| phpat | [Easy to use architecture testing tool](https://github.com/carlosas/phpat) | &#x2705; | &#x2705; | &#x274C; |
+| phpbench | [PHP Benchmarking framework](https://github.com/phpbench/phpbench) | &#x2705; | &#x2705; | &#x2705; |
+| phpca | [Finds usage of non-built-in extensions](https://github.com/wapmorgan/PhpCodeAnalyzer) | &#x2705; | &#x2705; | &#x2705; |
+| phpcb | [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser) | &#x2705; | &#x2705; | &#x2705; |
+| phpcbf | [Automatically corrects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer) | &#x2705; | &#x2705; | &#x2705; |
+| phpcodesniffer-composer-install | [Easy installation of PHP_CodeSniffer coding standards (rulesets).](https://github.com/Dealerdirect/phpcodesniffer-composer-installer) | &#x2705; | &#x2705; | &#x2705; |
+| phpcov | [a command-line frontend for the PHP_CodeCoverage library](https://github.com/sebastianbergmann/phpcov) | &#x2705; | &#x2705; | &#x2705; |
+| phpcpd | [Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd) | &#x2705; | &#x2705; | &#x2705; |
+| phpcs | [Detects coding standard violations](https://github.com/squizlabs/PHP_CodeSniffer) | &#x2705; | &#x2705; | &#x2705; |
+| phpcs-security-audit | [Finds vulnerabilities and weaknesses related to security in PHP code](https://github.com/FloeDesignTechnologies/phpcs-security-audit) | &#x2705; | &#x2705; | &#x2705; |
+| phpda | [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/) | &#x2705; | &#x2705; | &#x2705; |
+| phpdd | [Finds usage of deprecated features](http://wapmorgan.github.io/PhpDeprecationDetector) | &#x2705; | &#x2705; | &#x2705; |
+| phpdoc-to-typehint | [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint) | &#x2705; | &#x2705; | &#x2705; |
+| phpDocumentor | [Documentation generator](https://www.phpdoc.org/) | &#x2705; | &#x2705; | &#x274C; |
+| phpinsights | [Analyses code quality, style, architecture and complexity](https://phpinsights.com/) | &#x2705; | &#x2705; | &#x274C; |
+| phplint | [Lints php files in parallel](https://github.com/overtrue/phplint) | &#x2705; | &#x2705; | &#x2705; |
+| phploc | [A tool for quickly measuring the size of a PHP project](https://github.com/sebastianbergmann/phploc) | &#x2705; | &#x2705; | &#x2705; |
+| phpmd | [A tool for finding problems in PHP code](https://phpmd.org/) | &#x2705; | &#x2705; | &#x2705; |
+| phpmetrics | [Static Analysis Tool](http://www.phpmetrics.org/) | &#x2705; | &#x2705; | &#x2705; |
+| phpmnd | [Helps to detect magic numbers](https://github.com/povils/phpmnd) | &#x2705; | &#x2705; | &#x274C; |
+| phpspec | [SpecBDD Framework](http://www.phpspec.net/) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan | [Static Analysis Tool](https://github.com/phpstan/phpstan) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-beberlei-assert | [PHPStan extension for beberlei/assert](https://github.com/phpstan/phpstan-beberlei-assert) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-deprecation-rules | [PHPStan rules for detecting deprecated code](https://github.com/phpstan/phpstan-deprecation-rules) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-doctrine | [Doctrine extensions for PHPStan](https://github.com/phpstan/phpstan-doctrine) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-ergebnis-rules | [Additional rules for PHPstan](https://github.com/ergebnis/phpstan-rules) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-exception-rules | [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-larastan | [Separate installation of phpstan for larastan](https://github.com/phpstan/phpstan) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-phpunit | [PHPUnit extensions and rules for PHPStan](https://github.com/phpstan/phpstan-phpunit) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-strict-rules | [Extra strict and opinionated rules for PHPStan](https://github.com/phpstan/phpstan-strict-rules) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-symfony | [Symfony extension for PHPStan](https://github.com/phpstan/phpstan-symfony) | &#x2705; | &#x2705; | &#x2705; |
+| phpstan-webmozart-assert | [PHPStan extension for webmozart/assert](https://github.com/phpstan/phpstan-webmozart-assert) | &#x2705; | &#x2705; | &#x2705; |
+| phpunit | [The PHP testing framework](https://phpunit.de/) | &#x2705; | &#x2705; | &#x2705; |
+| phpunit-5 | [The PHP testing framework (5.x version)](https://phpunit.de/) | &#x2705; | &#x2705; | &#x274C; |
+| phpunit-7 | [The PHP testing framework (7.x version)](https://phpunit.de/) | &#x2705; | &#x2705; | &#x274C; |
+| phpunit-8 | [The PHP testing framework (8.x version)](https://phpunit.de/) | &#x2705; | &#x2705; | &#x2705; |
+| psalm | [Finds errors in PHP applications](https://psalm.dev/) | &#x2705; | &#x2705; | &#x2705; |
+| psecio-parse | [Scans code for potential security-related issues](https://github.com/psecio/parse) | &#x2705; | &#x2705; | &#x2705; |
+| rector | [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector) | &#x2705; | &#x2705; | &#x274C; |
+| roave-backward-compatibility-check | [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck) | &#x274C; | &#x2705; | &#x274C; |
+| simple-phpunit | [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html) | &#x2705; | &#x2705; | &#x2705; |
+| twig-lint | [Standalone twig linter](https://github.com/asm89/twig-lint) | &#x2705; | &#x2705; | &#x2705; |
+| twigcs | [The missing checkstyle for twig!](https://github.com/friendsoftwig/twigcs) | &#x2705; | &#x2705; | &#x2705; |
+| yaml-lint | [Compact command line utility for checking YAML file syntax](https://github.com/j13k/yaml-lint) | &#x2705; | &#x2705; | &#x2705; |
 
 ## More tools
 
@@ -118,12 +120,14 @@ Some tools are not included in the docker image, to use them refer to their docu
 
 ### Removed tools
 
-* composer-normalize - [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize)
-* design-pattern - [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector)
-* phpcf - [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/)
-* phpstan-localheinz-rules - [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules)
-* security-checker - [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker)
-* testability - [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability)
+| Name | Summary |
+| :--- | :------ |
+| composer-normalize | [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize) |
+| design-pattern | [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector) |
+| phpcf | [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/) |
+| phpstan-localheinz-rules | [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules) |
+| security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker) |
+| testability | [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability) |
 
 ## Running tools
 
