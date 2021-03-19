@@ -4,7 +4,7 @@ LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 
 ENV BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 ENV LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
-ENV TOOL_DEPS="git graphviz ttf-freefont make unzip"
+ENV TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme"
 ENV TOOLBOX_EXCLUDED_TAGS="exclude-php:8.0"
 ENV TOOLBOX_TARGET_DIR="/tools"
 ENV TOOLBOX_VERSION="1.43.1"
