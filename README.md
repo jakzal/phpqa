@@ -14,18 +14,18 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Debian
 
 * `latest` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/debian/Dockerfile))
-* `1.53.0`, `1.53` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/8.0/debian/Dockerfile))
-* `1.53.0-php7.3`, `1.53-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/7.3/debian/Dockerfile))
-* `1.53.0-php7.4`, `1.53-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/7.4/debian/Dockerfile))
-* `1.53.0-php8.0`, `1.53-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/8.0/debian/Dockerfile))
+* `1.54.0`, `1.54` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/8.0/debian/Dockerfile))
+* `1.54.0-php7.3`, `1.54-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/7.3/debian/Dockerfile))
+* `1.54.0-php7.4`, `1.54-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/7.4/debian/Dockerfile))
+* `1.54.0-php8.0`, `1.54-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/8.0/debian/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/alpine/Dockerfile))
-* `1.53.0-alpine`, `1.53-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/8.0/alpine/Dockerfile))
-* `1.53.0-php7.3-alpine`, `1.53-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/7.3/alpine/Dockerfile))
-* `1.53.0-php7.4-alpine`, `1.53-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/7.4/alpine/Dockerfile))
-* `1.53.0-php8.0-alpine`, `1.53-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.53.0/8.0/alpine/Dockerfile))
+* `1.54.0-alpine`, `1.54-alpine`, ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/8.0/alpine/Dockerfile))
+* `1.54.0-php7.3-alpine`, `1.54-php7.3-alpine`, `php7.3-alpine` ([7.3/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/7.3/alpine/Dockerfile))
+* `1.54.0-php7.4-alpine`, `1.54-php7.4-alpine`, `php7.4-alpine` ([7.4/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/7.4/alpine/Dockerfile))
+* `1.54.0-php8.0-alpine`, `1.54-php8.0-alpine`, `php8.0-alpine` ([8.0/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.54.0/8.0/alpine/Dockerfile))
 
 ### Legacy
 
@@ -56,7 +56,6 @@ These are the latest tags for PHP versions that are no longer supported:
 | deprecation-detector | [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector) | &#x2705; | &#x2705; | &#x2705; |
 | deptrac | [Enforces dependency rules between software layers](https://github.com/qossmic/deptrac) | &#x2705; | &#x2705; | &#x2705; |
 | diffFilter | [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker) | &#x2705; | &#x2705; | &#x274C; |
-| doctrine-psalm-plugin | [Stubs to let Psalm understand Doctrine better](https://github.com/weirdan/doctrine-psalm-plugin) | &#x2705; | &#x2705; | &#x2705; |
 | ecs | [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard) | &#x2705; | &#x2705; | &#x2705; |
 | infection | [AST based PHP Mutation Testing Framework](https://infection.github.io/) | &#x274C; | &#x2705; | &#x2705; |
 | larastan | [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan) | &#x2705; | &#x2705; | &#x2705; |
@@ -66,7 +65,7 @@ These are the latest tags for PHP versions that are no longer supported:
 | pdepend | [Static Analysis Tool](https://pdepend.org/) | &#x2705; | &#x2705; | &#x2705; |
 | phan | [Static Analysis Tool](https://github.com/phan/phan) | &#x2705; | &#x2705; | &#x2705; |
 | php-coupling-detector | [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/) | &#x2705; | &#x2705; | &#x2705; |
-| php-cs-fixer | [PHP Coding Standards Fixer](http://cs.sensiolabs.org/) | &#x2705; | &#x2705; | &#x2705; |
+| php-cs-fixer | [PHP Coding Standards Fixer](http://cs.symfony.com/) | &#x2705; | &#x2705; | &#x2705; |
 | php-formatter | [Custom coding standards fixer](https://github.com/mmoreram/php-formatter) | &#x2705; | &#x2705; | &#x274C; |
 | php-semver-checker | [Suggests a next version according to semantic versioning](https://github.com/tomzx/php-semver-checker) | &#x2705; | &#x2705; | &#x2705; |
 | phpa | [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions) | &#x2705; | &#x2705; | &#x2705; |
@@ -107,6 +106,9 @@ These are the latest tags for PHP versions that are no longer supported:
 | phpunit-7 | [The PHP testing framework (7.x version)](https://phpunit.de/) | &#x2705; | &#x2705; | &#x274C; |
 | phpunit-8 | [The PHP testing framework (8.x version)](https://phpunit.de/) | &#x2705; | &#x2705; | &#x2705; |
 | psalm | [Finds errors in PHP applications](https://psalm.dev/) | &#x2705; | &#x2705; | &#x2705; |
+| psalm-plugin-doctrine | [Stubs to let Psalm understand Doctrine better](https://github.com/weirdan/doctrine-psalm-plugin) | &#x2705; | &#x2705; | &#x2705; |
+| psalm-plugin-phpunit | [Psalm plugin for PHPUnit](https://github.com/psalm/psalm-plugin-phpunit) | &#x2705; | &#x2705; | &#x2705; |
+| psalm-plugin-symfony | [Psalm Plugin for Symfony](https://github.com/psalm/psalm-plugin-symfony) | &#x2705; | &#x2705; | &#x2705; |
 | psecio-parse | [Scans code for potential security-related issues](https://github.com/psecio/parse) | &#x2705; | &#x2705; | &#x2705; |
 | rector | [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector) | &#x2705; | &#x2705; | &#x2705; |
 | roave-backward-compatibility-check | [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck) | &#x274C; | &#x2705; | &#x274C; |
