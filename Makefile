@@ -3,13 +3,13 @@ PHP_VERSION ?= $(lastword $(sort $(PHP_VERSIONS)))
 
 default: build
 
-build: build-latest build-alpine
+build: build-debian build-alpine
 .PHONY: build
 
-build-latest: BUILD_TAG ?= jakzal/phpqa:latest
-build-latest:
+build-debian: BUILD_TAG ?= jakzal/phpqa:latest
+build-debian:
 	docker build -t $(BUILD_TAG) --build-arg PHP_VERSION=$(PHP_VERSION) debian/
-.PHONY: build-latest
+.PHONY: build-debian
 
 build-alpine: BUILD_TAG ?= jakzal/phpqa:alpine
 build-alpine:
@@ -17,11 +17,11 @@ build-alpine:
 .PHONY: build-alpine
 
 NIGHTLY_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)
-build-nightly-latest:
+build-nightly-debian:
 	docker build -t $(NIGHTLY_TAG) --build-arg PHP_VERSION=$(PHP_VERSION) debian/
 	@echo ${DOCKER_HUB_PASSWORD} | docker login -u jakzal --password-stdin
 	docker push $(NIGHTLY_TAG)
-.PHONY: build-nightly-latest
+.PHONY: build-nightly-debian
 
 NIGHTLY_ALPINE_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)-alpine
 build-nightly-alpine:
