@@ -11,7 +11,7 @@ jobs:
         strategy:
             matrix:
                 flavour: [latest, alpine]
-                php: [7.4]
+                php: [8.0]
         steps:
             -   uses: actions/checkout@master
             -   run: make build-nightly-${{matrix.flavour}}
