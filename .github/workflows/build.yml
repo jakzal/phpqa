@@ -66,6 +66,7 @@ jobs:
                     echo ::set-output name=version::${VERSION}
                     echo ::set-output name=tags::${TAGS}
                     echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+                    echo ::set-output name=date::$(date -u +'%Y-%m-%d')
                     echo ::set-output name=push::${{ (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master') && github.repository_owner == 'jakzal' }}
                 env:
                     PHP_VERSION: ${{ matrix.php }}
@@ -87,12 +88,14 @@ jobs:
                     context: ${{ matrix.flavour }}
                     load: true
                     tags: ${{ steps.version.outputs.tags }}
-                    build-args:
+                    build-args: |
                         PHP_VERSION=${{ matrix.php }}
+                        INSTALLATION_DATE=${{ steps.version.outputs.created }}
                     labels: |
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
+                    cache-from: type=registry,ref=jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
 
             -   name: Test
                 run: |
@@ -111,9 +114,11 @@ jobs:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
                     tags: ${{ steps.version.outputs.tags }}
-                    build-args:
+                    build-args: |
                         PHP_VERSION=${{ matrix.php }}
+                        INSTALLATION_DATE=${{ steps.version.outputs.created }}
                     labels: |
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
+                    cache-to: type=registry,ref=jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
