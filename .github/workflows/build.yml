@@ -86,7 +86,7 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
-                    load: true
+                    load: ${{ steps.version.outputs.push != 'true' }}
                     tags: ${{ steps.version.outputs.tags }}
                     build-args:
                         PHP_VERSION=${{ matrix.php }}
