@@ -30,6 +30,8 @@ RUN curl -Ls https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSI
 
 FROM phpbase as tools
 
+# INSTALLATION_DATE is used to bust the docker layer cache
+ARG INSTALLATION_DATE
 ARG TOOLBOX_EXCLUDED_TAGS
 ARG TOOLBOX_VERSION
 ENV TOOLBOX_EXCLUDED_TAGS=${TOOLBOX_EXCLUDED_TAGS}
