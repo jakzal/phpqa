@@ -10,7 +10,7 @@ jobs:
         name: Build
         strategy:
             matrix:
-                flavour: [latest, alpine]
+                flavour: [debian, alpine]
                 php: ['8.0']
         steps:
             -   uses: actions/checkout@master

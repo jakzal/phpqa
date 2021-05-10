@@ -13,11 +13,11 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 
 ### Debian
 
-* `latest` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/debian/Dockerfile))
-* `1.55.1`, `1.55` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/8.0/debian/Dockerfile))
-* `1.55.1-php7.3`, `1.55-php7.3`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/7.3/debian/Dockerfile))
-* `1.55.1-php7.4`, `1.55-php7.4`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/7.4/debian/Dockerfile))
-* `1.55.1-php8.0`, `1.55-php8.0`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/8.0/debian/Dockerfile))
+* `latest`, `debian` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/8.0/debian/Dockerfile))
+* `1.55.1`, `1.55`, `1.55.1-debian`, `1.55-debian` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/8.0/debian/Dockerfile))
+* `1.55.1-php7.3`, `1.55-php7.3`, `php7.3-debian`, `php7.3` ([7.3/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/7.3/debian/Dockerfile))
+* `1.55.1-php7.4`, `1.55-php7.4`, `php7.4-debian`, `php7.4` ([7.4/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/7.4/debian/Dockerfile))
+* `1.55.1-php8.0`, `1.55-php8.0`, `php8.0-debian`, `php8.0` ([8.0/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.55.1/8.0/debian/Dockerfile))
 
 ### Alpine
 
@@ -245,7 +245,7 @@ a `Dockerfile` and integrates in the composed landscape.
 ```bash
 git clone https://github.com/jakzal/phpqa.git
 cd phpqa
-make build-latest
+make build-debian
 ```
 
 To build the alpine version:

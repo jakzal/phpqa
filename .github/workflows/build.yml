@@ -15,16 +15,92 @@ jobs:
         name: Build
         strategy:
             matrix:
-                flavour: [latest, alpine]
+                flavour: [debian, alpine]
                 php: ['7.3', '7.4', '8.0']
         steps:
             -   uses: actions/checkout@master
-            -   run: |
-                    make build-${{matrix.flavour}} && \
-                    docker run --rm $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
-                    docker run --rm $BUILD_TAG php /tools/toolbox test && \
-                    docker run --rm $BUILD_TAG && \
+
+            -   name: Determine the version
+                id: version
+                run: |
+                    DOCKER_IMAGE=jakzal/phpqa
+                    VERSION=master
+                    LATEST_PHP_VERSION="8.0"
+                    LATEST_FLAVOUR="debian"
+
+                    # jakzal/phpqa:php8.0-debian, jakzal/phpqa:php8.0
+                    TAGS="${DOCKER_IMAGE}:php${PHP_VERSION}-${IMAGE_FLAVOUR}"
+                    if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
+                        TAGS="$TAGS,${DOCKER_IMAGE}:php${PHP_VERSION}"
+                    fi
+
+                    # jakzal/phpqa:alpine, jakzal/phpqa:debian, jakzal/phpqa:latest
+                    if [[ $PHP_VERSION == "$LATEST_PHP_VERSION" ]]; then
+                        TAGS="$TAGS,${DOCKER_IMAGE}:${IMAGE_FLAVOUR}"
+                        if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
+                            TAGS="$TAGS,${DOCKER_IMAGE}:latest"
+                        fi
+                    fi
+
+                    # jakzal/phpqa:1.55.1, jakzal/phpqa:1.55
+                    # jakzal/phpqa:1.55.1-php8.0, jakzal/phpqa:1.55-php8.0
+                    # jakzal/phpqa:1.55.1-alpine, jakzal/phpqa:1.55-alpine
+                    # jakzal/phpqa:1.55.1-php8.0-alpine, jakzal/phpqa:1.55-php8.0-alpine
+                    if [[ $GITHUB_REF == refs/tags/* ]]; then
+                        VERSION=${GITHUB_REF#refs/tags/}
+                        MINOR_VERSION=${VERSION%.*}
+                        TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION}-php${PHP_VERSION}-${IMAGE_FLAVOUR},${DOCKER_IMAGE}:${MINOR_VERSION}-php${PHP_VERSION}-${IMAGE_FLAVOUR}"
+                        if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
+                            TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION}-php${PHP_VERSION},${DOCKER_IMAGE}:${MINOR_VERSION}-php${PHP_VERSION}"
+                        fi
+                        if [[ $PHP_VERSION == "LATEST_PHP_VERSION" ]]; then
+                            TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION}-${IMAGE_FLAVOUR},${DOCKER_IMAGE}:${MINOR_VERSION}-${IMAGE_FLAVOUR}"
+                            if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
+                                TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${MINOR_VERSION}"
+                            fi
+                        fi
+                    fi
+
+                    echo "Version: $VERSION"
+                    echo "Docker tags: $TAGS"
+                    echo ::set-output name=version::${VERSION}
+                    echo ::set-output name=tags::${TAGS}
+                    echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+                    echo ::set-output name=push::${{ (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master') && github.repository_owner == 'jakzal' }}
+                env:
+                    PHP_VERSION: ${{ matrix.php }}
+                    IMAGE_FLAVOUR: ${{ matrix.flavour }}
+
+            -   name: Set up Docker Buildx
+                uses: docker/setup-buildx-action@v1
+
+            -   name: Login to DockerHub
+                if: steps.version.outputs.push == 'true'
+                uses: docker/login-action@v1
+                with:
+                    username: jakzal
+                    password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+            -   name: Build & Push
+                uses: docker/build-push-action@v2
+                with:
+                    context: ${{ matrix.flavour }}
+                    push: ${{ steps.version.outputs.push }}
+                    load: true
+                    tags: ${{ steps.version.outputs.tags }}
+                    build-args:
+                        PHP_VERSION=${{ matrix.php }}
+                    labels: |
+                        org.opencontainers.image.source=${{ github.event.repository.html_url }}
+                        org.opencontainers.image.created=${{ steps.version.outputs.created }}
+                        org.opencontainers.image.revision=${{ github.sha }}
+
+            -   name: Test
+                run: |
+                    docker run --rm --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
+                    docker run --rm --pull never $BUILD_TAG php /tools/toolbox test && \
+                    docker run --rm --pull never $BUILD_TAG && \
                     docker images
                 env:
                     PHP_VERSION: ${{ matrix.php }}
-                    BUILD_TAG: jakzal/phpqa:travis-php${{ matrix.php }}-${{ matrix.flavour }}
+                    BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
