@@ -81,12 +81,11 @@ jobs:
                     username: jakzal
                     password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-            -   name: Build & Push
+            -   name: Build
                 uses: docker/build-push-action@v2
                 with:
                     context: ${{ matrix.flavour }}
-                    push: ${{ steps.version.outputs.push }}
-                    load: ${{ steps.version.outputs.push != 'true' }}
+                    load: true
                     tags: ${{ steps.version.outputs.tags }}
                     build-args:
                         PHP_VERSION=${{ matrix.php }}
@@ -104,3 +103,17 @@ jobs:
                 env:
                     PHP_VERSION: ${{ matrix.php }}
                     BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
+
+            -   name: Push
+                uses: docker/build-push-action@v2
+                if: steps.version.outputs.push == 'true'
+                with:
+                    context: ${{ matrix.flavour }}
+                    push: ${{ steps.version.outputs.push }}
+                    tags: ${{ steps.version.outputs.tags }}
+                    build-args:
+                        PHP_VERSION=${{ matrix.php }}
+                    labels: |
+                        org.opencontainers.image.source=${{ github.event.repository.html_url }}
+                        org.opencontainers.image.created=${{ steps.version.outputs.created }}
+                        org.opencontainers.image.revision=${{ github.sha }}
