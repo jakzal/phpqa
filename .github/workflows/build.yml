@@ -90,7 +90,7 @@ jobs:
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
-                        INSTALLATION_DATE=${{ steps.version.outputs.created }}
+                        INSTALLATION_DATE=${{ steps.version.outputs.date }}
                     labels: |
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
@@ -116,7 +116,7 @@ jobs:
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
-                        INSTALLATION_DATE=${{ steps.version.outputs.created }}
+                        INSTALLATION_DATE=${{ steps.version.outputs.date }}
                     labels: |
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
