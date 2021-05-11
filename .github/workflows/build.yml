@@ -95,7 +95,6 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=registry,ref=jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
 
             -   name: Test
                 run: |
