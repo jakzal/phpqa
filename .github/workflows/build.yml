@@ -87,7 +87,6 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     load: true
-                    platforms: linux/amd64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
@@ -96,7 +95,7 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=registry,ref=jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
+                    cache-from: type=registry,ref=jakzal/phpqa:cache-php${{ matrix.php }}-${{ matrix.flavour }}
 
             -   name: Test
                 run: |
@@ -114,7 +113,6 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
-                    platforms: linux/amd64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
@@ -123,4 +121,4 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-to: type=registry,ref=jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
+                    cache-to: type=registry,ref=jakzal/phpqa:cache-php${{ matrix.php }}-${{ matrix.flavour }}
