@@ -47,7 +47,7 @@ jobs:
                     # jakzal/phpqa:1.55.1-alpine, jakzal/phpqa:1.55-alpine
                     # jakzal/phpqa:1.55.1-php8.0-alpine, jakzal/phpqa:1.55-php8.0-alpine
                     if [[ $GITHUB_REF == refs/tags/* ]]; then
-                        VERSION=${GITHUB_REF#refs/tags/}
+                        VERSION=${GITHUB_REF#refs/tags/v}
                         MINOR_VERSION=${VERSION%.*}
                         TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION}-php${PHP_VERSION}-${IMAGE_FLAVOUR},${DOCKER_IMAGE}:${MINOR_VERSION}-php${PHP_VERSION}-${IMAGE_FLAVOUR}"
                         if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
