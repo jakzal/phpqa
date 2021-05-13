@@ -93,7 +93,23 @@ jobs:
                     restore-keys: |
                         ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-
 
-            -   name: Build
+            -   name: Build multi-arch
+                uses: docker/build-push-action@v2
+                with:
+                    context: ${{ matrix.flavour }}
+                    platforms: linux/amd64,linux/arm64
+                    tags: ${{ steps.version.outputs.tags }}
+                    build-args: |
+                        PHP_VERSION=${{ matrix.php }}
+                        INSTALLATION_DATE=${{ steps.version.outputs.date }}
+                    labels: |
+                        org.opencontainers.image.source=${{ github.event.repository.html_url }}
+                        org.opencontainers.image.created=${{ steps.version.outputs.created }}
+                        org.opencontainers.image.revision=${{ github.sha }}
+                    cache-from: type=local,src=/tmp/.buildx-cache
+                    cache-to: type=local,dest=/tmp/.buildx-cache-new
+
+            -   name: Load
                 uses: docker/build-push-action@v2
                 with:
                     context: ${{ matrix.flavour }}
@@ -107,21 +123,21 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=local,src=/tmp/.buildx-cache
-                    cache-to: type=local,dest=/tmp/.buildx-cache
+                    cache-from: type=local,src=/tmp/.buildx-cache-new
 
             -   name: Test
                 run: |
+                    docker images && \
                     docker run --rm --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
                     docker run --rm --pull never $BUILD_TAG php /tools/toolbox test && \
-                    docker run --rm --pull never $BUILD_TAG && \
-                    docker images
+                    docker run --rm --pull never $BUILD_TAG
                 env:
                     PHP_VERSION: ${{ matrix.php }}
                     BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
 
-            -   name: Build multi-arch & Push
+            -   name: Push
                 uses: docker/build-push-action@v2
+                if: steps.version.outputs.push == 'true'
                 with:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
@@ -134,8 +150,7 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=local,src=/tmp/.buildx-cache
-                    cache-to: type=local,dest=/tmp/.buildx-cache-new
+                    cache-from: type=local,src=/tmp/.buildx-cache-new
 
             # Temp fix
             # https://github.com/docker/build-push-action/issues/252
