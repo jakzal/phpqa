@@ -14,6 +14,7 @@ jobs:
         runs-on: ubuntu-latest
         name: Build
         strategy:
+            fail-fast: false
             matrix:
                 flavour: [debian, alpine]
                 php: ['7.3', '7.4', '8.0']
