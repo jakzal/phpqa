@@ -113,11 +113,25 @@ jobs:
 
             -   name: Test
                 run: |
-                    docker images && \
-                    docker inspect $BUILD_TAG && \
-                    docker run --rm --platform $PLATFORM --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
-                    docker run --rm --platform $PLATFORM --pull never $BUILD_TAG php /tools/toolbox test && \
+                    echo "::group::Images"
+                    docker images
+                    echo "::endgroup::"
+
+                    echo "::group::$BUILD_TAG"
+                    docker inspect $BUILD_TAG
+                    echo "::endgroup::"
+
+                    echo "::group::PHP Version $PHP_VERSION"
+                    docker run --rm --platform $PLATFORM --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION
+                    echo "::endgroup::"
+
+                    echo "::group::Tests"
+                    docker run --rm --platform $PLATFORM --pull never $BUILD_TAG php /tools/toolbox test
+                    echo "::endgroup::"
+
+                    echo "::group::Tools"
                     docker run --rm --platform $PLATFORM --pull never $BUILD_TAG
+                    echo "::endgroup::"
                 env:
                     PHP_VERSION: ${{ matrix.php }}
                     BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
