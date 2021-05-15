@@ -72,6 +72,9 @@ jobs:
                     PHP_VERSION: ${{ matrix.php }}
                     IMAGE_FLAVOUR: ${{ matrix.flavour }}
 
+            -   name: Set up QEMU
+                uses: docker/setup-qemu-action@v1
+
             -   name: Set up Docker Buildx
                 uses: docker/setup-buildx-action@v1
 
@@ -86,7 +89,7 @@ jobs:
                 uses: actions/cache@v2
                 with:
                     path: /tmp/.buildx-cache
-                    key: ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-${{ github.sha }}
+                    key: ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-${{ hashFiles('**/Dockerfile', '**/entrypoint.sh') }}-${{ steps.version.outputs.date }}
                     restore-keys: |
                         ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-
 
@@ -94,7 +97,7 @@ jobs:
                 uses: docker/build-push-action@v2
                 with:
                     context: ${{ matrix.flavour }}
-                    load: true
+                    platforms: linux/amd64,linux/arm64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
@@ -106,12 +109,28 @@ jobs:
                     cache-from: type=local,src=/tmp/.buildx-cache
                     cache-to: type=local,dest=/tmp/.buildx-cache-new
 
+            -   name: Load
+                uses: docker/build-push-action@v2
+                with:
+                    context: ${{ matrix.flavour }}
+                    load: true
+                    platforms: linux/amd64
+                    tags: ${{ steps.version.outputs.tags }}
+                    build-args: |
+                        PHP_VERSION=${{ matrix.php }}
+                        INSTALLATION_DATE=${{ steps.version.outputs.date }}
+                    labels: |
+                        org.opencontainers.image.source=${{ github.event.repository.html_url }}
+                        org.opencontainers.image.created=${{ steps.version.outputs.created }}
+                        org.opencontainers.image.revision=${{ github.sha }}
+                    cache-from: type=local,src=/tmp/.buildx-cache-new
+
             -   name: Test
                 run: |
+                    docker images && \
                     docker run --rm --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
                     docker run --rm --pull never $BUILD_TAG php /tools/toolbox test && \
-                    docker run --rm --pull never $BUILD_TAG && \
-                    docker images
+                    docker run --rm --pull never $BUILD_TAG
                 env:
                     PHP_VERSION: ${{ matrix.php }}
                     BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
@@ -122,6 +141,7 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
+                    platforms: linux/amd64,linux/arm64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
@@ -130,6 +150,7 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
+                    cache-from: type=local,src=/tmp/.buildx-cache-new
 
             # Temp fix
             # https://github.com/docker/build-push-action/issues/252
@@ -138,3 +159,4 @@ jobs:
                 run: |
                     rm -rf /tmp/.buildx-cache
                     mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
