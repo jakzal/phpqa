@@ -192,15 +192,15 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: PHPStan
-        uses: docker://jakzal/phpqa:php7.4-alpine
+        uses: docker://jakzal/phpqa:php8.0-alpine
         with:
           args: phpstan analyze src/ -l 1
       - name: PHP-CS-Fixer
-        uses: docker://jakzal/phpqa:php7.4-alpine
+        uses: docker://jakzal/phpqa:php8.0-alpine
         with:
           args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
       - name: Deptrac
-        uses: docker://jakzal/phpqa:php7.4-alpine
+        uses: docker://jakzal/phpqa:php8.0-alpine
         with:
           args: deptrac --no-interaction --ansi --formatter-graphviz-display=0
 ```
@@ -211,7 +211,7 @@ Here is an example configuration of a bitbucket pipeline using the phpqa image:
 
 ```yaml
 # bitbucket-pipelines.yml
-image: jakzal/phpqa:php7.4-alpine
+image: jakzal/phpqa:php8.0-alpine
 pipelines:
   default:
     - step:
