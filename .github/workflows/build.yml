@@ -17,6 +17,7 @@ jobs:
             matrix:
                 flavour: [debian, alpine]
                 php: ['7.3', '7.4', '8.0']
+                platform: ['linux/amd64', 'linux/arm64']
         steps:
             -   uses: actions/checkout@master
 
@@ -89,15 +90,16 @@ jobs:
                 uses: actions/cache@v2
                 with:
                     path: /tmp/.buildx-cache
-                    key: ${{ runner.os }}-buildx-max-${{ matrix.php }}-${{ matrix.flavour }}-${{ hashFiles('**/Dockerfile', '**/entrypoint.sh') }}-${{ steps.version.outputs.date }}
+                    key: ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-${{ matrix.platform }}-${{ hashFiles('**/Dockerfile', '**/entrypoint.sh') }}-${{ steps.version.outputs.date }}
                     restore-keys: |
-                        ${{ runner.os }}-buildx-max-${{ matrix.php }}-${{ matrix.flavour }}-
+                        ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-${{ matrix.platform }}
 
             -   name: Build
                 uses: docker/build-push-action@v2
                 with:
                     context: ${{ matrix.flavour }}
-                    platforms: linux/amd64,linux/arm64
+                    load: true
+                    platforms: ${{ matrix.platform }}
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
@@ -109,33 +111,31 @@ jobs:
                     cache-from: type=local,src=/tmp/.buildx-cache
                     cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-            -   name: Load
-                uses: docker/build-push-action@v2
-                with:
-                    context: ${{ matrix.flavour }}
-                    load: true
-                    platforms: linux/amd64
-                    tags: ${{ steps.version.outputs.tags }}
-                    build-args: |
-                        PHP_VERSION=${{ matrix.php }}
-                        INSTALLATION_DATE=${{ steps.version.outputs.date }}
-                    labels: |
-                        org.opencontainers.image.source=${{ github.event.repository.html_url }}
-                        org.opencontainers.image.created=${{ steps.version.outputs.created }}
-                        org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=local,src=/tmp/.buildx-cache-new
-
             -   name: Test
                 run: |
-                    docker images && \
-                    docker inspect $BUILD_TAG && \
-                    docker run --rm --pull never --entrypoint /bin/sh $BUILD_TAG -c 'ls -l / /tools' && \
-                    docker run --rm --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
-                    docker run --rm --pull never $BUILD_TAG php /tools/toolbox test && \
-                    docker run --rm --pull never $BUILD_TAG
+                    echo "::group::Images"
+                    docker images
+                    echo "::endgroup::"
+
+                    echo "::group::$BUILD_TAG"
+                    docker inspect $BUILD_TAG
+                    echo "::endgroup::"
+
+                    echo "::group::PHP Version $PHP_VERSION"
+                    docker run --rm --platform $PLATFORM --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION
+                    echo "::endgroup::"
+
+                    echo "::group::Tests"
+                    docker run --rm --platform $PLATFORM --pull never $BUILD_TAG php /tools/toolbox test
+                    echo "::endgroup::"
+
+                    echo "::group::Tools"
+                    docker run --rm --platform $PLATFORM --pull never $BUILD_TAG
+                    echo "::endgroup::"
                 env:
                     PHP_VERSION: ${{ matrix.php }}
                     BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
+                    PLATFORM: ${{ matrix.platform }}
 
             -   name: Push
                 uses: docker/build-push-action@v2
@@ -143,7 +143,7 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
-                    platforms: linux/amd64,linux/arm64
+                    platforms: ${{ matrix.platform }}
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
