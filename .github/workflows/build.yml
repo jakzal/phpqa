@@ -128,6 +128,7 @@ jobs:
             -   name: Test
                 run: |
                     docker images && \
+                    docker inspect $BUILD_TAG && \
                     docker run --rm --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
                     docker run --rm --pull never $BUILD_TAG php /tools/toolbox test && \
                     docker run --rm --pull never $BUILD_TAG
