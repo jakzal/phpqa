@@ -89,7 +89,7 @@ jobs:
                 uses: actions/cache@v2
                 with:
                     path: /tmp/.buildx-cache
-                    key: ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-${{ hashFiles('**/Dockerfile', '**/entrypoint.sh') }}
+                    key: ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-${{ hashFiles('**/Dockerfile', '**/entrypoint.sh') }}-${{ steps.version.outputs.date }}
                     restore-keys: |
                         ${{ runner.os }}-buildx-${{ matrix.php }}-${{ matrix.flavour }}-
 
