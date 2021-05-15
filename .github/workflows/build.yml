@@ -129,6 +129,7 @@ jobs:
                 run: |
                     docker images && \
                     docker inspect $BUILD_TAG && \
+                    for i in {1..5}; do docker run --rm --pull never $BUILD_TAG php -v && break || sleep 5; done && \
                     docker run --rm --pull never $BUILD_TAG php -v | grep 'PHP '$PHP_VERSION && \
                     docker run --rm --pull never $BUILD_TAG php /tools/toolbox test && \
                     docker run --rm --pull never $BUILD_TAG
