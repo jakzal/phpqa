@@ -98,22 +98,6 @@ jobs:
                 uses: docker/build-push-action@v2
                 with:
                     context: ${{ matrix.flavour }}
-                    platforms: linux/amd64,linux/arm64
-                    tags: ${{ steps.version.outputs.tags }}
-                    build-args: |
-                        PHP_VERSION=${{ matrix.php }}
-                        INSTALLATION_DATE=${{ steps.version.outputs.date }}
-                    labels: |
-                        org.opencontainers.image.source=${{ github.event.repository.html_url }}
-                        org.opencontainers.image.created=${{ steps.version.outputs.created }}
-                        org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=local,src=/tmp/.buildx-cache
-                    cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
-
-            -   name: Load
-                uses: docker/build-push-action@v2
-                with:
-                    context: ${{ matrix.flavour }}
                     load: true
                     platforms: linux/amd64
                     tags: ${{ steps.version.outputs.tags }}
@@ -124,7 +108,8 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=local,src=/tmp/.buildx-cache-new
+                    cache-from: type=local,src=/tmp/.buildx-cache
+                    cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
             -   name: Test
                 run: |
@@ -157,7 +142,7 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
-                    platforms: linux/amd64,linux/arm64
+                    platforms: linux/amd64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
