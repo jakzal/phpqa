@@ -44,11 +44,10 @@ ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:${COMPOSER_HOME}/vendor/bin:$TOOLBOX_TARGET_
 
 COPY --from=toolbox /toolbox $TOOLBOX_TARGET_DIR/toolbox
 COPY --from=composer:2 /usr/bin/composer $TOOLBOX_TARGET_DIR/composer
+COPY entrypoint.sh /entrypoint.sh
 
 RUN php $TOOLBOX_TARGET_DIR/toolbox install \
  && rm -rf $COMPOSER_HOME/cache
-
-COPY entrypoint.sh /entrypoint.sh
 
 WORKDIR $TOOLBOX_TARGET_DIR
 ENTRYPOINT ["/entrypoint.sh"]
