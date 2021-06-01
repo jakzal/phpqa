@@ -18,6 +18,8 @@ jobs:
             matrix:
                 flavour: [debian, alpine]
                 php: ['7.3', '7.4', '8.0']
+        outputs:
+            push: ${{ steps.version.outputs.push }}
         steps:
             -   uses: actions/checkout@master
 
@@ -161,3 +163,21 @@ jobs:
                     rm -rf /tmp/.buildx-cache
                     mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
+    verify:
+        runs-on: ubuntu-latest
+        name: Verify
+        needs: build
+        if: needs.build.outputs.push == 'true'
+        strategy:
+            fail-fast: false
+            matrix:
+                flavour: [debian, alpine]
+                php: ['7.3', '7.4', '8.0']
+        steps:
+            -   name: Test if pushed
+                run: |
+                    echo "::group::Tests"
+                    docker run --rm $BUILD_TAG php /tools/toolbox test
+                    echo "::endgroup::"
+                env:
+                    BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
