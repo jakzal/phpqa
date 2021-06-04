@@ -53,9 +53,9 @@ release:
 	$(eval LATEST_RELEASE=$(shell $(MAKE) next-patch-release))
 	@$(MAKE) update-readme-release LATEST_RELEASE=$(LATEST_RELEASE)
 	git add README.md
-	git commit -m 'Release $(LATEST_RELEASE)'
+	git commit -m 'Release v$(LATEST_RELEASE)'
 	git push origin master
-	hub release create -m ':robot: Automagically created release.' -t $(shell git rev-parse HEAD) $(LATEST_RELEASE)
+	hub release create -m '$(LATEST_RELEASE)' -m '' -m ':robot: Automagically created release.' -t $(shell git rev-parse HEAD) v$(LATEST_RELEASE)
 .PHONY: release
 
 update-readme-release: LATEST_RELEASE ?= 0.0.0
