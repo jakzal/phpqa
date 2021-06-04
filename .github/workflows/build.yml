@@ -56,7 +56,7 @@ jobs:
                         if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
                             TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION}-php${PHP_VERSION},${DOCKER_IMAGE}:${MINOR_VERSION}-php${PHP_VERSION}"
                         fi
-                        if [[ $PHP_VERSION == "LATEST_PHP_VERSION" ]]; then
+                        if [[ $PHP_VERSION == "$LATEST_PHP_VERSION" ]]; then
                             TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION}-${IMAGE_FLAVOUR},${DOCKER_IMAGE}:${MINOR_VERSION}-${IMAGE_FLAVOUR}"
                             if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
                                 TAGS="$TAGS,${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${MINOR_VERSION}"
