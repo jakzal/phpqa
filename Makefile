@@ -41,10 +41,27 @@ update-readme-tools: devkit
 	./devkit update:readme --readme README.md
 .PHONY: update-readme-tools
 
+readme-release:
+	@cat README.md | grep 'jakzal/phpqa/blob/v' | sed -e 's/^[^`]*`\([^`\-]*\).*/\1/' | head -n 1
+.PHONY: readme-release
+
+next-patch-release:
+	@$(MAKE) readme-release | awk -F. -v OFS=. '{$$NF++;print}'
+.PHONY: next-patch-release
+
+release:
+	$(eval LATEST_RELEASE=$(shell $(MAKE) next-patch-release))
+	@$(MAKE) update-readme-release LATEST_RELEASE=$(LATEST_RELEASE)
+	git add README.md
+	git commit -m 'Release $(LATEST_RELEASE)'
+	git push origin master
+	hub release create -m ':robot: Automagically created release.' -t $(shell git rev-parse HEAD) $(LATEST_RELEASE)
+.PHONY: release
+
 update-readme-release: LATEST_RELEASE ?= 0.0.0
 update-readme-release:
 	$(eval LATEST_RELEASE_MINOR=$(shell echo $(LATEST_RELEASE) | cut -f1,2 -d.))
-	$(eval README_RELEASE=$(shell cat README.md | grep 'jakzal/phpqa/blob/v' | sed -e 's/^[^`]*`\([^`\-]*\).*/\1/' | head -n 1))
+	$(eval README_RELEASE=$(shell $(MAKE) readme-release))
 	$(eval README_RELEASE_MINOR=$(shell echo $(README_RELEASE) | cut -f1,2 -d.))
 	sed -i.bkp -e 's/$(README_RELEASE)/$(LATEST_RELEASE)/g' README.md
 	sed -i.bkp -e 's/$(README_RELEASE_MINOR)/$(LATEST_RELEASE_MINOR)/g' README.md
