@@ -54,8 +54,9 @@ release:
 	@$(MAKE) update-readme-release LATEST_RELEASE=$(LATEST_RELEASE)
 	git add README.md
 	git commit -m 'Release v$(LATEST_RELEASE)'
+	git tag -a v$(LATEST_RELEASE) -m 'Tag v$(LATEST_RELEASE)'
 	git push origin master
-	hub release create -m '$(LATEST_RELEASE)' -m '' -m ':robot: Automagically created release.' -t $(shell git rev-parse HEAD) v$(LATEST_RELEASE)
+	hub release create -m '$(LATEST_RELEASE)' -m '' -m ':robot: Automagically created release.' v$(LATEST_RELEASE)
 .PHONY: release
 
 update-readme-release: LATEST_RELEASE ?= 0.0.0
