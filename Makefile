@@ -71,7 +71,7 @@ update-readme-release:
 
 update-toolbox-version:
 	$(eval LATEST_TOOLBOX_VERSION=$(shell curl -H'Authorization: token '$(GITHUB_TOKEN) -Ls 'https://api.github.com/repos/jakzal/toolbox/releases/latest' | jq -r .tag_name | cut -c 2-))
-	$(eval CURRENT_TOOLBOX_VERSION=$(shell cat alpine/Dockerfile | grep 'TOOLBOX_VERSION=' | sed -e 's/.*"\(.*\)"/\1/'))
+	$(eval CURRENT_TOOLBOX_VERSION=$(shell cat alpine/Dockerfile | grep 'TOOLBOX_VERSION=' | head -n 1 | sed -e 's/.*"\(.*\)"/\1/'))
 	@[ "$(LATEST_TOOLBOX_VERSION)" != "" ] || (echo "Failed to check the latest toolbox release" && exit 1)
 	[ "$(CURRENT_TOOLBOX_VERSION)" = "$(LATEST_TOOLBOX_VERSION)" ] || ( \
 	  sed -e 's/$(CURRENT_TOOLBOX_VERSION)/$(LATEST_TOOLBOX_VERSION)/g' -i'.bkp' alpine/Dockerfile debian/Dockerfile \
