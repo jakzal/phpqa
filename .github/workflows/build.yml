@@ -101,7 +101,7 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     load: true
-                    platforms: linux/amd64
+                    platforms: linux/amd64,linux/arm64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
@@ -144,7 +144,7 @@ jobs:
                 with:
                     context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
-                    platforms: linux/amd64
+                    platforms: linux/amd64,linux/arm64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
