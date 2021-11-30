@@ -45,8 +45,13 @@ readme-release:
 	@cat README.md | grep 'jakzal/phpqa/blob/v' | sed -e 's/^[^`]*`\([^`\-]*\).*/\1/' | head -n 1
 .PHONY: readme-release
 
+next-patch-release: NEXT_PATCH_RELEASE ?=
 next-patch-release:
+ifeq ($(origin NEXT_PATCH_RELEASE),undefined)
 	@$(MAKE) readme-release | awk -F. -v OFS=. '{$$NF++;print}'
+else
+	@echo $(NEXT_PATCH_RELEASE)
+endif
 .PHONY: next-patch-release
 
 release:
