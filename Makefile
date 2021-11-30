@@ -47,15 +47,16 @@ readme-release:
 
 next-patch-release: NEXT_PATCH_RELEASE ?=
 next-patch-release:
-ifeq ($(origin NEXT_PATCH_RELEASE),undefined)
+ifeq ($(NEXT_PATCH_RELEASE),)
 	@$(MAKE) readme-release | awk -F. -v OFS=. '{$$NF++;print}'
 else
 	@echo $(NEXT_PATCH_RELEASE)
 endif
 .PHONY: next-patch-release
 
+release: NEXT_RELEASE ?=
 release:
-	$(eval LATEST_RELEASE=$(shell $(MAKE) next-patch-release))
+	$(eval LATEST_RELEASE=$(shell $(MAKE) next-patch-release NEXT_PATCH_RELEASE=$(NEXT_RELEASE)))
 	@$(MAKE) update-readme-release LATEST_RELEASE=$(LATEST_RELEASE)
 	git add README.md
 	git commit -m 'Release v$(LATEST_RELEASE)'
