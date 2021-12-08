@@ -17,7 +17,7 @@ jobs:
             fail-fast: false
             matrix:
                 flavour: [debian, alpine]
-                php: ['7.3', '7.4', '8.0']
+                php: ['7.4', '8.0']
         outputs:
             push: ${{ steps.version.outputs.push }}
         steps:
@@ -172,7 +172,7 @@ jobs:
             fail-fast: false
             matrix:
                 flavour: [debian, alpine]
-                php: ['7.3', '7.4', '8.0']
+                php: ['7.4', '8.0']
         steps:
             -   name: Test if pushed
                 run: |
