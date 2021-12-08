@@ -29,8 +29,8 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 
 These are the latest tags for PHP versions that are no longer supported:
 
-* `1.62.0-php7.3`, `1.62-php7.3`, `php7.3-debian`, `php7.3` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.62.0/debian/Dockerfile))
-* `1.62.0-php7.3-alpine`, `1.62-php7.3-alpine`, `php7.3-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.62.0/alpine/Dockerfile))
+* `1.61.1-php7.3`, `1.61-php7.3`, `php7.3-debian`, `php7.3` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.61.1/debian/Dockerfile))
+* `1.61.1-php7.3-alpine`, `1.61-php7.3-alpine`, `php7.3-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.61.1/alpine/Dockerfile))
 * `1.44.0-php7.2`, `1.44-php7.2`, `php7.2` ([7.2/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.44.0/7.2/debian/Dockerfile))
 * `1.44.0-php7.2-alpine`, `1.44-php7.2-alpine`, `php7.2-alpine` ([7.2/alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.44.0/7.2/alpine/Dockerfile))
 * `1.26.0-php7.1`, `1.26-php7.1`, `php7.1` ([7.1/debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.26.0/7.1/debian/Dockerfile))
