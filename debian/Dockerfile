@@ -8,7 +8,7 @@ FROM ${BASE_IMAGE} as phpbase
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkg-config re2c"
 ARG LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
-ARG TOOL_DEPS="git graphviz make unzip gpg"
+ARG TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent"
 
 RUN apt-get update && apt-get install -y --no-install-recommends $TOOL_DEPS $BUILD_DEPS $LIB_DEPS && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
