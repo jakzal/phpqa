@@ -1,4 +1,4 @@
-PHP_VERSIONS := 7.3 7.4 8.0 8.1
+PHP_VERSIONS := 7.4 8.0 8.1
 PHP_VERSION ?= $(lastword $(sort $(PHP_VERSIONS)))
 
 default: build

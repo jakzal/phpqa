@@ -1,14 +1,14 @@
 ARG PHP_VERSION=8.1
 ARG BASE_IMAGE=php:${PHP_VERSION}-alpine
 ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
-ARG TOOLBOX_VERSION="1.50.0"
+ARG TOOLBOX_VERSION="1.54.0"
 
 FROM ${BASE_IMAGE} as phpbase
 
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 ARG LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
-ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme"
+ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr"
 
 RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
