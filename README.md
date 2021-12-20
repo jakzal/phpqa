@@ -14,16 +14,16 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 ### Debian
 
 * `latest`, `debian` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/master/debian/Dockerfile))
-* `1.63.0`, `1.63`, `1.63.0-debian`, `1.63-debian` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.63.0/debian/Dockerfile))
-* `1.63.0-php7.4`, `1.63-php7.4`, `php7.4-debian`, `php7.4` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.63.0/debian/Dockerfile))
-* `1.63.0-php8.0`, `1.63-php8.0`, `php8.0-debian`, `php8.0` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.63.0/debian/Dockerfile))
+* `1.64.0`, `1.64`, `1.64.0-debian`, `1.64-debian` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.64.0/debian/Dockerfile))
+* `1.64.0-php7.4`, `1.64-php7.4`, `php7.4-debian`, `php7.4` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.64.0/debian/Dockerfile))
+* `1.64.0-php8.0`, `1.64-php8.0`, `php8.0-debian`, `php8.0` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.64.0/debian/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/master/alpine/Dockerfile))
-* `1.63.0-alpine`, `1.63-alpine`, ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.63.0/alpine/Dockerfile))
-* `1.63.0-php7.4-alpine`, `1.63-php7.4-alpine`, `php7.4-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.63.0/alpine/Dockerfile))
-* `1.63.0-php8.0-alpine`, `1.63-php8.0-alpine`, `php8.0-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.63.0/alpine/Dockerfile))
+* `1.64.0-alpine`, `1.64-alpine`, ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.64.0/alpine/Dockerfile))
+* `1.64.0-php7.4-alpine`, `1.64-php7.4-alpine`, `php7.4-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.64.0/alpine/Dockerfile))
+* `1.64.0-php8.0-alpine`, `1.64-php8.0-alpine`, `php8.0-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.64.0/alpine/Dockerfile))
 
 ### Legacy
 
@@ -71,7 +71,7 @@ These are the latest tags for PHP versions that are no longer supported:
 | php-fuzzer | [A fuzzer for PHP, which can be used to find bugs in libraries by feeding them 'random' inputs](https://github.com/nikic/PHP-Fuzzer) | &#x2705; | &#x2705; |
 | php-semver-checker | [Suggests a next version according to semantic versioning](https://github.com/tomzx/php-semver-checker) | &#x2705; | &#x2705; |
 | phpa | [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions) | &#x2705; | &#x2705; |
-| phpat | [Easy to use architecture testing tool](https://github.com/carlosas/phpat) | &#x2705; | &#x274C; |
+| phpat | [Easy to use architecture testing tool](https://github.com/carlosas/phpat) | &#x2705; | &#x2705; |
 | phpbench | [PHP Benchmarking framework](https://github.com/phpbench/phpbench) | &#x2705; | &#x2705; |
 | phpca | [Finds usage of non-built-in extensions](https://github.com/wapmorgan/PhpCodeAnalyzer) | &#x2705; | &#x2705; |
 | phpcb | [PHP Code Browser](https://github.com/mayflower/PHP_CodeBrowser) | &#x2705; | &#x2705; |
