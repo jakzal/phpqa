@@ -17,6 +17,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * `1.65.3`, `1.65`, `1.65.3-debian`, `1.65-debian` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/debian/Dockerfile))
 * `1.65.3-php7.4`, `1.65-php7.4`, `php7.4-debian`, `php7.4` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/debian/Dockerfile))
 * `1.65.3-php8.0`, `1.65-php8.0`, `php8.0-debian`, `php8.0` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/debian/Dockerfile))
+* `1.65.3-php8.1`, `1.65-php8.1`, `php8.1-debian`, `php8.1` ([debian/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/debian/Dockerfile))
 
 ### Alpine
 
@@ -24,6 +25,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * `1.65.3-alpine`, `1.65-alpine`, ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/alpine/Dockerfile))
 * `1.65.3-php7.4-alpine`, `1.65-php7.4-alpine`, `php7.4-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/alpine/Dockerfile))
 * `1.65.3-php8.0-alpine`, `1.65-php8.0-alpine`, `php8.0-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/alpine/Dockerfile))
+* `1.65.3-php8.1-alpine`, `1.65-php8.1-alpine`, `php8.1-alpine` ([alpine/Dockerfile](https://github.com/jakzal/phpqa/blob/v1.65.3/alpine/Dockerfile))
 
 ### Legacy
 
@@ -194,15 +196,15 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: PHPStan
-        uses: docker://jakzal/phpqa:php8.0-alpine
+        uses: docker://jakzal/phpqa:php8.1-alpine
         with:
           args: phpstan analyze src/ -l 1
       - name: PHP-CS-Fixer
-        uses: docker://jakzal/phpqa:php8.0-alpine
+        uses: docker://jakzal/phpqa:php8.1-alpine
         with:
           args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
       - name: Deptrac
-        uses: docker://jakzal/phpqa:php8.0-alpine
+        uses: docker://jakzal/phpqa:php8.1-alpine
         with:
           args: deptrac --no-interaction --ansi --formatter-graphviz-display=0
 ```
@@ -213,7 +215,7 @@ Here is an example configuration of a bitbucket pipeline using the phpqa image:
 
 ```yaml
 # bitbucket-pipelines.yml
-image: jakzal/phpqa:php8.0-alpine
+image: jakzal/phpqa:php8.1-alpine
 pipelines:
   default:
     - step:
