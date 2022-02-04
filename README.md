@@ -43,7 +43,6 @@ These are the latest tags for PHP versions that are no longer supported:
 | analyze | [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer) | &#x2705; | &#x274C; | &#x274C; |
 | behat | [Helps to test business expectations](http://behat.org/) | &#x2705; | &#x2705; | &#x2705; |
 | box | [Fast, zero config application bundler with PHARs](https://github.com/humbug/box) | &#x2705; | &#x2705; | &#x2705; |
-| box-legacy | [Legacy version of box](https://box-project.github.io/box2/) | &#x2705; | &#x2705; | &#x2705; |
 | churn | [Discovers good candidates for refactoring](https://github.com/bmitch/churn-php) | &#x2705; | &#x2705; | &#x2705; |
 | codeception | [Codeception is a BDD-styled PHP testing framework](https://codeception.com/) | &#x2705; | &#x2705; | &#x2705; |
 | composer | [Dependency Manager for PHP](https://getcomposer.org/) | &#x2705; | &#x2705; | &#x2705; |
@@ -67,7 +66,6 @@ These are the latest tags for PHP versions that are no longer supported:
 | phive | [PHAR Installation and Verification Environment](https://phar.io/) | &#x2705; | &#x2705; | &#x2705; |
 | php-coupling-detector | [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/) | &#x2705; | &#x2705; | &#x2705; |
 | php-cs-fixer | [PHP Coding Standards Fixer](http://cs.symfony.com/) | &#x2705; | &#x2705; | &#x2705; |
-| php-formatter | [Custom coding standards fixer](https://github.com/mmoreram/php-formatter) | &#x2705; | &#x274C; | &#x274C; |
 | php-fuzzer | [A fuzzer for PHP, which can be used to find bugs in libraries by feeding them 'random' inputs](https://github.com/nikic/PHP-Fuzzer) | &#x2705; | &#x2705; | &#x2705; |
 | php-semver-checker | [Suggests a next version according to semantic versioning](https://github.com/tomzx/php-semver-checker) | &#x2705; | &#x2705; | &#x2705; |
 | phpa | [Checks for weak assumptions](https://github.com/rskuipers/php-assumptions) | &#x2705; | &#x2705; | &#x2705; |
@@ -130,9 +128,11 @@ Some tools are not included in the docker image, to use them refer to their docu
 
 | Name | Summary |
 | :--- | :------ |
+| box-legacy | [Legacy version of box](https://box-project.github.io/box2/) |
 | composer-normalize | [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize) |
 | design-pattern | [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector) |
 | parallel-lint | [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint) |
+| php-formatter | [Custom coding standards fixer](https://github.com/mmoreram/php-formatter) |
 | phpcf | [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/) |
 | phpstan-localheinz-rules | [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules) |
 | security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker) |
