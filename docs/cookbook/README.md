@@ -1,6 +1,6 @@
 # Cookbook
 
-Here you will find a list of tips & tricks that are to long to be put in the default README.
+Here you will find a list of tips & tricks that are too long to be put in the main README.
 
 ## Index
 
