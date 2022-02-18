@@ -326,6 +326,10 @@ Infection users will need to define initial php options:
 phpqa /tools/infection run --initial-tests-php-options='-dpcov.enabled=1'
 ```
 
+## Cookbook
+
+Please check out the [cookbook](docs/cookbook/README.md) for further tips & tricks.
+
 ## Contributing
 
 Please read the [Contributing guide](CONTRIBUTING.md) to learn about contributing to this project.
