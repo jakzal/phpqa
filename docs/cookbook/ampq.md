@@ -9,7 +9,7 @@ This can easily be done with PHPQA as well.
 
 *The procedure below uses a [Docker MultiStage Build](https://docs.docker.com/develop/develop-images/multistage-build/) and the resulting build will therefore barely be any bigger than the original PHPQA.*
 
-As instructed in the main [README](https://github.com/jakzal/phpqa#customising-the-image), one has to create a new `Dockerfile` to customize it.
+As instructed in the [Customising the image recipe](customising-the-image.md), one has to create a new `Dockerfile` to customize it.
 
 ## Debian Dockerfile
 
