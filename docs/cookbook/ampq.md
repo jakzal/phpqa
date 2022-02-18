@@ -1,5 +1,7 @@
 # AMPQ
 
+*Contributed by [dgoosens](https://github.com/dgoosens).*
+
 Some extension do take a little time before they are ready for the latest and greatest version of PHP.
 If you really need those extensions and can not wait, you will have to compile them yourself.
 

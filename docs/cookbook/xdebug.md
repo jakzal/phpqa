@@ -1,5 +1,7 @@
 # Xdebug
 
+*Contributed by [dgoosens](https://github.com/dgoosens).*
+
 This procedure is similar to the one explained for [AMPQ](ampq.md).
 
 ## Debian Dockerfile
