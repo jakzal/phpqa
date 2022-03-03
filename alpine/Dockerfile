@@ -8,7 +8,7 @@ FROM ${BASE_IMAGE} as phpbase
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 ARG LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
-ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr"
+ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
 
 RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
  && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
