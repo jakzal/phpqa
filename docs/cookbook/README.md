@@ -10,5 +10,5 @@ Here you will find a list of tips & tricks that are too long to be put in the ma
 - [Install Xdebug in PHPQA](xdebug.md)
 - [GitHub Actions](github-actions.md)
 - [Bitbucket Pipelines](bitbucket-pipelines.md)
-- [Gitlab CI](gitlab-ci.yml)
+- [Gitlab CI](gitlab-ci.md)
 - [Starter Kits](starter-kits.md)
