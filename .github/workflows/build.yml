@@ -88,14 +88,6 @@ jobs:
                     username: jakzal
                     password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-            -   name: Cache Docker layers
-                uses: actions/cache@v2
-                with:
-                    path: /tmp/.buildx-cache
-                    key: ${{ runner.os }}-buildx-max-${{ matrix.php }}-${{ matrix.flavour }}-${{ hashFiles('**/Dockerfile', '**/entrypoint.sh') }}-${{ steps.version.outputs.date }}
-                    restore-keys: |
-                        ${{ runner.os }}-buildx-max-${{ matrix.php }}-${{ matrix.flavour }}-
-
             -   name: Build
                 uses: docker/build-push-action@v2
                 with:
@@ -110,8 +102,8 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=local,src=/tmp/.buildx-cache
-                    cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+                    cache-from: type=gha,scope=${{ github.workflow }}-${{ matrix.php }}-${{ matrix.flavour }}
+                    cache-to: type=gha,scope=${{ github.workflow }}-${{ matrix.php }}-${{ matrix.flavour }},mode=max
 
             -   name: Test
                 run: |
@@ -153,15 +145,7 @@ jobs:
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
                         org.opencontainers.image.revision=${{ github.sha }}
-                    cache-from: type=local,src=/tmp/.buildx-cache-new
-
-            # Temp fix
-            # https://github.com/docker/build-push-action/issues/252
-            # https://github.com/moby/buildkit/issues/1896
-            -   name: Move Docker layers cache
-                run: |
-                    rm -rf /tmp/.buildx-cache
-                    mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+                    cache-from: type=gha,scope=${{ github.workflow }}-${{ matrix.php }}-${{ matrix.flavour }}
 
     verify:
         runs-on: ubuntu-latest
