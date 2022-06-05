@@ -1,5 +1,9 @@
 PHP_VERSIONS := 7.4 8.0 8.1
 PHP_VERSION ?= $(lastword $(sort $(PHP_VERSIONS)))
+COMPOSER_AUTHDIR ?= $(shell composer config --global home)
+ifneq ("", "$(COMPOSER_AUTHDIR)")
+ COMPOSER_SECRET ?= --secret=id=composer.auth,src=$(COMPOSER_AUTHDIR)/auth.json
+endif
 
 default: build
 
@@ -8,24 +12,24 @@ build: build-debian build-alpine
 
 build-debian: BUILD_TAG ?= jakzal/phpqa:latest
 build-debian:
-	docker build -t $(BUILD_TAG) --build-arg PHP_VERSION=$(PHP_VERSION) debian/
+	docker buildx build --load -t $(BUILD_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) debian/
 .PHONY: build-debian
 
 build-alpine: BUILD_TAG ?= jakzal/phpqa:alpine
 build-alpine:
-	docker build -t $(BUILD_TAG) --build-arg PHP_VERSION=$(PHP_VERSION) alpine/
+	docker buildx build --load -t $(BUILD_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) alpine/
 .PHONY: build-alpine
 
 NIGHTLY_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)
 build-nightly-debian:
-	docker build -t $(NIGHTLY_TAG) --build-arg PHP_VERSION=$(PHP_VERSION) debian/
+	docker buildx build --load -t $(NIGHTLY_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) debian/
 	@echo ${DOCKER_HUB_PASSWORD} | docker login -u jakzal --password-stdin
 	docker push $(NIGHTLY_TAG)
 .PHONY: build-nightly-debian
 
 NIGHTLY_ALPINE_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)-alpine
 build-nightly-alpine:
-	docker build -t $(NIGHTLY_ALPINE_TAG) --build-arg PHP_VERSION=$(PHP_VERSION) alpine/
+	docker buildx build --load -t $(NIGHTLY_ALPINE_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) alpine/
 	@echo ${DOCKER_HUB_PASSWORD} | docker login -u jakzal --password-stdin
 	docker push $(NIGHTLY_ALPINE_TAG)
 .PHONY: build-nightly-alpine
