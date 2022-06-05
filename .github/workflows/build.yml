@@ -98,6 +98,8 @@ jobs:
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
                         INSTALLATION_DATE=${{ steps.version.outputs.date }}
+                    secrets: |
+                        "composer.auth={""github-oauth"":{""github.com"":""${{ secrets.GITHUB_TOKEN }}""} }"
                     labels: |
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
