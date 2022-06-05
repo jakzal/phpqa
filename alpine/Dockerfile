@@ -17,10 +17,21 @@ ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
   apk add --no-cache $LIB_DEPS $BUILD_DEPS $TOOL_DEPS
 
+FROM --platform=${BUILDPLATFORM} alpine AS ast-downloader
+WORKDIR /
+RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
+  apk add --no-cache git
+RUN git clone https://github.com/nikic/php-ast.git
+
+FROM --platform=${BUILDPLATFORM} alpine AS toolbox-downloader
+WORKDIR /
+ARG TOOLBOX_VERSION
+RUN wget https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar
+
 FROM builder-base AS ast-builder
-RUN git clone https://github.com/nikic/php-ast.git \
- && cd php-ast  \
- && phpize  \
+WORKDIR /build
+COPY --from=ast-downloader /php-ast .
+RUN phpize  \
  && ./configure  \
  && make  \
  && make install
@@ -43,11 +54,6 @@ RUN docker-php-ext-install bz2
 
 FROM builder-base AS bcmath-builder
 RUN docker-php-ext-install bcmath
-
-FROM phpbase as toolbox-downloader
-ARG TOOLBOX_VERSION
-RUN curl --fail -Ls https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar -o /toolbox \
- && chmod +x /toolbox
 
 FROM phpbase as tools
 
@@ -78,7 +84,7 @@ EOF
 
 COPY --link entrypoint.sh /entrypoint.sh
 ARG TOOLBOX_TARGET_DIR="/tools"
-COPY --link --from=toolbox-downloader /toolbox ${TOOLBOX_TARGET_DIR}/toolbox
+COPY --link --from=toolbox-downloader --chmod=+x /toolbox.phar ${TOOLBOX_TARGET_DIR}/toolbox
 COPY --link --from=composer:2 /usr/bin/composer ${TOOLBOX_TARGET_DIR}/composer
 
 # INSTALLATION_DATE is used to bust the docker layer cache
