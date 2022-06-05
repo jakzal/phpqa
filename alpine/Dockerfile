@@ -6,32 +6,80 @@ ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
 ARG TOOLBOX_VERSION="1.63.0"
 
 FROM ${BASE_IMAGE} as phpbase
-
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
-ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 ARG LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
 ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
+RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
+  apk add --no-cache $TOOL_DEPS $LIB_DEPS
 
-RUN apk add --no-cache --virtual .tool-deps $TOOL_DEPS $LIB_DEPS \
- && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
- && git clone https://github.com/nikic/php-ast.git && cd php-ast && phpize && ./configure && make && make install && cd .. && rm -rf php-ast && docker-php-ext-enable ast \
- && pecl install pcov && docker-php-ext-enable pcov \
- && docker-php-ext-configure intl \
- && docker-php-ext-install zip pcntl bz2 intl bcmath \
- && echo "date.timezone=Europe/London" >> $PHP_INI_DIR/php.ini \
- && echo "memory_limit=-1" >> $PHP_INI_DIR/php.ini \
- && echo "phar.readonly=0" >> $PHP_INI_DIR/php.ini \
- && echo "pcov.enabled=0" >> $PHP_INI_DIR/php.ini \
- && apk del .build-deps
+FROM phpbase AS builder-base
+ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
+RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
+  apk add --no-cache $LIB_DEPS $BUILD_DEPS $TOOL_DEPS
 
-FROM phpbase as toolbox
+FROM builder-base AS ast-builder
+RUN git clone https://github.com/nikic/php-ast.git \
+ && cd php-ast  \
+ && phpize  \
+ && ./configure  \
+ && make  \
+ && make install
+RUN docker-php-ext-enable ast
 
+FROM builder-base AS pcov-builder
+RUN pecl install pcov && docker-php-ext-enable pcov
+
+FROM builder-base AS intl-builder
+RUN docker-php-ext-install intl
+
+FROM builder-base AS zip-builder
+RUN docker-php-ext-install zip
+
+FROM builder-base AS pcntl-builder
+RUN docker-php-ext-install pcntl
+
+FROM builder-base AS bz2-builder
+RUN docker-php-ext-install bz2
+
+FROM builder-base AS bcmath-builder
+RUN docker-php-ext-install bcmath
+
+FROM phpbase as toolbox-downloader
 ARG TOOLBOX_VERSION
-
-RUN curl -Ls https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar -o /toolbox \
+RUN curl --fail -Ls https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar -o /toolbox \
  && chmod +x /toolbox
 
 FROM phpbase as tools
+
+# Extensions .so
+COPY --link --from=intl-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=ast-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=pcov-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=zip-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=pcntl-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=bz2-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=bcmath-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+
+# Extensions .ini
+COPY --link --from=intl-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=ast-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=pcov-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=zip-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=pcntl-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=bz2-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=bcmath-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+
+COPY --link <<EOF /usr/local/etc/php/conf.d/jakzal.ini
+date.timezone=Europe/London
+memory_limit=-1
+phar.readonly=0
+pcov.enabled=0
+EOF
+
+COPY --link entrypoint.sh /entrypoint.sh
+ARG TOOLBOX_TARGET_DIR="/tools"
+COPY --link --from=toolbox-downloader /toolbox ${TOOLBOX_TARGET_DIR}/toolbox
+COPY --link --from=composer:2 /usr/bin/composer ${TOOLBOX_TARGET_DIR}/composer
 
 # INSTALLATION_DATE is used to bust the docker layer cache
 ARG INSTALLATION_DATE
@@ -43,10 +91,6 @@ ENV TOOLBOX_VERSION=${TOOLBOX_VERSION}
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:${COMPOSER_HOME}/vendor/bin:$TOOLBOX_TARGET_DIR/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
-
-COPY --from=toolbox /toolbox $TOOLBOX_TARGET_DIR/toolbox
-COPY --from=composer:2 /usr/bin/composer $TOOLBOX_TARGET_DIR/composer
-COPY entrypoint.sh /entrypoint.sh
 
 RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
  --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
