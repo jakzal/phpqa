@@ -100,6 +100,7 @@ jobs:
                         INSTALLATION_DATE=${{ steps.version.outputs.date }}
                     secrets: |
                         "composer.auth={""github-oauth"":{""github.com"":""${{ secrets.GITHUB_TOKEN }}""} }"
+                        "phive.auth=<auth xmlns=""https://phar.io/auth""><domain host=""api.github.com"" type=""token"" credentials=""${{ secrets.GITHUB_TOKEN }}"" /></auth>"
                     labels: |
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}

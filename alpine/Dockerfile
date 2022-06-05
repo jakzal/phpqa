@@ -49,6 +49,7 @@ COPY --from=composer:2 /usr/bin/composer $TOOLBOX_TARGET_DIR/composer
 COPY entrypoint.sh /entrypoint.sh
 
 RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
+ --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
  php $TOOLBOX_TARGET_DIR/toolbox install \
  && rm -rf $COMPOSER_HOME/cache
 
