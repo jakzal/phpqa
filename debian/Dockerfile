@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.4
+
 ARG PHP_VERSION=8.1
 ARG BASE_IMAGE=php:${PHP_VERSION}-cli
 ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
@@ -45,7 +47,8 @@ COPY --from=toolbox /toolbox $TOOLBOX_TARGET_DIR/toolbox
 COPY --from=composer:2 /usr/bin/composer $TOOLBOX_TARGET_DIR/composer
 COPY entrypoint.sh /entrypoint.sh
 
-RUN php $TOOLBOX_TARGET_DIR/toolbox install \
+RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
+ php $TOOLBOX_TARGET_DIR/toolbox install \
  && rm -rf $COMPOSER_HOME/cache
 
 WORKDIR $TOOLBOX_TARGET_DIR
