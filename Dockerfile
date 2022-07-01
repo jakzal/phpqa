@@ -1,25 +1,51 @@
 # syntax=docker/dockerfile:1.4
 
 ARG PHP_VERSION=8.1
-ARG BASE_IMAGE=php:${PHP_VERSION}-alpine
 ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
 ARG TOOLBOX_VERSION="1.63.0"
+ARG FLAVOUR="alpine"
+
+
+# Debian PHP with dependencies needed for final image
+FROM php:${PHP_VERSION}-cli-buster AS php-base-debian
+ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
+ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg  dirmngr gpg-agent openssh-client"
+RUN  rm /etc/apt/apt.conf.d/docker-clean # enables apt caching
+RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt \
+    --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists \
+    apt-get update \
+    && apt-get install -y --no-install-recommends ${DEBIAN_TOOL_DEPS} ${DEBIAN_LIB_DEPS}
+
+
+# Alpine PHP with dependencies needed for final image
+FROM php:${PHP_VERSION}-alpine as php-base-alpine
+ARG ALPINE_LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
+ARG ALPINE_TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
+RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
+    apk add --no-cache ${ALPINE_TOOL_DEPS} ${ALPINE_LIB_DEPS}
 
 
 # PHP with dependencies needed for final image
-FROM ${BASE_IMAGE} as php-base
-LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
-ARG LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
-ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
+FROM php-base-${FLAVOUR} AS php-base
+
+
+# Debian PHP with dependencies needed for building the tools
+FROM php-base-debian AS builder-base-debian
+ARG DEBIAN_BUILD_DEPS="autoconf file g++ gcc libc-dev pkg-config re2c"
+RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt \
+    --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists \
+    apt-get install -y --no-install-recommends ${DEBIAN_BUILD_DEPS}
+
+
+# Alpine PHP with dependencies needed for building the tools
+FROM php-base-alpine AS builder-base-alpine
+ARG ALPINE_BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
-    apk add --no-cache $TOOL_DEPS $LIB_DEPS
+    apk add --no-cache ${ALPINE_BUILD_DEPS}
 
 
 # PHP with dependencies needed for building the tools
-FROM php-base AS builder-base
-ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
-RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
-    apk add --no-cache $BUILD_DEPS
+FROM builder-base-${FLAVOUR} as builder-base
 
 
 # Stage containing the AST extension
@@ -56,9 +82,6 @@ RUN pecl install pcov && docker-php-ext-enable pcov
 # Stage that builds all other extensions
 FROM builder-base AS extensions-builder
 RUN docker-php-ext-install bcmath intl zip pcntl bz2
-
-ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
-ARG TOOLBOX_VERSION="1.63.0"
 
 
 # Final image
@@ -98,7 +121,7 @@ ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:${COMPOSER_HOME}/vendor/bin:$TOOLBOX_TARGET_DIR/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
 
 RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
-    --mount=type=cache,id=composer,target=${COMPOSER_HOME}/cache \
+    --mount=type=cache,id=composer,target=${COMPOSER_HOME}/cache\
     --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
     php $TOOLBOX_TARGET_DIR/toolbox install
 

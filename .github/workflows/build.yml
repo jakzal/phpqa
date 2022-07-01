@@ -91,13 +91,13 @@ jobs:
             -   name: Build
                 uses: docker/build-push-action@v2
                 with:
-                    context: ${{ matrix.flavour }}
                     load: true
                     platforms: linux/amd64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
                         INSTALLATION_DATE=${{ steps.version.outputs.date }}
+                        FLAVOUR=${{ matrix.flavour }}
                     secrets: |
                         "composer.auth={""github-oauth"":{""github.com"":""${{ secrets.GITHUB_TOKEN }}""} }"
                         "phive.auth=<auth xmlns=""https://phar.io/auth""><domain host=""api.github.com"" type=""token"" credentials=""${{ secrets.GITHUB_TOKEN }}"" /></auth>"
@@ -137,13 +137,13 @@ jobs:
                 uses: docker/build-push-action@v2
                 if: steps.version.outputs.push == 'true'
                 with:
-                    context: ${{ matrix.flavour }}
                     push: ${{ steps.version.outputs.push }}
                     platforms: linux/amd64
                     tags: ${{ steps.version.outputs.tags }}
                     build-args: |
                         PHP_VERSION=${{ matrix.php }}
                         INSTALLATION_DATE=${{ steps.version.outputs.date }}
+                        FLAVOUR=${{ matrix.flavour }}
                     labels: |
                         org.opencontainers.image.source=${{ github.event.repository.html_url }}
                         org.opencontainers.image.created=${{ steps.version.outputs.created }}
