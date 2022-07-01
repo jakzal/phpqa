@@ -12,21 +12,21 @@ LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 ARG LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
 ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
-  apk add --no-cache $TOOL_DEPS $LIB_DEPS
+    apk add --no-cache $TOOL_DEPS $LIB_DEPS
 
 
 # PHP with dependencies needed for building the tools
 FROM php-base AS builder-base
 ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
-  apk add --no-cache $LIB_DEPS $BUILD_DEPS $TOOL_DEPS
+    apk add --no-cache $BUILD_DEPS
 
 
 # Stage containing the AST extension
 FROM --platform=${BUILDPLATFORM} alpine AS ast-downloader
 WORKDIR /
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
-  apk add --no-cache git
+    apk add --no-cache git
 RUN git clone https://github.com/nikic/php-ast.git
 
 
@@ -42,9 +42,9 @@ FROM builder-base AS ast-builder
 WORKDIR /build
 COPY --from=ast-downloader /php-ast .
 RUN phpize  \
- && ./configure  \
- && make  \
- && make install
+    && ./configure  \
+    && make  \
+    && make install
 RUN docker-php-ext-enable ast
 
 
@@ -56,6 +56,9 @@ RUN pecl install pcov && docker-php-ext-enable pcov
 # Stage that builds all other extensions
 FROM builder-base AS extensions-builder
 RUN docker-php-ext-install bcmath intl zip pcntl bz2
+
+ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
+ARG TOOLBOX_VERSION="1.63.0"
 
 
 # Final image
@@ -95,9 +98,9 @@ ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
 ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:${COMPOSER_HOME}/vendor/bin:$TOOLBOX_TARGET_DIR/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
 
 RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
- --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
- php $TOOLBOX_TARGET_DIR/toolbox install \
- && rm -rf $COMPOSER_HOME/cache
+    --mount=type=cache,id=composer,target=${COMPOSER_HOME}/cache \
+    --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
+    php $TOOLBOX_TARGET_DIR/toolbox install
 
 WORKDIR $TOOLBOX_TARGET_DIR
 ENTRYPOINT ["/entrypoint.sh"]
