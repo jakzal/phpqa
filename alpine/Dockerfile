@@ -5,29 +5,39 @@ ARG BASE_IMAGE=php:${PHP_VERSION}-alpine
 ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
 ARG TOOLBOX_VERSION="1.63.0"
 
-FROM ${BASE_IMAGE} as phpbase
+
+# PHP with dependencies needed for final image
+FROM ${BASE_IMAGE} as php-base
 LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
 ARG LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
 ARG TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
   apk add --no-cache $TOOL_DEPS $LIB_DEPS
 
-FROM phpbase AS builder-base
+
+# PHP with dependencies needed for building the tools
+FROM php-base AS builder-base
 ARG BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
   apk add --no-cache $LIB_DEPS $BUILD_DEPS $TOOL_DEPS
 
+
+# Stage containing the AST extension
 FROM --platform=${BUILDPLATFORM} alpine AS ast-downloader
 WORKDIR /
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
   apk add --no-cache git
 RUN git clone https://github.com/nikic/php-ast.git
 
+
+# Stage containing the toolbox PHAR
 FROM --platform=${BUILDPLATFORM} alpine AS toolbox-downloader
 WORKDIR /
 ARG TOOLBOX_VERSION
 RUN wget https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar
 
+
+# Stage that builds the AST extension from downloaded src
 FROM builder-base AS ast-builder
 WORKDIR /build
 COPY --from=ast-downloader /php-ast .
@@ -37,43 +47,29 @@ RUN phpize  \
  && make install
 RUN docker-php-ext-enable ast
 
+
+# Stage that builds the pcov extension from PECL
 FROM builder-base AS pcov-builder
 RUN pecl install pcov && docker-php-ext-enable pcov
 
-FROM builder-base AS intl-builder
-RUN docker-php-ext-install intl
 
-FROM builder-base AS zip-builder
-RUN docker-php-ext-install zip
+# Stage that builds all other extensions
+FROM builder-base AS extensions-builder
+RUN docker-php-ext-install bcmath intl zip pcntl bz2
 
-FROM builder-base AS pcntl-builder
-RUN docker-php-ext-install pcntl
 
-FROM builder-base AS bz2-builder
-RUN docker-php-ext-install bz2
-
-FROM builder-base AS bcmath-builder
-RUN docker-php-ext-install bcmath
-
-FROM phpbase as tools
+# Final image
+FROM php-base as tools
 
 # Extensions .so
-COPY --link --from=intl-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --link --from=ast-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --link --from=pcov-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=zip-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=pcntl-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=bz2-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=bcmath-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=extensions-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 
 # Extensions .ini
-COPY --link --from=intl-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 COPY --link --from=ast-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 COPY --link --from=pcov-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
-COPY --link --from=zip-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
-COPY --link --from=pcntl-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
-COPY --link --from=bz2-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
-COPY --link --from=bcmath-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=extensions-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 
 COPY --link <<EOF /usr/local/etc/php/conf.d/jakzal.ini
 date.timezone=Europe/London
