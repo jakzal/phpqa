@@ -48,19 +48,12 @@ RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
 FROM builder-base-${FLAVOUR} as builder-base
 
 
-# Stage containing the AST extension
+# Stage containing the AST extension source
 FROM --platform=${BUILDPLATFORM} alpine AS ast-downloader
 WORKDIR /
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
     apk add --no-cache git
 RUN git clone https://github.com/nikic/php-ast.git
-
-
-# Stage containing the toolbox PHAR
-FROM --platform=${BUILDPLATFORM} alpine AS toolbox-downloader
-WORKDIR /
-ARG TOOLBOX_VERSION
-RUN wget https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar
 
 
 # Stage that builds the AST extension from downloaded src
@@ -82,6 +75,13 @@ RUN pecl install pcov && docker-php-ext-enable pcov
 # Stage that builds all other extensions
 FROM builder-base AS extensions-builder
 RUN docker-php-ext-install bcmath intl zip pcntl bz2
+
+
+# Stage containing the downloaded toolbox PHAR
+FROM --platform=${BUILDPLATFORM} alpine AS toolbox-downloader
+WORKDIR /
+ARG TOOLBOX_VERSION
+RUN wget https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar
 
 
 # Final image
