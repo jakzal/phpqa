@@ -132,6 +132,8 @@ RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
     --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
     php $TOOLBOX_TARGET_DIR/toolbox install
 
+LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
+
 WORKDIR $TOOLBOX_TARGET_DIR
 ENTRYPOINT ["/entrypoint.sh"]
 CMD php $TOOLBOX_TARGET_DIR/toolbox list-tools
