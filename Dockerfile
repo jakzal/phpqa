@@ -97,7 +97,7 @@ COPY --link --from=ast-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf
 COPY --link --from=pcov-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
 COPY --link --from=extensions-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 
-COPY --link <<EOF /usr/local/etc/php/conf.d/jakzal.ini
+COPY --link <<EOF /usr/local/etc/php/conf.d/phpqa.ini
 date.timezone=Europe/London
 memory_limit=-1
 phar.readonly=0
