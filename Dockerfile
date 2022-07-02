@@ -84,8 +84,8 @@ ARG TOOLBOX_VERSION
 RUN wget https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar
 
 
-# Final image
-FROM php-base as tools
+# PHP with all extensions needed, correctly configured
+FROM php-base as php-configured
 
 # Extensions .so
 COPY --link --from=ast-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
@@ -104,7 +104,14 @@ phar.readonly=0
 pcov.enabled=0
 EOF
 
-COPY --link entrypoint.sh /entrypoint.sh
+COPY --link --chmod=755 <<EOF /entrypoint.sh
+#!/usr/bin/env sh
+set -e
+
+(test "\$GITHUB_ACTIONS" = "true" || test "\$CI" = "true") && test -f composer.json && composer install --no-scripts --no-progress
+
+exec "\$@"
+EOF
 ARG TOOLBOX_TARGET_DIR="/tools"
 COPY --link --from=toolbox-downloader --chmod=+x /toolbox.phar ${TOOLBOX_TARGET_DIR}/toolbox
 COPY --link --from=composer:2 /usr/bin/composer ${TOOLBOX_TARGET_DIR}/composer
