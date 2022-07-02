@@ -12,7 +12,7 @@ build: build-debian build-alpine
 
 build-debian: BUILD_TAG ?= jakzal/phpqa:latest
 build-debian:
-	docker buildx build --load -t $(BUILD_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg --build-arg FLAVOUR=debian .
+	docker buildx build --load -t $(BUILD_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg FLAVOUR=debian .
 .PHONY: build-debian
 
 build-alpine: BUILD_TAG ?= jakzal/phpqa:alpine
