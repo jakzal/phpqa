@@ -11,4 +11,3 @@ Please note we have a [code of conduct](CODE_OF_CONDUCT.md). Please follow it in
 * Add any new tools to the [`jakzal/toolbox` repository](https://github.com/jakzal/toolbox)
 * Provide a good commit message describing what you've done.
 * Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-* Make changes to both Debian and Alpine docker files (`debian/Dockerfile` and `alpine/Dockerfile`).
