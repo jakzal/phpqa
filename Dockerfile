@@ -164,4 +164,4 @@ set -e
 exec "\$@"
 EOF
 ENTRYPOINT ["/entrypoint.sh"]
-CMD php $TOOLBOX_TARGET_DIR/toolbox list-tools
+CMD php toolbox list-tools
