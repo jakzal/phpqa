@@ -87,22 +87,60 @@ RUN wget https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/t
 # PHP with all extensions needed, correctly configured
 FROM php-base as php-configured
 
-# Extensions .so
+# Install extensions + extension config
 COPY --link --from=ast-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=pcov-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=extensions-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-
-# Extensions .ini
 COPY --link --from=ast-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=pcov-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --link --from=pcov-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=extensions-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --link --from=extensions-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 
+# Base php.ini
 COPY --link <<EOF /usr/local/etc/php/conf.d/phpqa.ini
 date.timezone=Europe/London
 memory_limit=-1
 phar.readonly=0
 pcov.enabled=0
 EOF
+
+ARG TOOLBOX_TARGET_DIR="/tools"
+WORKDIR ${TOOLBOX_TARGET_DIR}
+ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}"
+
+# Configure Composer
+COPY --link --from=composer:2 /usr/bin/composer ./composer
+ENV COMPOSER_HOME=${TOOLBOX_TARGET_DIR}/.composer
+ENV PATH="${PATH}:${COMPOSER_HOME}/vendor/bin"
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# Configure Toolbox
+COPY --link --from=toolbox-downloader --chmod=+x /toolbox.phar ./toolbox
+ARG TOOLBOX_EXCLUDED_TAGS
+ENV TOOLBOX_EXCLUDED_TAGS=${TOOLBOX_EXCLUDED_TAGS}
+ARG TOOLBOX_VERSION
+ENV TOOLBOX_VERSION=${TOOLBOX_VERSION}
+ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}/QualityAnalyzer/bin"
+ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}/DesignPatternDetector/bin"
+ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}/EasyCodingStandard/bin"
+
+
+# The stage that does 'toolbox install' - separated out to isolate the cachebusting better
+FROM php-configured AS toolbox-installer
+
+ARG INSTALLATION_DATE
+
+RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
+    --mount=type=cache,id=composer,target=${COMPOSER_HOME}/cache\
+    --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
+    php ${TOOLBOX_TARGET_DIR}/toolbox install
+
+
+# Final result with entrypoint configured
+FROM php-configured AS final
+
+LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
+
+COPY --link --from=toolbox-installer ${TOOLBOX_TARGET_DIR} .
 
 COPY --link --chmod=755 <<EOF /entrypoint.sh
 #!/usr/bin/env sh
@@ -112,28 +150,5 @@ set -e
 
 exec "\$@"
 EOF
-ARG TOOLBOX_TARGET_DIR="/tools"
-COPY --link --from=toolbox-downloader --chmod=+x /toolbox.phar ${TOOLBOX_TARGET_DIR}/toolbox
-COPY --link --from=composer:2 /usr/bin/composer ${TOOLBOX_TARGET_DIR}/composer
-
-# INSTALLATION_DATE is used to bust the docker layer cache
-ARG INSTALLATION_DATE
-ARG TOOLBOX_EXCLUDED_TAGS
-ARG TOOLBOX_VERSION
-ENV TOOLBOX_EXCLUDED_TAGS=${TOOLBOX_EXCLUDED_TAGS}
-ENV TOOLBOX_TARGET_DIR="/tools"
-ENV TOOLBOX_VERSION=${TOOLBOX_VERSION}
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_HOME=$TOOLBOX_TARGET_DIR/.composer
-ENV PATH="$PATH:$TOOLBOX_TARGET_DIR:${COMPOSER_HOME}/vendor/bin:$TOOLBOX_TARGET_DIR/QualityAnalyzer/bin:$TOOLBOX_TARGET_DIR/DesignPatternDetector/bin:$TOOLBOX_TARGET_DIR/EasyCodingStandard/bin"
-
-RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
-    --mount=type=cache,id=composer,target=${COMPOSER_HOME}/cache\
-    --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
-    php $TOOLBOX_TARGET_DIR/toolbox install
-
-LABEL maintainer="Jakub Zalas <jakub@zalas.pl>"
-
-WORKDIR $TOOLBOX_TARGET_DIR
 ENTRYPOINT ["/entrypoint.sh"]
 CMD php $TOOLBOX_TARGET_DIR/toolbox list-tools
