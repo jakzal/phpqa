@@ -112,8 +112,8 @@ RUN php -m | grep zip
 RUN php -m | grep bz2
 RUN php --ini | grep phpqa.ini
 
-
 ARG TOOLBOX_TARGET_DIR="/tools"
+ENV TOOLBOX_TARGET_DIR="${TOOLBOX_TARGET_DIR}"
 WORKDIR ${TOOLBOX_TARGET_DIR}
 ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}"
 
