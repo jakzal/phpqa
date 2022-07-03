@@ -103,6 +103,16 @@ phar.readonly=0
 pcov.enabled=0
 EOF
 
+# Validate the PHP configuration
+RUN php -m | grep ast
+RUN php -m | grep pcov
+RUN php -m | grep bcmath
+RUN php -m | grep intl
+RUN php -m | grep zip
+RUN php -m | grep bz2
+RUN php --ini | grep phpqa.ini
+
+
 ARG TOOLBOX_TARGET_DIR="/tools"
 WORKDIR ${TOOLBOX_TARGET_DIR}
 ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}"
@@ -112,6 +122,7 @@ COPY --link --from=composer:2 /usr/bin/composer ./composer
 ENV COMPOSER_HOME=${TOOLBOX_TARGET_DIR}/.composer
 ENV PATH="${PATH}:${COMPOSER_HOME}/vendor/bin"
 ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN composer --version
 
 # Configure Toolbox
 COPY --link --from=toolbox-downloader --chmod=+x /toolbox.phar ./toolbox
@@ -122,6 +133,7 @@ ENV TOOLBOX_VERSION=${TOOLBOX_VERSION}
 ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}/QualityAnalyzer/bin"
 ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}/DesignPatternDetector/bin"
 ENV PATH="${PATH}:${TOOLBOX_TARGET_DIR}/EasyCodingStandard/bin"
+RUN php toolbox --version
 
 
 # The stage that does 'toolbox install' - separated out to isolate the cachebusting better
@@ -132,7 +144,8 @@ ARG INSTALLATION_DATE
 RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
     --mount=type=cache,id=composer,target=${COMPOSER_HOME}/cache\
     --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
-    php ${TOOLBOX_TARGET_DIR}/toolbox install
+    php toolbox install
+RUN php toolbox test
 
 
 # Final result with entrypoint configured
