@@ -9,7 +9,7 @@ ARG FLAVOUR="alpine"
 # Debian PHP with dependencies needed for final image
 FROM php:${PHP_VERSION}-cli-buster AS php-base-debian
 ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
-ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg  dirmngr gpg-agent openssh-client"
+ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent openssh-client"
 RUN  rm /etc/apt/apt.conf.d/docker-clean # enables apt caching
 RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt \
     --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists \
@@ -31,21 +31,20 @@ FROM php-base-${FLAVOUR} AS php-base
 
 # Debian PHP with dependencies needed for building the tools
 FROM php-base-debian AS builder-base-debian
-ARG DEBIAN_BUILD_DEPS="autoconf file g++ gcc libc-dev pkg-config re2c"
 RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt \
     --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists \
-    apt-get install -y --no-install-recommends ${DEBIAN_BUILD_DEPS}
+    apt-get install -y --no-install-recommends ${PHPIZE_DEPS}
 
 
 # Alpine PHP with dependencies needed for building the tools
 FROM php-base-alpine AS builder-base-alpine
-ARG ALPINE_BUILD_DEPS="autoconf file g++ gcc libc-dev pkgconf re2c"
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
-    apk add --no-cache ${ALPINE_BUILD_DEPS}
+    apk add --no-cache ${PHPIZE_DEPS}
 
 
 # PHP with dependencies needed for building the tools
 FROM builder-base-${FLAVOUR} as builder-base
+RUN docker-php-source extract
 
 
 # Stage containing the AST extension source
@@ -72,28 +71,69 @@ FROM builder-base AS pcov-builder
 RUN pecl install pcov && docker-php-ext-enable pcov
 
 
-# Stage that builds all other extensions
-FROM builder-base AS extensions-builder
-RUN docker-php-ext-install bcmath intl zip pcntl bz2
+# Stage that builds bcmath
+FROM builder-base AS bcmath-builder
+RUN docker-php-ext-install bcmath
+
+
+# Stage that builds intl
+FROM builder-base AS intl-builder
+RUN docker-php-ext-install intl
+
+
+# Stage that builds zip
+FROM builder-base AS zip-builder
+RUN docker-php-ext-install zip
+
+
+# Stage that builds pcntl
+FROM builder-base AS pcntl-builder
+RUN docker-php-ext-install pcntl
+
+
+# Stage that builds bz2
+FROM builder-base AS bz2-builder
+RUN docker-php-ext-install bz2
+
+
+# Stage with PHP extensions, all validated
+FROM php-base AS all-extensions
+
+COPY --link --from=ast-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=ast-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=pcov-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=pcov-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=bcmath-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=bcmath-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=intl-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=intl-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=zip-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=zip-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=bz2-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=bz2-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+
+# Validate the extension configuration
+RUN php -m | grep ast
+RUN php -m | grep pcov
+RUN php -m | grep bcmath
+RUN php -m | grep intl
+RUN php -m | grep zip
+RUN php -m | grep bz2
 
 
 # Stage containing the downloaded toolbox PHAR
 FROM --platform=${BUILDPLATFORM} alpine AS toolbox-downloader
 WORKDIR /
 ARG TOOLBOX_VERSION
-RUN wget https://github.com/jakzal/toolbox/releases/download/v$TOOLBOX_VERSION/toolbox.phar
+RUN wget https://github.com/jakzal/toolbox/releases/download/v${TOOLBOX_VERSION}/toolbox.phar
 
 
 # PHP with all extensions needed, correctly configured
 FROM php-base as php-configured
 
 # Install extensions + extension config
-COPY --link --from=ast-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=ast-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
-COPY --link --from=pcov-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=pcov-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
-COPY --link --from=extensions-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --link --from=extensions-builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --link --from=all-extensions /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=all-extensions /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 
 # Base php.ini
 COPY --link <<EOF /usr/local/etc/php/conf.d/phpqa.ini
@@ -104,12 +144,6 @@ pcov.enabled=0
 EOF
 
 # Validate the PHP configuration
-RUN php -m | grep ast
-RUN php -m | grep pcov
-RUN php -m | grep bcmath
-RUN php -m | grep intl
-RUN php -m | grep zip
-RUN php -m | grep bz2
 RUN php --ini | grep phpqa.ini
 
 ARG TOOLBOX_TARGET_DIR="/tools"
