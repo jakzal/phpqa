@@ -10,9 +10,10 @@ ARG FLAVOUR="alpine"
 FROM php:${PHP_VERSION}-cli-buster AS php-base-debian
 ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
 ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent openssh-client"
+ARG TARGETARCH
 RUN  rm /etc/apt/apt.conf.d/docker-clean # enables apt caching
-RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt \
-    --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists \
+RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt-${TARGETARCH} \
+    --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists-${TARGETARCH} \
     apt-get update \
     && apt-get install -y --no-install-recommends ${DEBIAN_TOOL_DEPS} ${DEBIAN_LIB_DEPS}
 
@@ -21,7 +22,8 @@ RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locke
 FROM php:${PHP_VERSION}-alpine as php-base-alpine
 ARG ALPINE_LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
 ARG ALPINE_TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
-RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
+ARG TARGETARCH
+RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
     apk add --no-cache ${ALPINE_TOOL_DEPS} ${ALPINE_LIB_DEPS}
 
 
@@ -31,14 +33,16 @@ FROM php-base-${FLAVOUR} AS php-base
 
 # Debian PHP with dependencies needed for building the tools
 FROM php-base-debian AS builder-base-debian
-RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt \
-    --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists \
+ARG TARGETARCH
+RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt-${TARGETARCH} \
+    --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists-${TARGETARCH} \
     apt-get install -y --no-install-recommends ${PHPIZE_DEPS}
 
 
 # Alpine PHP with dependencies needed for building the tools
 FROM php-base-alpine AS builder-base-alpine
-RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
+ARG TARGETARCH
+RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
     apk add --no-cache ${PHPIZE_DEPS}
 
 
@@ -49,8 +53,9 @@ RUN docker-php-source extract
 
 # Stage containing the AST extension source
 FROM --platform=${BUILDPLATFORM} alpine AS ast-downloader
+ARG TARGETARCH
 WORKDIR /
-RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk \
+RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
     apk add --no-cache git
 RUN git clone https://github.com/nikic/php-ast.git
 
