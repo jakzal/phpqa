@@ -118,12 +118,12 @@ COPY --link --from=bz2-builder /usr/local/lib/php/extensions /usr/local/lib/php/
 COPY --link --from=bz2-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
 
 # Validate the extension configuration
-RUN php -m | grep ast
-RUN php -m | grep pcov
-RUN php -m | grep bcmath
-RUN php -m | grep intl
-RUN php -m | grep zip
-RUN php -m | grep bz2
+RUN php --re ast
+RUN php --re pcov
+RUN php --re bcmath
+RUN php --re intl
+RUN php --re zip
+RUN php --re bz2
 
 
 # Stage containing the downloaded toolbox PHAR
