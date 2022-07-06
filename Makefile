@@ -90,12 +90,12 @@ update-toolbox-version:
 .PHONY: update-toolbox-version
 
 update-toolbox-pr: update-toolbox-version
-	$(eval VERSION_CHANGE=$(shell git diff --name-only */Dockerfile | head -n 1 | xargs git diff | grep TOOLBOX_VERSION | sed -e 's/.*"\(.*\)"/\1/g' | xargs echo | sed -e 's/ / -> /'))
+	$(eval VERSION_CHANGE=$(shell git diff --name-only Dockerfile | head -n 1 | xargs git diff | grep TOOLBOX_VERSION | sed -e 's/.*"\(.*\)"/\1/g' | xargs echo | sed -e 's/ / -> /'))
 	[ "$(VERSION_CHANGE)" = "" ] || \
 	( \
 	    $(eval PR_MESSAGE=$(shell curl -H'Authorization: token '$(GITHUB_TOKEN) -Ls 'https://api.github.com/repos/jakzal/toolbox/releases/latest' | jq -r .body | awk 'BEGIN { RS="\n";} { gsub(/\r/, ""); gsub(/#/, "\\#"); gsub(/"/, "\\\\\\\""); print "-m \""$$0"\""}')) \
 	    git checkout -b toolbox-update && \
-	    git add */Dockerfile && \
+	    git add Dockerfile && \
 	    git commit -m "Update toolbox $(VERSION_CHANGE)" -m "" $(PR_MESSAGE) && \
 	    git push origin toolbox-update && \
 	    hub pull-request -h toolbox-update -a jakzal -m 'Update toolbox $(VERSION_CHANGE)' -m '' -m ':robot: This pull request was automagically sent from a Github action.' -m '' $(PR_MESSAGE) \
