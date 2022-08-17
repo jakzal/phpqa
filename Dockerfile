@@ -114,6 +114,8 @@ COPY --link --from=intl-builder /usr/local/lib/php/extensions /usr/local/lib/php
 COPY --link --from=intl-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
 COPY --link --from=zip-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --link --from=zip-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=pcntl-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=pcntl-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
 COPY --link --from=bz2-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --link --from=bz2-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
 
@@ -123,6 +125,7 @@ RUN php --re pcov
 RUN php --re bcmath
 RUN php --re intl
 RUN php --re zip
+RUN php --re pcntl
 RUN php --re bz2
 
 
