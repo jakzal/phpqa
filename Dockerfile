@@ -186,7 +186,7 @@ RUN --mount=type=secret,id=composer.auth,target=${COMPOSER_HOME}/auth.json \
     --mount=type=secret,id=phive.auth,target=${TOOLBOX_TARGET_DIR}/.phive/auth.xml \
     php toolbox install
 RUN php toolbox test
-RUN chmod 644 /tools/.composer/config.json
+RUN chmod 644 ${COMPOSER_HOME}/config.json
 
 
 # Final result with entrypoint configured
