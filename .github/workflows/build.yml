@@ -21,7 +21,7 @@ jobs:
         outputs:
             push: ${{ steps.version.outputs.push }}
         steps:
-            -   uses: actions/checkout@master
+            -   uses: actions/checkout@v3
 
             -   name: Determine the version
                 id: version
@@ -76,20 +76,20 @@ jobs:
                     IMAGE_FLAVOUR: ${{ matrix.flavour }}
 
             -   name: Set up QEMU
-                uses: docker/setup-qemu-action@v1
+                uses: docker/setup-qemu-action@v2
 
             -   name: Set up Docker Buildx
-                uses: docker/setup-buildx-action@v1
+                uses: docker/setup-buildx-action@v2
 
             -   name: Login to DockerHub
                 if: steps.version.outputs.push == 'true'
-                uses: docker/login-action@v1
+                uses: docker/login-action@v2
                 with:
                     username: jakzal
                     password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
             -   name: Build
-                uses: docker/build-push-action@v2
+                uses: docker/build-push-action@v3
                 with:
                     platforms: linux/amd64,linux/arm64
                     tags: ${{ steps.version.outputs.tags }}
@@ -145,7 +145,7 @@ jobs:
                     BUILD_TAG: jakzal/phpqa:php${{ matrix.php }}-${{ matrix.flavour }}
 
             -   name: Push
-                uses: docker/build-push-action@v2
+                uses: docker/build-push-action@v3
                 if: steps.version.outputs.push == 'true'
                 with:
                     push: ${{ steps.version.outputs.push }}
@@ -179,7 +179,7 @@ jobs:
 
             -   name: Set up QEMU
                 if: ${{ matrix.needs-qemu == true }}
-                uses: docker/setup-qemu-action@v1
+                uses: docker/setup-qemu-action@v2
 
             -   name: Test if pushed
                 run: |
