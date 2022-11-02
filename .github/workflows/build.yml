@@ -108,7 +108,7 @@ jobs:
                     cache-to: type=gha,scope=${{ github.workflow }}-${{ matrix.php }}-${{ matrix.flavour }},mode=max
 
             -   name: Load
-                uses: docker/build-push-action@v2
+                uses: docker/build-push-action@v3
                 with:
                     load: true
                     platforms: linux/amd64
