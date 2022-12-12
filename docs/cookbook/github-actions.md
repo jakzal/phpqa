@@ -17,15 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: PHPStan
-        uses: docker://jakzal/phpqa:php8.1-alpine
+        uses: docker://jakzal/phpqa:php8.2-alpine
         with:
           args: phpstan analyze src/ -l 1
       - name: PHP-CS-Fixer
-        uses: docker://jakzal/phpqa:php8.1-alpine
+        uses: docker://jakzal/phpqa:php8.2-alpine
         with:
           args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
       - name: Deptrac
-        uses: docker://jakzal/phpqa:php8.1-alpine
+        uses: docker://jakzal/phpqa:php8.2-alpine
         with:
           args: deptrac --no-interaction --ansi --formatter-graphviz-display=0
 ```

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 
-ARG PHP_VERSION=8.1
+ARG PHP_VERSION=8.2
 ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
 ARG TOOLBOX_VERSION="1.68.0"
 ARG FLAVOUR="alpine"
