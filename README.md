@@ -130,6 +130,7 @@ Some tools are not included in the docker image, to use them refer to their docu
 
 | Name | Summary |
 | :--- | :------ |
+| analyze | [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer) |
 | box-legacy | [Legacy version of box](https://box-project.github.io/box2/) |
 | composer-normalize | [Composer plugin to normalize composer.json files](https://github.com/localheinz/composer-normalize) |
 | design-pattern | [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector) |
