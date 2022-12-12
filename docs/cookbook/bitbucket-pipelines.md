@@ -6,7 +6,7 @@ Here is an example configuration of a bitbucket pipeline using the phpqa image:
 
 ```yaml
 # bitbucket-pipelines.yml
-image: jakzal/phpqa:php8.1-alpine
+image: jakzal/phpqa:php8.2-alpine
 pipelines:
   default:
     - step:
