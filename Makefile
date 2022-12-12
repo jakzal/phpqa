@@ -1,4 +1,4 @@
-PHP_VERSIONS := 7.4 8.0 8.1 8.2
+PHP_VERSIONS := 8.0 8.1 8.2
 PHP_VERSION ?= $(lastword $(sort $(PHP_VERSIONS)))
 COMPOSER_AUTHDIR ?= $(shell composer config --global home)
 ifneq ("", "$(COMPOSER_AUTHDIR)")
@@ -74,8 +74,8 @@ update-readme-release:
 	$(eval LATEST_RELEASE_MINOR=$(shell echo $(LATEST_RELEASE) | cut -f1,2 -d.))
 	$(eval README_RELEASE=$(shell $(MAKE) readme-release))
 	$(eval README_RELEASE_MINOR=$(shell echo $(README_RELEASE) | cut -f1,2 -d.))
-	sed -i.bkp -e 's/$(README_RELEASE)/$(LATEST_RELEASE)/g' README.md
-	sed -i.bkp -e 's/$(README_RELEASE_MINOR)/$(LATEST_RELEASE_MINOR)/g' README.md
+	sed -i.bkp -e '/^*/s/$(README_RELEASE)/$(LATEST_RELEASE)/g' README.md
+	sed -i.bkp -e '/^*/s/$(README_RELEASE_MINOR)/$(LATEST_RELEASE_MINOR)/g' README.md
 	@rm README.md.bkp
 .PHONY: update-readme-release
 
