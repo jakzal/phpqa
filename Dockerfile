@@ -159,6 +159,7 @@ EOF
 
 # Validate the PHP configuration
 RUN php --ini | grep phpqa.ini
+RUN php --rz "Zend OPcache"
 
 ARG TOOLBOX_TARGET_DIR="/tools"
 ENV TOOLBOX_TARGET_DIR="${TOOLBOX_TARGET_DIR}"
