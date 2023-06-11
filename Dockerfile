@@ -151,8 +151,15 @@ phar.readonly=0
 pcov.enabled=0
 EOF
 
+COPY --link <<EOF /usr/local/etc/php/conf.d/opcache.ini
+zend_extension=opcache.so
+opcache.enable=1
+opcache.enable_cli=1
+EOF
+
 # Validate the PHP configuration
 RUN php --ini | grep phpqa.ini
+RUN php --rz "Zend OPcache"
 
 ARG TOOLBOX_TARGET_DIR="/tools"
 ENV TOOLBOX_TARGET_DIR="${TOOLBOX_TARGET_DIR}"
