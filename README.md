@@ -66,6 +66,7 @@ These are the latest tags for PHP versions that are no longer supported:
 | parallel-lint | [Checks PHP file syntax](https://github.com/php-parallel-lint/PHP-Parallel-Lint) | &#x2705; | &#x2705; | &#x2705; |
 | paratest | [Parallel testing for PHPUnit](https://github.com/paratestphp/paratest) | &#x2705; | &#x2705; | &#x2705; |
 | pdepend | [Static Analysis Tool](https://pdepend.org/) | &#x2705; | &#x2705; | &#x2705; |
+| pest | [The elegant PHP Testing Framework](https://github.com/pestphp/pest) | &#x2705; | &#x2705; | &#x2705; |
 | phan | [Static Analysis Tool](https://github.com/phan/phan) | &#x2705; | &#x2705; | &#x2705; |
 | phive | [PHAR Installation and Verification Environment](https://phar.io/) | &#x2705; | &#x2705; | &#x2705; |
 | php-coupling-detector | [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/) | &#x2705; | &#x2705; | &#x2705; |
