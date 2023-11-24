@@ -17,7 +17,7 @@ jobs:
             fail-fast: false
             matrix:
                 flavour: [debian, alpine]
-                php: ['8.0', '8.1', '8.2']
+                php: ['8.0', '8.1', '8.2', '8.3']
         outputs:
             push: ${{ steps.version.outputs.push }}
         steps:
@@ -28,10 +28,10 @@ jobs:
                 run: |
                     DOCKER_IMAGE=jakzal/phpqa
                     VERSION=master
-                    LATEST_PHP_VERSION="8.2"
+                    LATEST_PHP_VERSION="8.3"
                     LATEST_FLAVOUR="debian"
 
-                    # jakzal/phpqa:php8.2-debian, jakzal/phpqa:php8.2
+                    # jakzal/phpqa:phpX.X-debian, jakzal/phpqa:phpX.X
                     TAGS="${DOCKER_IMAGE}:php${PHP_VERSION}-${IMAGE_FLAVOUR}"
                     if [[ $IMAGE_FLAVOUR == "$LATEST_FLAVOUR" ]]; then
                         TAGS="$TAGS,${DOCKER_IMAGE}:php${PHP_VERSION}"
@@ -46,9 +46,9 @@ jobs:
                     fi
 
                     # jakzal/phpqa:1.55.1, jakzal/phpqa:1.55
-                    # jakzal/phpqa:1.55.1-php8.2, jakzal/phpqa:1.55-php8.2
+                    # jakzal/phpqa:1.55.1-phpX.X, jakzal/phpqa:1.55-phpX.X
                     # jakzal/phpqa:1.55.1-alpine, jakzal/phpqa:1.55-alpine
-                    # jakzal/phpqa:1.55.1-php8.2-alpine, jakzal/phpqa:1.55-php8.2-alpine
+                    # jakzal/phpqa:1.55.1-phpX.X-alpine, jakzal/phpqa:1.55-phpX.X-alpine
                     if [[ $GITHUB_REF == refs/tags/* ]]; then
                         VERSION=${GITHUB_REF#refs/tags/v}
                         MINOR_VERSION=${VERSION%.*}

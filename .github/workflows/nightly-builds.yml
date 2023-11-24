@@ -11,7 +11,7 @@ jobs:
         strategy:
             matrix:
                 flavour: [debian, alpine]
-                php: ['8.2']
+                php: ['8.3']
         steps:
             -   uses: actions/checkout@v3
             -   run: make build-nightly-${{matrix.flavour}}
