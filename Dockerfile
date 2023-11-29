@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1.4
 
-ARG PHP_VERSION=8.2
+ARG PHP_VERSION=8.3
 ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
-ARG TOOLBOX_VERSION="1.79.1"
+ARG TOOLBOX_VERSION="1.80.0"
 ARG FLAVOUR="alpine"
 
 
 # Debian PHP with dependencies needed for final image
-FROM php:${PHP_VERSION}-cli-buster AS php-base-debian
+FROM php:${PHP_VERSION}-cli AS php-base-debian
 ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
 ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent openssh-client"
 ARG TARGETARCH
