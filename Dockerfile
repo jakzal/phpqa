@@ -7,7 +7,7 @@ ARG FLAVOUR="alpine"
 
 
 # Debian PHP with dependencies needed for final image
-FROM php:${PHP_VERSION}-cli-buster AS php-base-debian
+FROM php:${PHP_VERSION}-cli AS php-base-debian
 ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
 ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent openssh-client"
 ARG TARGETARCH
