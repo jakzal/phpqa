@@ -1,4 +1,4 @@
-PHP_VERSIONS := 8.0 8.1 8.2 8.3
+PHP_VERSIONS := 8.1 8.2 8.3
 PHP_VERSION ?= $(lastword $(sort $(PHP_VERSIONS)))
 COMPOSER_AUTHDIR ?= $(shell composer config --global home)
 ifneq ("", "$(COMPOSER_AUTHDIR)")
