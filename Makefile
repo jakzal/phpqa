@@ -66,7 +66,7 @@ release:
 	git commit -m 'Release v$(LATEST_RELEASE)'
 	git tag -a v$(LATEST_RELEASE) -m 'Tag v$(LATEST_RELEASE)'
 	git push origin master
-	gh release create -m '$(LATEST_RELEASE)' -m '' -m ':robot: Automagically created release.' v$(LATEST_RELEASE)
+	hub release create -m '$(LATEST_RELEASE)' -m '' -m ':robot: Automagically created release.' v$(LATEST_RELEASE)
 .PHONY: release
 
 update-readme-release: LATEST_RELEASE ?= 0.0.0
@@ -98,6 +98,6 @@ update-toolbox-pr: update-toolbox-version
 	    git add Dockerfile && \
 	    git commit -m "Update toolbox $(VERSION_CHANGE)" -m "" $(PR_MESSAGE) && \
 	    git push origin toolbox-update && \
-	    gh pull-request -h toolbox-update -a jakzal -m 'Update toolbox $(VERSION_CHANGE)' -m '' -m ':robot: This pull request was automagically sent from a Github action.' -m '' $(PR_MESSAGE) \
+	    hub pull-request -h toolbox-update -a jakzal -m 'Update toolbox $(VERSION_CHANGE)' -m '' -m ':robot: This pull request was automagically sent from a Github action.' -m '' $(PR_MESSAGE) \
 	)
 .PHONY: update-toolbox-pr
