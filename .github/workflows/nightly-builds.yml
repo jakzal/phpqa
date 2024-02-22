@@ -13,7 +13,7 @@ jobs:
                 flavour: [debian, alpine]
                 php: ['8.3']
         steps:
-            -   uses: actions/checkout@v3
+            -   uses: actions/checkout@v4
             -   run: make build-nightly-${{matrix.flavour}}
                 env:
                     PHP_VERSION: ${{ matrix.php }}
