@@ -27,6 +27,11 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * `1.96.3-php8.2-alpine`, `1.96-php8.2-alpine`, `php8.2-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.96.3/Dockerfile))
 * `1.96.3-php8.3-alpine`, `1.96-php8.3-alpine`, `php8.3-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.96.3/Dockerfile))
 
+
+Updated daily: `latest`, `debian`, `alpine`, `php8.4`, `php8.4-alpine`, etc.
+Updated on patch version change: `1.61`, `1.61-php8.4`, `1.61-php8.4-alpine`, etc.
+Never updated: `1.61.0`, `1.61.0-php8.4`, `1.61.0-php8.4-alpine`, etc.
+
 ### Legacy
 
 These are the latest tags for PHP versions that are no longer supported:
@@ -125,6 +130,9 @@ These are the latest tags for PHP versions that are no longer supported:
 | twig-linter | [Standalone cli twig 3.X linter](https://github.com/sserbin/twig-linter) | &#x2705; | &#x2705; | &#x2705; |
 | twigcs | [The missing checkstyle for twig!](https://github.com/friendsoftwig/twigcs) | &#x2705; | &#x2705; | &#x2705; |
 | yaml-lint | [Compact command line utility for checking YAML file syntax](https://github.com/j13k/yaml-lint) | &#x2705; | &#x2705; | &#x2705; |
+
+Each tool is installed in the latest stable version if possible.
+Any Docker image has the latest available and installable version at the time of image creation.
 
 ## More tools
 
