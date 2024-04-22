@@ -126,10 +126,11 @@ These are the latest tags for PHP versions that are no longer supported:
 | rector | [Tool for instant code upgrades and refactoring](https://github.com/rectorphp/rector) | &#x2705; | &#x2705; | &#x2705; |
 | roave-backward-compatibility-check | [Tool to compare two revisions of a class API to check for BC breaks](https://github.com/Roave/BackwardCompatibilityCheck) | &#x2705; | &#x2705; | &#x2705; |
 | simple-phpunit | [Provides utilities to report legacy tests and usage of deprecated code](https://symfony.com/doc/current/components/phpunit_bridge.html) | &#x2705; | &#x2705; | &#x2705; |
+| twig-cs-fixer | [Automatically corrects twig files following the official coding standard rules](https://github.com/VincentLanglet/Twig-CS-Fixer) | &#x2705; | &#x2705; | &#x2705; |
 | twig-lint | [Standalone cli twig 1.X linter](https://github.com/asm89/twig-lint) | &#x2705; | &#x2705; | &#x2705; |
 | twig-linter | [Standalone cli twig 3.X linter](https://github.com/sserbin/twig-linter) | &#x2705; | &#x2705; | &#x2705; |
 | twigcs | [The missing checkstyle for twig!](https://github.com/friendsoftwig/twigcs) | &#x2705; | &#x2705; | &#x2705; |
-| yaml-lint | [Compact command line utility for checking YAML file syntax](https://github.com/j13k/yaml-lint) | &#x2705; | &#x2705; | &#x2705; |
+| yaml-lint | [Compact command line utility for checking YAML file syntax](https://github.com/j13k/yaml-lint) | &#x274C; | &#x2705; | &#x2705; |
 
 Each tool is installed in the latest stable version if possible.
 Any Docker image has the latest available and installable version at the time of image creation.
