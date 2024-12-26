@@ -67,7 +67,7 @@ These are the latest tags for PHP versions that are no longer supported:
 | deptrac | [Enforces dependency rules between software layers](https://github.com/qossmic/deptrac) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | diffFilter | [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | ecs | [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
-| infection | [AST based PHP Mutation Testing Framework](https://infection.github.io/) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
+| infection | [AST based PHP Mutation Testing Framework](https://infection.github.io/) | &#x274C; | &#x2705; | &#x2705; | &#x2705; |
 | larastan | [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | local-php-security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/fabpot/local-php-security-checker) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | parallel-lint | [Checks PHP file syntax](https://github.com/php-parallel-lint/PHP-Parallel-Lint) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
