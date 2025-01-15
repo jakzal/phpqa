@@ -62,6 +62,7 @@ These are the latest tags for PHP versions that are no longer supported:
 | composer-require-checker | [Verify that no unknown symbols are used in the sources of a package.](https://github.com/maglnet/ComposerRequireChecker) | &#x274C; | &#x2705; | &#x2705; | &#x2705; |
 | composer-require-checker-3 | [Verify that no unknown symbols are used in the sources of a package.](https://github.com/maglnet/ComposerRequireChecker) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | composer-unused | [Show unused packages by scanning your code](https://github.com/icanhazstring/composer-unused) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
+| cyclonedx-php-composer | [Composer plugin to create Software-Bill-of-Materials (SBOM) in CycloneDX format](https://github.com/CycloneDX/cyclonedx-php-composer) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | dephpend | [Detect flaws in your architecture](https://dephpend.com/) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | deprecation-detector | [Finds usages of deprecated code](https://github.com/sensiolabs-de/deprecation-detector) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | deptrac | [Enforces dependency rules between software layers](https://github.com/qossmic/deptrac) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
