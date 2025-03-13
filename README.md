@@ -156,6 +156,7 @@ Some tools are not included in the docker image, to use them refer to their docu
 | phpcf | [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/) |
 | phpda | [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/) |
 | phpdoc-to-typehint | [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint) |
+| phpstan-exception-rules | [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules) |
 | phpstan-localheinz-rules | [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules) |
 | security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker) |
 | testability | [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability) |
