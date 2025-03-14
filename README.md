@@ -58,6 +58,7 @@ These are the latest tags for PHP versions that are no longer supported:
 | codeception | [Codeception is a BDD-styled PHP testing framework](https://codeception.com/) | &#x2705; | &#x2705; | &#x2705; |
 | composer | [Dependency Manager for PHP](https://getcomposer.org/) | &#x2705; | &#x2705; | &#x2705; |
 | composer-bin-plugin | [Composer plugin to install bin vendors in isolated locations](https://github.com/bamarni/composer-bin-plugin) | &#x2705; | &#x2705; | &#x2705; |
+| composer-lock-diff | [Composer plugin to check what has changed after a composer update](https://github.com/davidrjonas/composer-lock-diff) | &#x2705; | &#x2705; | &#x2705; |
 | composer-normalize | [Composer plugin to normalize composer.json files](https://github.com/ergebnis/composer-normalize) | &#x2705; | &#x2705; | &#x2705; |
 | composer-require-checker | [Verify that no unknown symbols are used in the sources of a package.](https://github.com/maglnet/ComposerRequireChecker) | &#x2705; | &#x2705; | &#x2705; |
 | composer-require-checker-3 | [Verify that no unknown symbols are used in the sources of a package.](https://github.com/maglnet/ComposerRequireChecker) | &#x2705; | &#x2705; | &#x2705; |
@@ -68,8 +69,11 @@ These are the latest tags for PHP versions that are no longer supported:
 | deptrac | [Enforces dependency rules between software layers](https://github.com/deptrac/deptrac) | &#x2705; | &#x2705; | &#x2705; |
 | diffFilter | [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker) | &#x2705; | &#x2705; | &#x2705; |
 | ecs | [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard) | &#x2705; | &#x2705; | &#x2705; |
+| gherkin-lint-php | [Gherkin linter for PHP](https://github.com/dantleech/gherkin-lint-php) | &#x2705; | &#x2705; | &#x2705; |
 | infection | [AST based PHP Mutation Testing Framework](https://infection.github.io/) | &#x2705; | &#x2705; | &#x2705; |
+| kahlan | [Kahlan is a full-featured Unit & BDD test framework a la RSpec/JSpec](https://kahlan.github.io/docs/) | &#x2705; | &#x2705; | &#x2705; |
 | larastan | [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan) | &#x2705; | &#x2705; | &#x2705; |
+| lines | [CLI tool for quick metrics of PHP projects](https://github.com/tomasVotruba/lines) | &#x2705; | &#x2705; | &#x2705; |
 | local-php-security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/fabpot/local-php-security-checker) | &#x2705; | &#x2705; | &#x2705; |
 | parallel-lint | [Checks PHP file syntax](https://github.com/php-parallel-lint/PHP-Parallel-Lint) | &#x2705; | &#x2705; | &#x2705; |
 | paratest | [Parallel testing for PHPUnit](https://github.com/paratestphp/paratest) | &#x2705; | &#x2705; | &#x2705; |
@@ -107,7 +111,6 @@ These are the latest tags for PHP versions that are no longer supported:
 | phpstan-deprecation-rules | [PHPStan rules for detecting deprecated code](https://github.com/phpstan/phpstan-deprecation-rules) | &#x2705; | &#x2705; | &#x2705; |
 | phpstan-doctrine | [Doctrine extensions for PHPStan](https://github.com/phpstan/phpstan-doctrine) | &#x2705; | &#x2705; | &#x2705; |
 | phpstan-ergebnis-rules | [Additional rules for PHPstan](https://github.com/ergebnis/phpstan-rules) | &#x2705; | &#x2705; | &#x2705; |
-| phpstan-exception-rules | [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules) | &#x2705; | &#x2705; | &#x2705; |
 | phpstan-larastan | [Separate installation of phpstan for larastan](https://github.com/phpstan/phpstan) | &#x2705; | &#x2705; | &#x2705; |
 | phpstan-phpunit | [PHPUnit extensions and rules for PHPStan](https://github.com/phpstan/phpstan-phpunit) | &#x2705; | &#x2705; | &#x2705; |
 | phpstan-strict-rules | [Extra strict and opinionated rules for PHPStan](https://github.com/phpstan/phpstan-strict-rules) | &#x2705; | &#x2705; | &#x2705; |
@@ -153,6 +156,7 @@ Some tools are not included in the docker image, to use them refer to their docu
 | phpcf | [Finds usage of deprecated features](http://wapmorgan.github.io/PhpCodeFixer/) |
 | phpda | [Generates dependency graphs](https://mamuz.github.io/PhpDependencyAnalysis/) |
 | phpdoc-to-typehint | [Automatically adds type hints and return types based on PHPDocs](https://github.com/dunglas/phpdoc-to-typehint) |
+| phpstan-exception-rules | [PHPStan rules for checked and unchecked exceptions](https://github.com/pepakriz/phpstan-exception-rules) |
 | phpstan-localheinz-rules | [Additional rules for PHPstan](https://github.com/localheinz/phpstan-rules) |
 | security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/sensiolabs/security-checker) |
 | testability | [Analyses and reports testability issues of a php codebase](https://github.com/edsonmedina/php_testability) |
