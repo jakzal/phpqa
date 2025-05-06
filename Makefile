@@ -76,7 +76,7 @@ auto-release:
 	    grep -q success && \
 	    ( \
 	        echo "The last build has succeeded. Making the release." && \
-	        $(shell $(MAKE) release) \
+	        $(MAKE) release \
 	    ) || \
 	    ( \
 	        echo "The last build has failed. Skipping the release." && \
