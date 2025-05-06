@@ -69,6 +69,21 @@ release:
 	hub release create -m '$(LATEST_RELEASE)' -m '' -m ':robot: Automagically created release.' v$(LATEST_RELEASE)
 .PHONY: release
 
+auto-release:
+	@curl -s 'https://api.github.com/repos/jakzal/phpqa/actions/runs?branch=master' | \
+	    jq '[.workflow_runs[] | select(.name == "Build") | {id, name, conclusion, html_url, created_at, updated_at} ] | first' | \
+	    jq -r '.conclusion' | \
+	    grep -q success && \
+	    ( \
+	        echo "The last build has succeeded. Making the release." && \
+	        $(shell $(MAKE) release) \
+	    ) || \
+	    ( \
+	        echo "The last build has failed. Skipping the release." && \
+	        exit 1 \
+	    )
+.PHONY: auto-release
+
 update-readme-release: LATEST_RELEASE ?= 0.0.0
 update-readme-release:
 	$(eval LATEST_RELEASE_MINOR=$(shell echo $(LATEST_RELEASE) | cut -f1,2 -d.))
