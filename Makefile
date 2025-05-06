@@ -1,3 +1,4 @@
+MAKEFLAGS += --no-print-directory
 PHP_VERSIONS := 8.2 8.3 8.4
 PHP_VERSION ?= $(lastword $(sort $(PHP_VERSIONS)))
 COMPOSER_AUTHDIR ?= $(shell composer config --global home)
