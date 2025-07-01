@@ -4,6 +4,10 @@ on:
     schedule:
         -   cron: '0 3 * * 1'
     workflow_dispatch:
+        inputs:
+            next_release:
+                type: string
+                description: The version to release
 
 jobs:
     release:
@@ -16,3 +20,4 @@ jobs:
             -   run: make auto-release
                 env:
                     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+                    NEXT_RELEASE: ${{ github.event.inputs.next_release }}
