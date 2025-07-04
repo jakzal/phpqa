@@ -4,6 +4,10 @@ on:
     schedule:
         -   cron: '0 3 * * 1'
     workflow_dispatch:
+        inputs:
+            next_release:
+                type: string
+                description: The version to release
 
 jobs:
     release:
@@ -13,6 +17,6 @@ jobs:
             -   uses: actions/checkout@v4
             -   run: git config user.email 'jakub@zalas.pl' && git config user.name 'Jakub Zalas'
             -   run: sudo apt-get update && sudo apt-get install -y hub
-            -   run: make auto-release
+            -   run: make auto-release NEXT_RELEASE="${{ github.event.inputs.next_release }}"
                 env:
                     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
