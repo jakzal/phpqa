@@ -152,7 +152,6 @@ pcov.enabled=0
 EOF
 
 COPY --link <<EOF /usr/local/etc/php/conf.d/opcache.ini
-zend_extension=opcache.so
 opcache.enable=1
 opcache.enable_cli=1
 EOF
