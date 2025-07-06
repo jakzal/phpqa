@@ -1,16 +1,16 @@
 # syntax=docker/dockerfile:1.4
 
 ARG PHP_VERSION=8.4
-ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
-ARG TOOLBOX_VERSION="1.98.0"
-ARG FLAVOUR="alpine"
+ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}" \
+    TOOLBOX_VERSION="1.98.0" \
+    FLAVOUR="alpine"
 
 
 # Debian PHP with dependencies needed for final image
 FROM php:${PHP_VERSION}-cli AS php-base-debian
-ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
-ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent openssh-client"
-ARG TARGETARCH
+ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev" \
+    DEBIAN_TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent openssh-client" \
+    TARGETARCH
 RUN  rm /etc/apt/apt.conf.d/docker-clean # enables apt caching
 RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt-${TARGETARCH} \
     --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists-${TARGETARCH} \
@@ -20,9 +20,9 @@ RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locke
 
 # Alpine PHP with dependencies needed for final image
 FROM php:${PHP_VERSION}-alpine as php-base-alpine
-ARG ALPINE_LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
-ARG ALPINE_TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
-ARG TARGETARCH
+ARG ALPINE_LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev" \
+    ALPINE_TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client" \
+    TARGETARCH
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
     apk add --no-cache ${ALPINE_TOOL_DEPS} ${ALPINE_LIB_DEPS}
 
