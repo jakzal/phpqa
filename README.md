@@ -17,6 +17,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * `1.112.1`, `1.112`, `1.112.1-debian`, `1.112-debian` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
 * `1.112.1-php8.2`, `1.112-php8.2`, `php8.2-debian`, `php8.2` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
 * `1.112.1-php8.3`, `1.112-php8.3`, `php8.3-debian`, `php8.3` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
+* `1.112.1-php8.4`, `1.112-php8.4`, `php8.4-debian`, `php8.4` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
 
 ### Alpine
 
@@ -24,6 +25,7 @@ Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
 * `1.112.1-alpine`, `1.112-alpine`, ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
 * `1.112.1-php8.2-alpine`, `1.112-php8.2-alpine`, `php8.2-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
 * `1.112.1-php8.3-alpine`, `1.112-php8.3-alpine`, `php8.3-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
+* `1.112.1-php8.4-alpine`, `1.112-php8.4-alpine`, `php8.4-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.112.1/Dockerfile))
 
 
 Updated daily: `latest`, `debian`, `alpine`, `php8.4`, `php8.4-alpine`, etc.
