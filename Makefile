@@ -21,20 +21,6 @@ build-alpine:
 	docker buildx build --load -t $(BUILD_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg FLAVOUR=alpine .
 .PHONY: build-alpine
 
-NIGHTLY_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)
-build-nightly-debian:
-	docker buildx build --load -t $(NIGHTLY_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg FLAVOUR=debian .
-	@echo ${DOCKER_HUB_PASSWORD} | docker login -u jakzal --password-stdin
-	docker push $(NIGHTLY_TAG)
-.PHONY: build-nightly-debian
-
-NIGHTLY_ALPINE_TAG := jakzal/phpqa-nightly:$(shell date +%y%m%d)-alpine
-build-nightly-alpine:
-	docker buildx build --load -t $(NIGHTLY_ALPINE_TAG) $(COMPOSER_SECRET) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg FLAVOUR=alpine .
-	@echo ${DOCKER_HUB_PASSWORD} | docker login -u jakzal --password-stdin
-	docker push $(NIGHTLY_ALPINE_TAG)
-.PHONY: build-nightly-alpine
-
 clean:
 	@rm devkit
 .PHONY: clean
