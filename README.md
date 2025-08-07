@@ -9,8 +9,6 @@ The list of available tools and the installer are actually managed in the [`jakz
 
 Docker hub repository: https://hub.docker.com/r/jakzal/phpqa/
 
-Nightly builds: https://hub.docker.com/r/jakzal/phpqa-nightly/
-
 ### Debian
 
 * `latest`, `debian` ([Dockerfile](https://github.com/jakzal/phpqa/blob/master/Dockerfile))
