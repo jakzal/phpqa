@@ -12,18 +12,18 @@ Docker hub repository: https://hub.docker.com/r/jakzal/phpqa/
 ### Debian
 
 * `latest`, `debian` ([Dockerfile](https://github.com/jakzal/phpqa/blob/master/Dockerfile))
-* `1.114.3`, `1.114`, `1.114.3-debian`, `1.114-debian` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
-* `1.114.3-php8.2`, `1.114-php8.2`, `php8.2-debian`, `php8.2` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
-* `1.114.3-php8.3`, `1.114-php8.3`, `php8.3-debian`, `php8.3` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
-* `1.114.3-php8.4`, `1.114-php8.4`, `php8.4-debian`, `php8.4` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
+* `1.114.4`, `1.114`, `1.114.4-debian`, `1.114-debian` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
+* `1.114.4-php8.2`, `1.114-php8.2`, `php8.2-debian`, `php8.2` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
+* `1.114.4-php8.3`, `1.114-php8.3`, `php8.3-debian`, `php8.3` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
+* `1.114.4-php8.4`, `1.114-php8.4`, `php8.4-debian`, `php8.4` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
 
 ### Alpine
 
 * `alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/master/Dockerfile))
-* `1.114.3-alpine`, `1.114-alpine`, ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
-* `1.114.3-php8.2-alpine`, `1.114-php8.2-alpine`, `php8.2-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
-* `1.114.3-php8.3-alpine`, `1.114-php8.3-alpine`, `php8.3-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
-* `1.114.3-php8.4-alpine`, `1.114-php8.4-alpine`, `php8.4-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.3/Dockerfile))
+* `1.114.4-alpine`, `1.114-alpine`, ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
+* `1.114.4-php8.2-alpine`, `1.114-php8.2-alpine`, `php8.2-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
+* `1.114.4-php8.3-alpine`, `1.114-php8.3-alpine`, `php8.3-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
+* `1.114.4-php8.4-alpine`, `1.114-php8.4-alpine`, `php8.4-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.114.4/Dockerfile))
 
 
 Updated daily: `latest`, `debian`, `alpine`, `php8.4`, `php8.4-alpine`, etc.
