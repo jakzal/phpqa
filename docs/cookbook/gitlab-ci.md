@@ -14,6 +14,9 @@ stages:
 php-cs-fixer:
     stage: style
     image: jakzal/phpqa:php8.2-alpine
+    variables:
+      # set to “true” if the tool can work without Composer dependencies
+      SKIP_COMPOSER_INSTALL: false
     script:
         - php-cs-fixer fix --dry-run --stop-on-violation
 
@@ -23,4 +26,3 @@ phpstan:
     script:
       - phpstan analyze
 ```
-

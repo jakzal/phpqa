@@ -12,3 +12,4 @@ Here you will find a list of tips & tricks that are too long to be put in the ma
 - [Bitbucket Pipelines](bitbucket-pipelines.md)
 - [Gitlab CI](gitlab-ci.md)
 - [Starter Kits](starter-kits.md)
+- [Options](options.md)
