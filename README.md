@@ -53,7 +53,6 @@ These are the latest tags for PHP versions that are no longer supported:
 | :--- | :---------- | :------ | :------ | :------ | :------ |
 | behat | [Helps to test business expectations](http://behat.org/) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | box | [Fast, zero config application bundler with PHARs](https://github.com/humbug/box) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
-| box-3 | [Fast, zero config application bundler with PHARs](https://github.com/humbug/box) | &#x274C; | &#x2705; | &#x2705; | &#x2705; |
 | churn | [Discovers good candidates for refactoring](https://github.com/bmitch/churn-php) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | codeception | [Codeception is a BDD-styled PHP testing framework](https://codeception.com/) | &#x2705; | &#x2705; | &#x2705; | &#x274C; |
 | composer | [Dependency Manager for PHP](https://getcomposer.org/) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
