@@ -17,7 +17,7 @@ jobs:
             fail-fast: false
             matrix:
                 flavour: [debian, alpine]
-                php: ['8.2', '8.3', '8.4']
+                php: ['8.2', '8.3', '8.4', '8.5']
         outputs:
             push: ${{ steps.version.outputs.push }}
         steps:
@@ -28,7 +28,7 @@ jobs:
                 run: |
                     DOCKER_IMAGE=jakzal/phpqa
                     VERSION=master
-                    LATEST_PHP_VERSION="8.4"
+                    LATEST_PHP_VERSION="8.5"
                     LATEST_FLAVOUR="debian"
 
                     # jakzal/phpqa:phpX.X-debian, jakzal/phpqa:phpX.X
@@ -170,7 +170,7 @@ jobs:
             fail-fast: false
             matrix:
                 flavour: [debian, alpine]
-                php: ['8.2', '8.3', '8.4']
+                php: ['8.2', '8.3', '8.4', '8.5']
                 platform: ['linux/arm64','linux/amd64']
                 include:
                     - platform: 'linux/arm64'

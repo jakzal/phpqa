@@ -16,6 +16,7 @@ Docker hub repository: https://hub.docker.com/r/jakzal/phpqa/
 * `1.117.2-php8.2`, `1.117-php8.2`, `php8.2-debian`, `php8.2` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
 * `1.117.2-php8.3`, `1.117-php8.3`, `php8.3-debian`, `php8.3` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
 * `1.117.2-php8.4`, `1.117-php8.4`, `php8.4-debian`, `php8.4` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
+* `1.117.2-php8.5`, `1.117-php8.5`, `php8.5-debian`, `php8.5` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
 
 ### Alpine
 
@@ -24,11 +25,12 @@ Docker hub repository: https://hub.docker.com/r/jakzal/phpqa/
 * `1.117.2-php8.2-alpine`, `1.117-php8.2-alpine`, `php8.2-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
 * `1.117.2-php8.3-alpine`, `1.117-php8.3-alpine`, `php8.3-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
 * `1.117.2-php8.4-alpine`, `1.117-php8.4-alpine`, `php8.4-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
+* `1.117.2-php8.5-alpine`, `1.117-php8.5-alpine`, `php8.5-alpine` ([Dockerfile](https://github.com/jakzal/phpqa/blob/v1.117.2/Dockerfile))
 
 
-Updated daily: `latest`, `debian`, `alpine`, `php8.4`, `php8.4-alpine`, etc.
-Updated on patch version change: `1.61`, `1.61-php8.4`, `1.61-php8.4-alpine`, etc.
-Never updated: `1.61.0`, `1.61.0-php8.4`, `1.61.0-php8.4-alpine`, etc.
+Updated daily: `latest`, `debian`, `alpine`, `php8.5`, `php8.5-alpine`, etc.
+Updated on patch version change: `1.61`, `1.61-php8.5`, `1.61-php8.5-alpine`, etc.
+Never updated: `1.61.0`, `1.61.0-php8.5`, `1.61.0-php8.5-alpine`, etc.
 
 ### Legacy
 
