@@ -206,7 +206,7 @@ COPY --link --chmod=755 <<EOF /entrypoint.sh
 #!/usr/bin/env sh
 set -e
 
-(test "\$GITHUB_ACTIONS" = "true" || test "\$CI" = "true") && test -f composer.json && composer install --no-scripts --no-progress --quiet
+(test "\$GITHUB_ACTIONS" = "true" || test "\$CI" = "true") && (test "\$SKIP_COMPOSER_INSTALL" != "true") && test -f composer.json && composer install --no-scripts --no-progress --quiet
 
 exec "\$@"
 EOF
