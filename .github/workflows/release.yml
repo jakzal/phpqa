@@ -14,7 +14,7 @@ jobs:
         runs-on: ubuntu-latest
         name: Release
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@v6
             -   run: git config user.email 'jakub@zalas.pl' && git config user.name 'Jakub Zalas'
             -   run: sudo apt-get update && sudo apt-get install -y hub
             -   run: make auto-release NEXT_RELEASE="${{ github.event.inputs.next_release }}"
