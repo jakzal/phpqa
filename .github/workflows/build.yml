@@ -83,7 +83,7 @@ jobs:
 
             -   name: Login to DockerHub
                 if: steps.version.outputs.push == 'true'
-                uses: docker/login-action@v3
+                uses: docker/login-action@v4
                 with:
                     username: jakzal
                     password: ${{ secrets.DOCKER_HUB_TOKEN }}
