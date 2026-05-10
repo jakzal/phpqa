@@ -71,7 +71,7 @@ These are the latest tags for PHP versions that are no longer supported:
 | diffFilter | [Applies QA tools to run on a single pull request](https://github.com/exussum12/coverageChecker) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | ecs | [Sets up and runs coding standard checks](https://github.com/Symplify/EasyCodingStandard) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | gherkin-lint-php | [Gherkin linter for PHP](https://github.com/dantleech/gherkin-lint-php) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
-| infection | [AST based PHP Mutation Testing Framework](https://infection.github.io/) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
+| infection | [AST based PHP Mutation Testing Framework](https://infection.github.io/) | &#x274C; | &#x2705; | &#x2705; | &#x2705; |
 | jack | [Helps to upgrade outdated Composer dependencies incrementally](https://github.com/rectorphp/jack) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | kahlan | [Kahlan is a full-featured Unit & BDD test framework a la RSpec/JSpec](https://kahlan.github.io/docs/) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | larastan | [PHPStan extension for Laravel](https://github.com/nunomaduro/larastan) | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
