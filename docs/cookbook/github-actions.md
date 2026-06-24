@@ -17,18 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: PHPStan
-        uses: docker://jakzal/phpqa:php8.2-alpine
+        uses: docker://jakzal/phpqa:php8.3-alpine
         with:
           args: phpstan analyze src/ -l 1
       - name: PHP-CS-Fixer
-        uses: docker://jakzal/phpqa:php8.2-alpine
+        uses: docker://jakzal/phpqa:php8.3-alpine
         with:
           args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
         env:
           # set to “true” if the tool can work without Composer dependencies
           SKIP_COMPOSER_INSTALL: false
       - name: Deptrac
-        uses: docker://jakzal/phpqa:php8.2-alpine
+        uses: docker://jakzal/phpqa:php8.3-alpine
         with:
           args: deptrac --no-interaction --ansi --formatter-graphviz-display=0
 ```
