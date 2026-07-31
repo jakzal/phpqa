@@ -9,7 +9,7 @@ ARG FLAVOUR="alpine"
 # Debian PHP with dependencies needed for final image
 FROM php:${PHP_VERSION}-cli AS php-base-debian
 ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
-ARG DEBIAN_TOOL_DEPS="git graphviz make unzip gpg dirmngr gpg-agent openssh-client"
+ARG DEBIAN_TOOL_DEPS="git graphviz jq make unzip gpg dirmngr gpg-agent openssh-client"
 ARG TARGETARCH
 RUN  rm /etc/apt/apt.conf.d/docker-clean # enables apt caching
 RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt-${TARGETARCH} \
@@ -21,7 +21,7 @@ RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locke
 # Alpine PHP with dependencies needed for final image
 FROM php:${PHP_VERSION}-alpine as php-base-alpine
 ARG ALPINE_LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
-ARG ALPINE_TOOL_DEPS="git graphviz ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
+ARG ALPINE_TOOL_DEPS="git graphviz jq ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
 ARG TARGETARCH
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
     apk add --no-cache ${ALPINE_TOOL_DEPS} ${ALPINE_LIB_DEPS}
