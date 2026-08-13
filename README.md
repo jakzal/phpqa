@@ -151,6 +151,7 @@ Some tools are not included in the docker image, to use them refer to their docu
 | analyze | [Visualizes metrics and source code](https://github.com/Qafoo/QualityAnalyzer) |
 | box-legacy | [Legacy version of box](https://box-project.github.io/box2/) |
 | design-pattern | [Detects design patterns](https://github.com/Halleck45/DesignPatternDetector) |
+| local-php-security-checker | [Checks composer dependencies for known security vulnerabilities](https://github.com/fabpot/local-php-security-checker) |
 | parallel-lint | [Checks PHP file syntax](https://github.com/JakubOnderka/PHP-Parallel-Lint) |
 | pest | [The elegant PHP Testing Framework](https://github.com/pestphp/pest) |
 | php-coupling-detector | [Detects code coupling issues](https://akeneo.github.io/php-coupling-detector/) |
