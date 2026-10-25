@@ -8,7 +8,7 @@ ARG FLAVOUR="alpine"
 
 # Debian PHP with dependencies needed for final image
 FROM php:${PHP_VERSION}-cli AS php-base-debian
-ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev linux-libc-dev"
+ARG DEBIAN_LIB_DEPS="zlib1g-dev libzip-dev libbz2-dev libicu-dev"
 ARG DEBIAN_TOOL_DEPS="git graphviz jq make unzip gpg dirmngr gpg-agent openssh-client"
 ARG TARGETARCH
 RUN  rm /etc/apt/apt.conf.d/docker-clean # enables apt caching
@@ -20,7 +20,7 @@ RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locke
 
 # Alpine PHP with dependencies needed for final image
 FROM php:${PHP_VERSION}-alpine as php-base-alpine
-ARG ALPINE_LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev linux-headers"
+ARG ALPINE_LIB_DEPS="zlib-dev libzip-dev bzip2-dev icu-dev"
 ARG ALPINE_TOOL_DEPS="git graphviz jq ttf-freefont make unzip gpgme gnupg-dirmngr openssh-client"
 ARG TARGETARCH
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
@@ -36,14 +36,14 @@ FROM php-base-debian AS builder-base-debian
 ARG TARGETARCH
 RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt-${TARGETARCH} \
     --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists-${TARGETARCH} \
-    apt-get install -y --no-install-recommends ${PHPIZE_DEPS}
+    apt-get install -y --no-install-recommends ${PHPIZE_DEPS} linux-libc-dev
 
 
 # Alpine PHP with dependencies needed for building the tools
 FROM php-base-alpine AS builder-base-alpine
 ARG TARGETARCH
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
-    apk add --no-cache ${PHPIZE_DEPS}
+    apk add --no-cache ${PHPIZE_DEPS} linux-headers
 
 
 # PHP with dependencies needed for building the tools
