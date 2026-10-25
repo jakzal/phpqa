@@ -2,7 +2,7 @@
 
 ARG PHP_VERSION=8.5
 ARG TOOLBOX_EXCLUDED_TAGS="exclude-php:${PHP_VERSION}"
-ARG TOOLBOX_VERSION="1.112.0"
+ARG TOOLBOX_VERSION="1.112.1"
 ARG FLAVOUR="alpine"
 
 
@@ -36,14 +36,14 @@ FROM php-base-debian AS builder-base-debian
 ARG TARGETARCH
 RUN --mount=type=cache,target=/var/cache/apt,target=/var/cache/apt,sharing=locked,id=apt-${TARGETARCH} \
     --mount=type=cache,target=/var/lib/apt/lists,target=/var/lib/apt/lists,sharing=locked,id=apt-lists-${TARGETARCH} \
-    apt-get install -y --no-install-recommends ${PHPIZE_DEPS}
+    apt-get install -y --no-install-recommends ${PHPIZE_DEPS} linux-libc-dev
 
 
 # Alpine PHP with dependencies needed for building the tools
 FROM php-base-alpine AS builder-base-alpine
 ARG TARGETARCH
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked,id=apk-${TARGETARCH} \
-    apk add --no-cache ${PHPIZE_DEPS}
+    apk add --no-cache ${PHPIZE_DEPS} linux-headers
 
 
 # PHP with dependencies needed for building the tools
@@ -101,6 +101,11 @@ FROM builder-base AS bz2-builder
 RUN docker-php-ext-install bz2
 
 
+# Stage that builds sockets
+FROM builder-base AS sockets-builder
+RUN docker-php-ext-install sockets
+
+
 # Stage with PHP extensions, all validated
 FROM php-base AS all-extensions
 
@@ -118,6 +123,8 @@ COPY --link --from=pcntl-builder /usr/local/lib/php/extensions /usr/local/lib/ph
 COPY --link --from=pcntl-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
 COPY --link --from=bz2-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --link --from=bz2-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
+COPY --link --from=sockets-builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --link --from=sockets-builder /usr/local/etc/php/conf.d  /usr/local/etc/php/conf.d
 
 # Validate the extension configuration
 RUN php --re ast
@@ -127,6 +134,7 @@ RUN php --re intl
 RUN php --re zip
 RUN php --re pcntl
 RUN php --re bz2
+RUN php --re sockets
 
 
 # Stage containing the downloaded toolbox PHAR
