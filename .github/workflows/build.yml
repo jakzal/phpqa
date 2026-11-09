@@ -181,7 +181,16 @@ jobs:
             -   name: Fetch logs of failed steps
                 env:
                     GH_TOKEN: ${{ github.token }}
-                run: gh run view ${{ github.run_id }} --log-failed > failed-debug.log
+                run: |
+                    deadline=$(( $(date +%s) + 300 ))
+                    until gh run view ${{ github.run_id }} --log-failed > failed-debug.log 2>/dev/null && [ -s failed-debug.log ]; do
+                        if [ "$(date +%s)" -ge "$deadline" ]; then
+                            echo "::warning::Build logs never became available for diagnosis within 5 minutes."
+                            exit 1
+                        fi
+                        echo "Logs not yet available (archiving takes a moment) — retrying in 30 seconds..."
+                        sleep 30
+                    done
 
             -   name: Install opencode
                 run: curl -fsSL https://opencode.ai/install | bash -s -- --version "$OPENCODE_VERSION"
